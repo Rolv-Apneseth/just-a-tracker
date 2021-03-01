@@ -6,4 +6,44 @@
 
 {% block content %} 
     <h1>This is the sign up page</h1>
+
+    <br>
+
+    <form method='POST'>
+        <h3>Create account</h3>
+
+        <div id='form-group'>
+            <label for="email">Email Address</label>
+            <input 
+                type='email' class='form-control' id='email' name='email' placeholder='Enter an email address'
+            />
+        </div>
+
+        <div id='form-group'>
+            <label for="username">Username</label>
+            <input 
+                type='text' class='form-control' id='username' name='username' placeholder='Enter a username e.g. JohnSmith42, John-Smith'
+            />
+        </div>
+
+        <div id='form-group'>
+            <label for="password">Password</label>
+            <input 
+                type='password' class='form-control' id='password' name='password' placeholder='Enter a password'
+            />
+        </div>
+
+        <div id='form-group'>
+            <label for="password-confirm">Confirm Password</label>
+            <input 
+                type='password' class='form-control' id='password-confirm' name='password-confirm' placeholder='Confirm your password'
+            />
+        </div>
+
+        <br>
+
+        <button type='submit' class='btn btn-primary'>
+            Submit
+        </button>
+    </form>
 {% endblock %}
