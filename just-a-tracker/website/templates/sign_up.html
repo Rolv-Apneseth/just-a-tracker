@@ -22,14 +22,14 @@
         <div id='form-group'>
             <label for="username">Username</label>
             <input 
-                type='text' class='form-control' id='username' name='username' placeholder='Enter a username e.g. JohnSmith42, John-Smith' value="{{ request.form['username'] }}"
+                type='text' class='form-control' id='username' name='username' placeholder='Enter a username e.g. JohnSmith42, John-Smith' value="{{ request.form['username'] }}" maxlength="20"
             />
         </div>
 
         <div id='form-group'>
             <label for="password">Password</label>
             <input 
-                type='password' class='form-control' id='password' name='password' placeholder='Enter a password'"
+                type='password' class='form-control' id='password' name='password' placeholder='Password must be at least 8 characters long and contain: 1 uppercase letter, 1 lowercase letter and 1 number' max-length='128'
             />
         </div>
 

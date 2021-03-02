@@ -15,14 +15,14 @@
         <div id='form-group'>
             <label for="username">Username</label>
             <input 
-                type='text' class='form-control' id='username' name='username' placeholder='Enter your username or email address' value="{{ request.form['username'] }}"
+                type='text' class='form-control' id='username' name='username' placeholder='Enter your username or email address' value="{{ request.form['username'] }}" max-length='320'
             />
         </div>
 
         <div id='form-group'>
             <label for="password">Password</label>
             <input 
-                type='password' class='form-control' id='password' name='password' placeholder='Enter a password'
+                type='password' class='form-control' id='password' name='password' placeholder='Enter a password' max-length='128'
             />
         </div>
 
