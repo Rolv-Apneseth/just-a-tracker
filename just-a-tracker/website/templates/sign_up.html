@@ -15,14 +15,14 @@
         <div id='form-group'>
             <label for="email">Email Address</label>
             <input 
-                type='email' class='form-control' id='email' name='email' placeholder='Enter an email address'value="{{ request.form['email'] }}"
+                type='email' class='form-control' id='email' name='email' placeholder='Enter an email address'value="{{ request.form['email'] }}" max-length='320'
             />
         </div>
 
         <div id='form-group'>
             <label for="username">Username</label>
             <input 
-                type='text' class='form-control' id='username' name='username' placeholder='Enter a username e.g. JohnSmith42, John-Smith' value="{{ request.form['username'] }}" maxlength="20"
+                type='text' class='form-control' id='username' name='username' placeholder='Enter a username e.g. JohnSmith42, John-Smith' value="{{ request.form['username'] }}" maxlength="50"
             />
         </div>
 
@@ -36,7 +36,7 @@
         <div id='form-group'>
             <label for="password-confirm">Confirm Password</label>
             <input 
-                type='password' class='form-control' id='password-confirm' name='password-confirm' placeholder='Confirm your password'
+                type='password' class='form-control' id='password-confirm' name='password-confirm' placeholder='Confirm your password' max-length='128'
             />
         </div>
 
