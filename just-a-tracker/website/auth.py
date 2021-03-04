@@ -13,21 +13,23 @@ auth = Blueprint("auth", __name__)
 RE_USERNAME = r"^[\w-]{6,}$"
 RE_PASSWORD = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w\W]{8,}$"
 
-PASS_MATCH = (
-    "Your passwords did not match. Please make "
-    "sure you type the same password in both fields."
-)
-PASS_FORMAT = (
-    "Your password must be at least 8 characters long and"
-    " contain: 1 uppercase letter, 1 lowercase letter and"
-    " 1 number"
-)
-USER_FORMAT = (
-    "Username must be 6 characters or longer, and can only "
-    "include letters, numbers and the symbols '_' and '-'"
-)
-USER_EXISTS = "Sorry, an account with that username already exists."
-EMAIL_EXISTS = "Sorry, an account with that email address already exists"
+SIGN_UP_RESPONSES = {
+    "pass_match": (
+        "Your passwords did not match. Please make "
+        "sure you type the same password in both fields."
+    ),
+    "pass_format": (
+        "Your password must be at least 8 characters long and"
+        " contain: 1 uppercase letter, 1 lowercase letter and"
+        " 1 number"
+    ),
+    "user_format": (
+        "Username must be 6 characters or longer, and can only "
+        "include letters, numbers and the symbols '_' and '-'"
+    ),
+    "user_exists": "Sorry, an account with that username already exists.",
+    "email_exists": "Sorry, an account with that email address already exists",
+}
 
 
 # HELPERS
@@ -64,25 +66,18 @@ def validate_sign_up_info(form):
         },
     )
 
-    if get_user_by_username(username):
-        flash(USER_EXISTS)
-        result = (False, {})
+    conditions = {
+        "pass_match": password != password_confirm,
+        "pass_format": not re.match(RE_PASSWORD, password),
+        "user_format": not re.match(RE_USERNAME, username),
+        "user_exists": get_user_by_username(username),
+        "email_exists": get_user_by_email(email),
+    }
 
-    if get_user_by_email(email):
-        flash(EMAIL_EXISTS)
-        result = (False, {})
-
-    if password != password_confirm:
-        flash(PASS_MATCH)
-        result = (False, {})
-
-    if not re.match(RE_PASSWORD, password):
-        flash(PASS_FORMAT)
-        result = (False, {})
-
-    if not re.match(RE_USERNAME, username):
-        flash(USER_FORMAT)
-        result = (False, {})
+    for key, condition in conditions.items():
+        if condition:
+            flash(SIGN_UP_RESPONSES[key])
+            result = (False, {})
 
     return result
 
