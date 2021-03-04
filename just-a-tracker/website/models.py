@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     user_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(320), unique=True)
     password = db.Column(db.String(128))
-    username = db.Column(db.String(50))
+    username = db.Column(db.String(50), unique=True)
 
     bugs = db.relationship("Bug")
     workspaces = db.relationship(
