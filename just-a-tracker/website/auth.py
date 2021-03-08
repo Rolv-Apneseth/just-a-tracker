@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
@@ -83,23 +84,22 @@ def validate_sign_up_info(form):
 
 
 def validate_login_info(form):
+    result = None
+
     username = form.get("username")
     password = form.get("password")
 
-    result = (True, username)
-
     user = find_user(username)
 
-    # Check password
     if user:
         if check_password_hash(user.password, password):
-            pass  # login
+            result = user
+
         else:
             flash("Password was incorrect. Please try again.")
-            result = (False, None)
+
     else:
-        flash("No account matches that username or email")
-        result = (False, None)
+        flash("No account matches that username or email.")
 
     return result
 
@@ -108,7 +108,12 @@ def validate_login_info(form):
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        validated = validate_login_info(request.form)
+        validated_user = validate_login_info(request.form)
+
+        if validated_user:
+            # Login user
+            login_user(validated_user, remember=True)
+            return redirect(url_for("views.account"))
 
     return render_template("login.html")
 
@@ -124,9 +129,13 @@ def sign_up():
         validated = validate_sign_up_info(request.form)
 
         if validated[0]:
+            # Add user to database
             new_user = User(**validated[1])
             db.session.add(new_user)
             db.session.commit()
+
+            # Login new user
+            login_user(new_user, remember=True)
 
             return redirect(url_for("views.account"))
 
