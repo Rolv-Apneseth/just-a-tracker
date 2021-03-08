@@ -30,6 +30,10 @@ class User(db.Model, UserMixin):
         backref=db.backref("users", lazy="dynamic"),
     )
 
+    # Override UserMixin method to return correct id value
+    def get_id(self):
+        return self.user_id
+
 
 class Bug(db.Model):
     bug_id = db.Column(db.Integer, primary_key=True)
