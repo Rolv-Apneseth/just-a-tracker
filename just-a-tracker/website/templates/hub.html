@@ -1,9 +1,54 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block title %} Workspace Hub {% endblock %} {% block content
+%}
+<h1>This is the workspace hub page</h1>
 
-{% block title %}
-    Workspace Hub
-{% endblock %}
+<section id="workspaces">
+  <h3>My workspaces</h3>
+  <br />
 
-{% block content %} 
-    <h1>This is the workspace hub page</h1>
+  <ul id="workspaces-list">
+    {% for workspace in user.workspaces %}
+    <li>
+      <a href="/workspace"
+        >{{ workspace.project_name }} id: {{ workspace.workspace_id }}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<form method="POST" id="new-workspace">
+  <h3>Add a Workspace</h3>
+
+  <div id="form-group">
+    <label for="project-name">Name of your project</label>
+    <input
+      type="text"
+      class="form-control"
+      id="project-name"
+      name="project-name"
+      placeholder="Enter a name for your project/workspace"
+      max-length="50"
+    />
+  </div>
+
+  <br />
+
+  <div id="form-group">
+    <label for="project-link">Link to your project</label>
+    <input
+      type="text"
+      class="form-control"
+      id="project-link"
+      name="project-link"
+      placeholder="(Optional) Enter a link to your project e.g. github page or link to live project"
+      max-length="320"
+    />
+  </div>
+
+  <br />
+
+  <button type="submit" class="btn btn-primary">Create new workspace</button>
+</form>
+
 {% endblock %}
