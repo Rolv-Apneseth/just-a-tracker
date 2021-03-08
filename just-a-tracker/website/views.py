@@ -6,25 +6,25 @@ views = Blueprint("views", __name__)
 
 @views.route("/")
 def homepage():
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)
 
 
 @views.route("/account")
 @login_required
 def account():
-    return render_template("account.html")
+    return render_template("account.html", user=current_user)
 
 
 @views.route("/create-workspace")
 def create_workspace():
-    return render_template("create_workspace.html")
+    return render_template("create_workspace.html", user=current_user)
 
 
 @views.route("/workspace-hub")
 def workspace_hub():
-    return render_template("hub.html")
+    return render_template("hub.html", user=current_user)
 
 
 @views.route("/workspace")
 def workspace():
-    return render_template("workspace.html", project_id=1234563)
+    return render_template("workspace.html", project_id=1234563, user=current_user)

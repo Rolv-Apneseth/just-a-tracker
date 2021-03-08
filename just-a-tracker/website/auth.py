@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
@@ -115,7 +115,7 @@ def login():
             login_user(validated_user, remember=True)
             return redirect(url_for("views.account"))
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 @auth.route("/logout")
@@ -141,4 +141,4 @@ def sign_up():
 
             return redirect(url_for("views.account"))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
