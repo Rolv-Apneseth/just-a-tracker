@@ -13,6 +13,7 @@ users_workspaces = db.Table(
 class Workspace(db.Model):
     workspace_id = db.Column(db.Integer, primary_key=True)
     project_name = db.Column(db.String(128))
+    project_link = db.Column(db.String(320))
 
     bugs = db.relationship("Bug")
 
