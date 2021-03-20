@@ -20,11 +20,6 @@ def create_workspace():
     return render_template("create_workspace.html", user=current_user)
 
 
-@views.route("/workspace-hub")
-def workspace_hub():
-    return render_template("hub.html", user=current_user)
-
-
 @views.route("/workspace")
 def workspace():
     return render_template("workspace.html", project_id=1234563, user=current_user)

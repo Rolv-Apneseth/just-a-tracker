@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
 from . import db
-from .models import User
+from .models import User, Workspace
 
 
 auth = Blueprint("auth", __name__)
@@ -142,3 +142,22 @@ def sign_up():
             return redirect(url_for("views.account"))
 
     return render_template("sign_up.html", user=current_user)
+
+
+@auth.route("/workspace-hub", methods=['GET', 'POST'])
+def workspace_hub():
+    if request.method == "POST":
+
+        info = {
+            "project_name": request.form.get('project-name'),
+            "project_link": request.form.get('project-link'),
+        }
+
+        if info['project_name']:
+            new_workspace = Workspace(**info)
+            new_workspace.users.append(current_user)
+            db.session.add(new_workspace)
+            db.session.commit()
+
+    print(current_user.workspaces)
+    return render_template("hub.html", user=current_user)
