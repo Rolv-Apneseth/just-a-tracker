@@ -18,8 +18,3 @@ def account():
 @views.route("/create-workspace")
 def create_workspace():
     return render_template("create_workspace.html", user=current_user)
-
-
-@views.route("/workspace")
-def workspace():
-    return render_template("workspace.html", project_id=1234563, user=current_user)

@@ -159,5 +159,9 @@ def workspace_hub():
             db.session.add(new_workspace)
             db.session.commit()
 
-    print(current_user.workspaces)
     return render_template("hub.html", user=current_user)
+
+
+@auth.route("/workspace")
+def workspace():
+    return render_template("workspace.html", project_id=1234563, user=current_user)
