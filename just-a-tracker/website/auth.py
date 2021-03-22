@@ -122,7 +122,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for("auth.login"))
 
 
 @auth.route("/sign-up", methods=["GET", "POST"])
@@ -144,16 +144,17 @@ def sign_up():
     return render_template("sign_up.html", user=current_user)
 
 
-@auth.route("/workspace-hub", methods=['GET', 'POST'])
+@auth.route("/workspace-hub", methods=["GET", "POST"])
+@login_required
 def workspace_hub():
     if request.method == "POST":
 
         info = {
-            "project_name": request.form.get('project-name'),
-            "project_link": request.form.get('project-link'),
+            "project_name": request.form.get("project-name"),
+            "project_link": request.form.get("project-link"),
         }
 
-        if info['project_name']:
+        if info["project_name"]:
             new_workspace = Workspace(**info)
             new_workspace.users.append(current_user)
             db.session.add(new_workspace)
@@ -162,6 +163,16 @@ def workspace_hub():
     return render_template("hub.html", user=current_user)
 
 
-@auth.route("/workspace")
-def workspace():
-    return render_template("workspace.html", project_id=1234563, user=current_user)
+@auth.route("/workspace/<workspace_id>")
+@login_required
+def workspace(workspace_id):
+    workspace_object = Workspace.query.filter_by(workspace_id=workspace_id).first()
+
+    if workspace_object:
+        return render_template(
+            "workspace.html", workspace=workspace_object, user=current_user
+        )
+
+    else:
+        flash("The requested workspace was not found.")
+        return redirect(url_for("auth.workspace-hub"))
