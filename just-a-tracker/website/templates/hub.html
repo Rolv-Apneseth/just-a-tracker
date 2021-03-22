@@ -9,7 +9,9 @@ block content %}
   <ul id="workspaces-list">
     {% for workspace in user.workspaces %}
     <li>
-      <a href="/workspace">{{ workspace.project_name }}</a>
+      <a href="/workspace/{{ workspace.workspace_id }}"
+        >{{ workspace.project_name }}</a
+      >
     </li>
     {% endfor %}
   </ul>
