@@ -1,4 +1,8 @@
 {% extends 'base.html' %} {% block title %} Workspace {{ workspace.workspace_id
 }} {% endblock %} {% block content %}
-<h1>This is the workspace page for project {{ workspace.project_name }}</h1>
+
+<h1 class="text-center mt-4 pb-1 border-bottom">
+  <pre>{{ workspace.project_name }}  #{{ workspace.workspace_id }}</pre>
+</h1>
+
 {% endblock %}
