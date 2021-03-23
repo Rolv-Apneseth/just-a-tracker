@@ -1,24 +1,36 @@
 {% extends 'base.html' %} {% block title %} Workspace Hub {% endblock %} {%
 block content %}
-<h1>This is the workspace hub page</h1>
 
 <section id="workspaces">
-  <h3>My workspaces</h3>
-  <br />
+  <h2 class="h1">My Workspaces</h2>
 
-  <ul id="workspaces-list">
+  <ul id="workspaces-list" class="list-group list-group-flush">
     {% for workspace in user.workspaces %}
-    <li>
-      <a href="/workspace/{{ workspace.workspace_id }}"
-        >{{ workspace.project_name }}</a
-      >
+    <br />
+    <li class="list-group-item h5">
+      <div class="pb-2">
+        <a
+          class="stretched-link text-decoration-none h4"
+          href="/workspace/{{ workspace.workspace_id }}"
+          >{{ workspace.project_name }}</a
+        >
+      </div>
+
+      <p>Workspace id: {{ workspace.workspace_id }}</p>
+
+      <p>
+        Collaborators: {% for user in workspace.users %} {{ user.username }}, {%
+        endfor %}
+      </p>
     </li>
     {% endfor %}
   </ul>
 </section>
 
+<br />
+
 <form method="POST" id="new-workspace">
-  <h3>Add a Workspace</h3>
+  <h2 class="h1">Add a Workspace</h2>
 
   <div id="form-group">
     <label for="project-name">Name of your project</label>
