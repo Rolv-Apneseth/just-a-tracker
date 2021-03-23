@@ -168,11 +168,10 @@ def workspace_hub():
 def workspace(workspace_id):
     workspace_object = Workspace.query.filter_by(workspace_id=workspace_id).first()
 
-    if workspace_object:
+    if workspace_object and current_user in workspace_object.users:
         return render_template(
             "workspace.html", workspace=workspace_object, user=current_user
         )
 
-    else:
-        flash("The requested workspace was not found.")
-        return redirect(url_for("auth.workspace-hub"))
+    flash("The requested workspace was not found, or you do not have access to it.")
+    return redirect(url_for("auth.workspace-hub"))
