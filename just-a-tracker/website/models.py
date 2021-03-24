@@ -38,8 +38,8 @@ class User(db.Model, UserMixin):
 
 class Bug(db.Model):
     bug_id = db.Column(db.Integer, primary_key=True)
-    bug_title = db.Column(db.String(128))
-    bug_description = db.Column(db.String(512))
+    bug_title = db.Column(db.String(64))
+    bug_description = db.Column(db.String(1024))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
