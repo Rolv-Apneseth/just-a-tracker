@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
 from . import db
-from .models import User, Workspace
+from .models import User, Workspace, Bug
 
 
 auth = Blueprint("auth", __name__)
@@ -163,10 +163,25 @@ def workspace_hub():
     return render_template("hub.html", user=current_user)
 
 
-@auth.route("/workspace/<workspace_id>")
+@auth.route("/workspace/<workspace_id>", methods=["GET", "POST"])
 @login_required
 def workspace(workspace_id):
     workspace_object = Workspace.query.filter_by(workspace_id=workspace_id).first()
+
+    if request.method == "POST":
+        info = {
+            "bug_title": request.form.get("bug-title"),
+            "bug_description": request.form.get("bug-description"),
+            "author_id": current_user.user_id,
+            "author_username": current_user.username,
+            "workspace_id": workspace_object.workspace_id,
+        }
+
+        if info["bug_title"] and info["bug_description"]:
+            new_bug = Bug(**info)
+            # new_bug.users.append(current_user)
+            db.session.add(new_bug)
+            db.session.commit()
 
     if workspace_object and current_user in workspace_object.users:
         return render_template(
