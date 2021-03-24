@@ -10,17 +10,17 @@ block content %}
     <li class="list-group-item h5">
       <div class="pb-2">
         <a
-          class="stretched-link text-decoration-none h4"
+          class="stretched-link text-decoration-none h3"
           href="/workspace/{{ workspace.workspace_id }}"
           >{{ workspace.project_name }}</a
         >
       </div>
 
-      <p>Workspace id: {{ workspace.workspace_id }}</p>
+      <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
 
       <p>
-        Collaborators: {% for user in workspace.users %} {{ user.username }}, {%
-        endfor %}
+        <b>Collaborators:</b> {% for user in workspace.users %} {{ user.username
+        }}, {% endfor %}
       </p>
     </li>
     {% endfor %}
