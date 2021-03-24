@@ -43,4 +43,5 @@ class Bug(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    workspaces = db.Column(db.Integer, db.ForeignKey("workspace.workspace_id"))
+    author_username = db.Column(db.String(50))
+    workspace_id = db.Column(db.Integer, db.ForeignKey("workspace.workspace_id"))
