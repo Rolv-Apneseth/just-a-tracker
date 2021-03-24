@@ -1,8 +1,53 @@
 {% extends 'base.html' %} {% block title %} Workspace {{ workspace.workspace_id
 }} {% endblock %} {% block content %}
 
-<h1 class="text-center mt-4 pb-1 border-bottom">
-  <pre>{{ workspace.project_name }}  #{{ workspace.workspace_id }}</pre>
+<h1 class="mt-4 pb-1 border-bottom">
+  <pre class="font-weight-bold text-primary">
+{{ workspace.project_name }}  #{{ workspace.workspace_id }}</pre
+  >
 </h1>
+<br />
+
+<div class="pl-4">
+  <section id="bugs">
+    <h2 class="h1 border-bottom py-1">Bugs</h2>
+
+    {% for bug in workspace.bugs %} {% endfor %}
+  </section>
+
+  <br />
+
+  <form method="POST" id="add-bugs">
+    <h2 class="h1 border-bottom pb-1 pt-3 mb-3">Open a bug report</h2>
+
+    <div id="form-group">
+      <label for="bug-title" class="h4">Title</label>
+      <input
+        class="form-control form-control-lg"
+        id="bug-title"
+        name="bug-title"
+        placeholder="Enter a title/header for your bug report"
+        max-length="64"
+      />
+    </div>
+
+    <br />
+
+    <div id="form-group">
+      <label for="bug-description" class="h4">Description</label>
+      <textarea
+        class="form-control form-control-lg"
+        id="bug-description"
+        name="bug-description"
+        placeholder="Enter a detailed description for the bug you're reporting"
+        max-length="1024"
+      ></textarea>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Create new workspace</button>
+  </form>
+</div>
 
 {% endblock %}
