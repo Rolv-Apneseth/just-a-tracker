@@ -8,26 +8,42 @@
 </h1>
 <br />
 
-<div class="pl-4">
-  <section id="bugs">
-    <h2 class="h1 border-bottom py-1">Bugs</h2>
+<section id="bugs-section" class="pl-4">
+  <h2 class="h1 border-bottom py-1">Bugs</h2>
 
-    <ul id="bugs-list" class="list-group list-group-flush ml-1">
-      {% for bug in workspace.bugs %}
+  <!-- <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the bulk
+        of the card's content.
+      </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
 
-      <li class="list-group-item h5">
-        <p class="pb-2 h2 text-primary">{{ bug.bug_title }}</p>
+  <section
+    class="bug-cards"
+    style="display: flex; flex-wrap: wrap; justify-content: space-evenly"
+  >
+    {% for bug in workspace.bugs %}
 
-        <p><b>Description: </b></p>
-        <pre class="h5 py-1 p-4">{{ bug.bug_description }}</pre>
+    <div class="card my-2" style="width: 45%">
+      <div class="card-header">
+        <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
+      </div>
 
-        <p><b>Posted at:</b> {{ bug.date }}</p>
+      <div class="card-body">
+        <pre class="h5">{{ bug.bug_description }}</pre>
+      </div>
 
-        <p><b>Posted by:</b> {{ bug.author_username }}</p>
-      </li>
-
-      {% endfor %}
-    </ul>
+      <div class="card-body">
+        <p class="card-text text-right text-info">
+          <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
   </section>
 
   <br />
@@ -65,6 +81,6 @@
 
     <button type="submit" class="btn btn-primary">Create new workspace</button>
   </form>
-</div>
+</section>
 
 {% endblock %}
