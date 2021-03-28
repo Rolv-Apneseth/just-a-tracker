@@ -17,11 +17,21 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Open a bug report</h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
       <div class="modal-body">
         <div class="container-fluid">
           <form method="POST" id="add-bugs">
-            <h2 class="h1 border-bottom pb-1 pt-3 mb-3">Open a bug report</h2>
-
             <div id="form-group">
               <label for="bug-title" class="h4">Title</label>
               <input
@@ -50,8 +60,8 @@
 
             <br />
 
-            <button type="submit" class="btn btn-primary">
-              Create new workspace
+            <button type="submit" class="btn btn-primary col-8 col-md-2 ml-5">
+              Create new bug report
             </button>
           </form>
         </div>
