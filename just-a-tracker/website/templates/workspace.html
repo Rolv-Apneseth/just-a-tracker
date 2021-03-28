@@ -54,6 +54,7 @@
                 name="bug-description"
                 placeholder="Enter a detailed description for the bug you're reporting"
                 max-length="1024"
+                rows="6"
                 required
               ></textarea>
             </div>
@@ -98,7 +99,9 @@
     </div>
 
     <div class="card-body">
-      <pre class="h5">{{ bug.bug_description }}</pre>
+      <pre class="h5" style="white-space: pre-wrap">
+{{ bug.bug_description }}</pre
+      >
     </div>
 
     <div class="card-body">
