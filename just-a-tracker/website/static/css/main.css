@@ -1,0 +1,38 @@
+#bugs-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  width: 90vw;
+  position: relative;
+  left: -22.5vw;
+}
+
+#report-bug-card {
+  background-color: lightgreen;
+}
+
+#report-bug-card p {
+  font-size: 15rem;
+  line-height: 7.5rem;
+  color: white;
+}
+
+#report-bug-card a {
+  font-size: 3rem;
+  color: white;
+}
+
+.bug-card {
+  width: 35rem;
+  margin-left: 2rem;
+}
+
+.bug-card pre {
+  white-space: pre-wrap;
+}
+/*# sourceMappingURL=main.css.map */
