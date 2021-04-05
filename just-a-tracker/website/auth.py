@@ -157,6 +157,7 @@ def workspace_hub():
         if info["project_name"]:
             new_workspace = Workspace(**info)
             new_workspace.users.append(current_user)
+            new_workspace.author_id = current_user.user_id
             db.session.add(new_workspace)
             db.session.commit()
 

@@ -3,6 +3,8 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
+USERNAME_MAX_LENGTH = 50
+
 users_workspaces = db.Table(
     "users_wokspaces",
     db.Column("user_id", db.Integer, db.ForeignKey("user.user_id")),
@@ -15,6 +17,7 @@ class Workspace(db.Model):
     project_name = db.Column(db.String(128))
     project_link = db.Column(db.String(320))
 
+    author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     bugs = db.relationship("Bug")
 
 
@@ -22,7 +25,7 @@ class User(db.Model, UserMixin):
     user_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(320), unique=True)
     password = db.Column(db.String(128))
-    username = db.Column(db.String(50), unique=True)
+    username = db.Column(db.String(USERNAME_MAX_LENGTH), unique=True)
 
     bugs = db.relationship("Bug")
     workspaces = db.relationship(
@@ -43,5 +46,5 @@ class Bug(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    author_username = db.Column(db.String(50))
+    author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
     workspace_id = db.Column(db.Integer, db.ForeignKey("workspace.workspace_id"))
