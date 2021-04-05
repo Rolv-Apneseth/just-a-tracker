@@ -14,20 +14,29 @@ block content %}
     {% for workspace in user.workspaces %}
     <br />
     <li class="list-group-item h5">
-      <div class="pb-2">
-        <a
-          class="stretched-link text-decoration-none h3"
-          href="/workspace/{{ workspace.workspace_id }}"
-          >{{ workspace.project_name }}</a
-        >
+      <div class='row'>
+        <div class='col'>
+          <div class="pb-2">
+            <a
+              class="stretched-link text-decoration-none h3"
+              href="/workspace/{{ workspace.workspace_id }}"
+              >{{ workspace.project_name }}</a
+            >
+          </div>
+
+          <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
+
+          <p>
+            <b>Collaborators:</b> {% for user in workspace.users %} {{ user.username
+            }}, {% endfor %}
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class='btn btn-primary'>Add a collaborator</button>
+          <button type="button" class='btn btn-danger`'>Remove a collaborator</button>
+          <button type='button' class='btn btn-danger'>Delete this workspace</button>
+        </div>
       </div>
-
-      <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
-
-      <p>
-        <b>Collaborators:</b> {% for user in workspace.users %} {{ user.username
-        }}, {% endfor %}
-      </p>
     </li>
     {% endfor %}
   </ul>
