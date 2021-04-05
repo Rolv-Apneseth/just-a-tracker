@@ -5,6 +5,12 @@ block content %}
   <h2 class="h1">My Workspaces</h2>
 
   <ul id="workspaces-list" class="list-group list-group-flush">
+    {% if not user.workspaces %}
+      <li class="list-group-item h5">
+        <p>You are currently not associated with any workspaces</p>
+      </li>
+    {% endif %}
+
     {% for workspace in user.workspaces %}
     <br />
     <li class="list-group-item h5">
