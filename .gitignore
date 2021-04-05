@@ -3,6 +3,8 @@
 Scripts/
 pyvenv.cfg
 *.db
+bin/
+lib64
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
