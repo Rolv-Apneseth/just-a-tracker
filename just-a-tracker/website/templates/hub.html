@@ -6,16 +6,14 @@ block content %}
 
   <ul id="workspaces-list" class="list-group list-group-flush">
     {% if not user.workspaces %}
-      <li class="list-group-item h5">
-        <p>You are currently not associated with any workspaces</p>
-      </li>
-    {% endif %}
-
-    {% for workspace in user.workspaces %}
+    <li class="list-group-item h5">
+      <p>You are currently not associated with any workspaces</p>
+    </li>
+    {% endif %} {% for workspace in user.workspaces %}
     <br />
     <li class="list-group-item h5">
-      <div class='row'>
-        <div class='col'>
+      <div class="row">
+        <div class="col">
           <div class="pb-2">
             <a
               class="stretched-link text-decoration-none h3"
@@ -27,14 +25,26 @@ block content %}
           <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
 
           <p>
-            <b>Collaborators:</b> {% for user in workspace.users %} {{ user.username
-            }}, {% endfor %}
+            <b>Collaborators:</b> {% for user in workspace.users %} {{
+            user.username }}, {% endfor %}
           </p>
         </div>
         <div class="col-sm-4">
-          <button type="button" class='btn btn-primary'>Add a collaborator</button>
-          <button type="button" class='btn btn-danger`'>Remove a collaborator</button>
-          <button type='button' class='btn btn-danger'>Delete this workspace</button>
+          <button type="button" class="btn btn-primary">
+            Add a collaborator
+          </button>
+
+          <button type="button" class="btn btn-danger">
+            Remove a collaborator
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            onClick="deleteWorkspace({{ workspace.workspace_id }})"
+          >
+            Delete this workspace
+          </button>
         </div>
       </div>
     </li>
