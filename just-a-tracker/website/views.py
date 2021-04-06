@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
+import json
 
 from . import db
 from .models import Workspace, Bug
@@ -22,6 +23,7 @@ def account():
 def create_workspace():
     return render_template("create_workspace.html", user=current_user)
 
+
 @views.route("/workspace-hub", methods=["GET", "POST"])
 @login_required
 def workspace_hub():
@@ -42,6 +44,18 @@ def workspace_hub():
     return render_template("hub.html", user=current_user)
 
 
+@views.route("/delete-workspace", methods=["POST"])
+def delete_workspace():
+    workspace_id = json.loads(request.data)["workspaceID"]
+    workspace = Workspace.query.get(workspace_id)
+
+    if workspace:
+        if workspace.author_id == current_user.user_id:
+            db.session.delete(workspace)
+            db.session.commit()
+            return jsonify({})
+
+
 @views.route("/workspace/<workspace_id>", methods=["GET", "POST"])
 @login_required
 def workspace(workspace_id):
@@ -58,7 +72,6 @@ def workspace(workspace_id):
 
         if info["bug_title"] and info["bug_description"]:
             new_bug = Bug(**info)
-            # new_bug.users.append(current_user)
             db.session.add(new_bug)
             db.session.commit()
 
