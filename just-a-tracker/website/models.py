@@ -18,7 +18,7 @@ class Workspace(db.Model):
     project_link = db.Column(db.String(320))
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    bugs = db.relationship("Bug")
+    bugs = db.relationship("Bug", cascade="all, delete, delete-orphan")
 
 
 class User(db.Model, UserMixin):
