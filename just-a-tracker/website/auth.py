@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
 from . import db
-from .models import User, Workspace, Bug
+from .models import User
 
 
 auth = Blueprint("auth", __name__)
@@ -142,52 +142,3 @@ def sign_up():
             return redirect(url_for("views.account"))
 
     return render_template("sign_up.html", user=current_user)
-
-
-@auth.route("/workspace-hub", methods=["GET", "POST"])
-@login_required
-def workspace_hub():
-    if request.method == "POST":
-
-        info = {
-            "project_name": request.form.get("project-name"),
-            "project_link": request.form.get("project-link"),
-        }
-
-        if info["project_name"]:
-            new_workspace = Workspace(**info)
-            new_workspace.users.append(current_user)
-            new_workspace.author_id = current_user.user_id
-            db.session.add(new_workspace)
-            db.session.commit()
-
-    return render_template("hub.html", user=current_user)
-
-
-@auth.route("/workspace/<workspace_id>", methods=["GET", "POST"])
-@login_required
-def workspace(workspace_id):
-    workspace_object = Workspace.query.filter_by(workspace_id=workspace_id).first()
-
-    if request.method == "POST":
-        info = {
-            "bug_title": request.form.get("bug-title"),
-            "bug_description": request.form.get("bug-description"),
-            "author_id": current_user.user_id,
-            "author_username": current_user.username,
-            "workspace_id": workspace_object.workspace_id,
-        }
-
-        if info["bug_title"] and info["bug_description"]:
-            new_bug = Bug(**info)
-            # new_bug.users.append(current_user)
-            db.session.add(new_bug)
-            db.session.commit()
-
-    if workspace_object and current_user in workspace_object.users:
-        return render_template(
-            "workspace.html", workspace=workspace_object, user=current_user
-        )
-
-    flash("The requested workspace was not found, or you do not have access to it.")
-    return redirect(url_for("auth.workspace-hub"))
