@@ -41,7 +41,7 @@ block content %}
           <button
             type="button"
             class="btn btn-danger"
-            onClick="deleteWorkspace({{ workspace.workspace_id }})"
+            onClick="deleteWorkspace('{{ workspace.workspace_id }}', '{{ workspace.project_name }}')"
           >
             Delete this workspace
           </button>
