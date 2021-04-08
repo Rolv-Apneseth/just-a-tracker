@@ -12,41 +12,20 @@ block content %}
     {% endif %} {% for workspace in user.workspaces %}
     <br />
     <li class="list-group-item h5">
-      <div class="row">
-        <div class="col">
-          <div class="pb-2">
-            <a
-              class="stretched-link text-decoration-none h3"
-              href="/workspace/{{ workspace.workspace_id }}"
-              >{{ workspace.project_name }}</a
-            >
-          </div>
-
-          <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
-
-          <p>
-            <b>Collaborators:</b> {% for user in workspace.users %} {{
-            user.username }}, {% endfor %}
-          </p>
-        </div>
-        <div class="col-sm-4">
-          <button type="button" class="btn btn-primary">
-            Add a collaborator
-          </button>
-
-          <button type="button" class="btn btn-danger">
-            Remove a collaborator
-          </button>
-
-          <button
-            type="button"
-            class="btn btn-danger"
-            onClick="deleteWorkspace('{{ workspace.workspace_id }}', '{{ workspace.project_name }}')"
-          >
-            Delete this workspace
-          </button>
-        </div>
+      <div class="pb-2">
+        <a
+          class="stretched-link text-decoration-none h3"
+          href="/workspace/{{ workspace.workspace_id }}"
+          >{{ workspace.project_name }}</a
+        >
       </div>
+
+      <p><b>Workspace id:</b> #{{ workspace.workspace_id }}</p>
+
+      <p>
+        <b>Collaborators:</b> {% for user in workspace.users %} {{ user.username
+        }}, {% endfor %}
+      </p>
     </li>
     {% endfor %}
   </ul>
@@ -57,7 +36,7 @@ block content %}
 <form method="POST" id="new-workspace">
   <h2 class="h1 border-bottom py-1">Add a Workspace</h2>
 
-  <div id="form-group">
+  <div class="form-group">
     <label for="project-name">Name of your project</label>
     <input
       type="text"
@@ -72,7 +51,7 @@ block content %}
 
   <br />
 
-  <div id="form-group">
+  <div class="form-group">
     <label for="project-link">Link to your project</label>
     <input
       type="text"
