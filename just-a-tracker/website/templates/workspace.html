@@ -1,24 +1,19 @@
 {% extends 'base.html' %} {% block title %} Workspace {{ workspace.workspace_id
 }} {% endblock %} {% block content %}
 
-<h1 class="mt-4 pb-1 border-bottom">
-  <pre class="font-weight-bold text-primary h1">
-{{ workspace.project_name }}  #{{ workspace.workspace_id }}</pre
-  >
-</h1>
-
+<!-- MODALS -->
 <div
   class="modal fade"
-  id="modal-bug-report-form"
+  id="modal-options"
   tabindex="-1"
   role="dialog"
-  aria-labelledby=""
+  aria-labelledby="Options menu modal"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Open a bug report</h2>
+        <h5 class="modal-title">Workspace options</h5>
         <button
           type="button"
           class="close"
@@ -28,87 +23,137 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <div class="modal-body">
-        <div class="container-fluid">
-          <form method="POST" id="add-bugs">
-            <div id="form-group">
-              <label for="bug-title" class="h4">Title</label>
-              <input
-                class="form-control form-control-lg"
-                id="bug-title"
-                name="bug-title"
-                placeholder="Enter a title/header for your bug report"
-                max-length="64"
-                required
-              />
-            </div>
-
-            <br />
-
-            <div id="form-group">
-              <label for="bug-description" class="h4">Description</label>
-              <textarea
-                class="form-control form-control-lg"
-                id="bug-description"
-                name="bug-description"
-                placeholder="Enter a detailed description for the bug you're reporting"
-                max-length="1024"
-                rows="6"
-                required
-              ></textarea>
-            </div>
-
-            <br />
-
-            <button type="submit" class="btn btn-primary col-8 col-md-2 ml-5">
-              Create new bug report
-            </button>
-          </form>
-        </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        {% if user.user_id == workspace.author_id %}
+        <button
+          type="button"
+          class="btn btn-danger"
+          onClick="deleteWorkspace('{{ workspace.workspace_id }}', '{{ workspace.project_name }}')"
+        >
+          Delete workspace
+        </button>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
 
-<br />
+  <div
+    class="modal fade"
+    id="modal-bug-report-form"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="Report a bug modal form"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Open a bug report</h2>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-<section
-  id="bugs-section"
->
-  <div id="report-bug-card" class="card my-2 py-5 bug-card">
-    <div class="card-body text-center">
-      <p>+</p>
-      <a
-        href="#modal-bug-report-form"
-        class="card-text stretched-link text-decoration-none"
-        
-        data-toggle="modal"
-        >Report a new bug</a
-      >
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form method="POST" id="add-bugs">
+              <div id="form-group">
+                <label for="bug-title" class="h4">Title</label>
+                <input
+                  class="form-control form-control-lg"
+                  id="bug-title"
+                  name="bug-title"
+                  placeholder="Enter a title/header for your bug report"
+                  max-length="64"
+                  required
+                />
+              </div>
+
+              <br />
+
+              <div id="form-group">
+                <label for="bug-description" class="h4">Description</label>
+                <textarea
+                  class="form-control form-control-lg"
+                  id="bug-description"
+                  name="bug-description"
+                  placeholder="Enter a detailed description for the bug you're reporting"
+                  max-length="1024"
+                  rows="6"
+                  required
+                ></textarea>
+              </div>
+
+              <br />
+
+              <button type="submit" class="btn btn-primary col-8 col-md-2 ml-5">
+                Create new bug report
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  {% for bug in workspace.bugs %}
+  <!-- ----------------------------------------------------------- -->
 
-  <div class="card my-2 bug-card">
-    <div class="card-header">
-      <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
+  <section class="mt-4 pb-1 border-bottom" id="workspace-header">
+    <h1 class="font-weight-bold text-primary">
+      {{ workspace.project_name }} #{{ workspace.workspace_id }}
+    </h1>
+
+    <a
+      class="text-decoration-none"
+      id="open-options"
+      data-toggle="modal"
+      href="#modal-options"
+    >
+      <i class="fa fa-gear h1"></i>
+    </a>
+  </section>
+
+  <br />
+
+  <section id="bugs-section">
+    <div id="report-bug-card" class="card my-2 py-5 bug-card">
+      <div class="card-body text-center">
+        <p>+</p>
+        <a
+          href="#modal-bug-report-form"
+          class="card-text stretched-link text-decoration-none"
+          data-toggle="modal"
+          >Report a new bug</a
+        >
+      </div>
     </div>
 
-    <div class="card-body">
-      <pre class="h5">
-{{ bug.bug_description }}</pre
-      >
-    </div>
+    {% for bug in workspace.bugs %}
 
-    <div class="card-footer">
-      <p class="card-text text-right text-info mt-auto">
-        <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
-      </p>
-    </div>
-  </div>
-  {% endfor %}
-</section>
+    <div class="card my-2 bug-card">
+      <div class="card-header">
+        <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
+      </div>
 
-{% endblock %}
+      <div class="card-body">
+        <pre class="h5">{{ bug.bug_description }}</pre>
+      </div>
+
+      <div class="card-footer">
+        <p class="card-text text-right text-info mt-auto">
+          <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  {% endblock %}
+</div>
