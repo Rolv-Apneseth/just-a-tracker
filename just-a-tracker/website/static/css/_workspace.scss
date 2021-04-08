@@ -1,32 +1,51 @@
+#workspace-header {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+    width: 95%;
+  }
+
+  a {
+    font-size: 2.2rem;
+    color: grey;
+
+    &:hover {
+      color: lightslategrey;
+    }
+  }
+}
+
 #bugs-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    width: 90vw;
-    position: relative;
-    left: -22.5vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  width: 90vw;
+  position: relative;
+  left: -22.5vw;
 }
 
 #report-bug-card {
-    background-color: lightgreen;
+  background-color: lightgreen;
 
-    p {
-        font-size: 15rem;
-        line-height: 7.5rem;
-        color: white;
-    }
+  p {
+    font-size: 15rem;
+    line-height: 7.5rem;
+    color: white;
+  }
 
-    a {
-        font-size: 3rem;
-        color: white;
-    }
+  a {
+    font-size: 3rem;
+    color: white;
+  }
 }
 
 .bug-card {
-    width: $cardWidth;
-    margin-left: 2rem;
+  width: $cardWidth;
+  margin-left: 2rem;
 
-    pre {
-        white-space: pre-wrap;
-    }
+  pre {
+    white-space: pre-wrap;
+  }
 }

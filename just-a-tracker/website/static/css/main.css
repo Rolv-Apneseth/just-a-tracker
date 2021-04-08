@@ -1,3 +1,26 @@
+#workspace-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#workspace-header h1 {
+  text-align: center;
+  width: 95%;
+}
+
+#workspace-header a {
+  font-size: 2.2rem;
+  color: grey;
+}
+
+#workspace-header a:hover {
+  color: lightslategrey;
+}
+
 #bugs-section {
   display: -webkit-box;
   display: -ms-flexbox;
