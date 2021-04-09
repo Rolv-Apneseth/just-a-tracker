@@ -2,6 +2,7 @@
 }} {% endblock %} {% block content %}
 
 <!-- MODALS -->
+<!-- options menu -->
 <div
   class="modal fade"
   id="modal-options"
@@ -39,76 +40,129 @@
   </div>
 </div>
 
-  <div
-    class="modal fade"
-    id="modal-bug-report-form"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="Report a bug modal form"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">Open a bug report</h2>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+<!-- collaborators menu -->
+<div
+  class="modal fade"
+  id="modal-collaborators"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="Collaborators menu modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Collaborators</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br />
+        <form method="POST" id="add-collaborator">
+          <input
+            class="form-control form-control-lg"
+            id="user-email"
+            name="user-email"
+            placeholder="Enter the username or email of someone you want to add"
+            max-length="320"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <br />
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
 
-        <div class="modal-body">
-          <div class="container-fluid">
-            <form method="POST" id="add-bugs">
-              <div id="form-group">
-                <label for="bug-title" class="h4">Title</label>
-                <input
-                  class="form-control form-control-lg"
-                  id="bug-title"
-                  name="bug-title"
-                  placeholder="Enter a title/header for your bug report"
-                  max-length="64"
-                  required
-                />
-              </div>
+<!-- bug report form -->
+<div
+  class="modal fade"
+  id="modal-bug-report-form"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="Report a bug modal form"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Open a bug report</h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-              <br />
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form method="POST" id="add-bugs">
+            <div class="form-group">
+              <label for="bug-title" class="h4">Title</label>
+              <input
+                class="form-control form-control-lg"
+                id="bug-title"
+                name="bug-title"
+                placeholder="Enter a title/header for your bug report"
+                max-length="64"
+                required
+              />
+            </div>
 
-              <div id="form-group">
-                <label for="bug-description" class="h4">Description</label>
-                <textarea
-                  class="form-control form-control-lg"
-                  id="bug-description"
-                  name="bug-description"
-                  placeholder="Enter a detailed description for the bug you're reporting"
-                  max-length="1024"
-                  rows="6"
-                  required
-                ></textarea>
-              </div>
+            <br />
 
-              <br />
+            <div class="form-group">
+              <label for="bug-description" class="h4">Description</label>
+              <textarea
+                class="form-control form-control-lg"
+                id="bug-description"
+                name="bug-description"
+                placeholder="Enter a detailed description for the bug you're reporting"
+                max-length="1024"
+                rows="6"
+                required
+              ></textarea>
+            </div>
 
-              <button type="submit" class="btn btn-primary col-8 col-md-2 ml-5">
-                Create new bug report
-              </button>
-            </form>
-          </div>
+            <br />
+
+            <button type="submit" class="btn btn-primary col-8 col-md-2 ml-5">
+              Create new bug report
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ----------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------- -->
 
-  <section class="mt-4 pb-1 border-bottom" id="workspace-header">
-    <h1 class="font-weight-bold text-primary">
-      {{ workspace.project_name }} #{{ workspace.workspace_id }}
-    </h1>
+<section class="mt-4 pb-1 border-bottom" id="workspace-header">
+  <h1 class="font-weight-bold text-primary">
+    {{ workspace.project_name }} #{{ workspace.workspace_id }}
+  </h1>
+
+  <div id="icon-buttons">
+    <a
+      class="text-decoration-none"
+      id="open-collaborators"
+      data-toggle="modal"
+      href="#modal-collaborators"
+    >
+      <i class="fas fa-user-friends"></i>
+    </a>
 
     <a
       class="text-decoration-none"
@@ -116,44 +170,44 @@
       data-toggle="modal"
       href="#modal-options"
     >
-      <i class="fa fa-gear h1"></i>
+      <i class="fas fa-cog h1"></i>
     </a>
-  </section>
+  </div>
+</section>
 
-  <br />
+<br />
 
-  <section id="bugs-section">
-    <div id="report-bug-card" class="card my-2 py-5 bug-card">
-      <div class="card-body text-center">
-        <p>+</p>
-        <a
-          href="#modal-bug-report-form"
-          class="card-text stretched-link text-decoration-none"
-          data-toggle="modal"
-          >Report a new bug</a
-        >
-      </div>
+<section id="bugs-section">
+  <div id="report-bug-card" class="card my-2 py-5 bug-card">
+    <div class="card-body text-center">
+      <p>+</p>
+      <a
+        href="#modal-bug-report-form"
+        class="card-text stretched-link text-decoration-none"
+        data-toggle="modal"
+        >Report a new bug</a
+      >
+    </div>
+  </div>
+
+  {% for bug in workspace.bugs %}
+
+  <div class="card my-2 bug-card">
+    <div class="card-header">
+      <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
     </div>
 
-    {% for bug in workspace.bugs %}
-
-    <div class="card my-2 bug-card">
-      <div class="card-header">
-        <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
-      </div>
-
-      <div class="card-body">
-        <pre class="h5">{{ bug.bug_description }}</pre>
-      </div>
-
-      <div class="card-footer">
-        <p class="card-text text-right text-info mt-auto">
-          <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
-        </p>
-      </div>
+    <div class="card-body">
+      <pre class="h5">{{ bug.bug_description }}</pre>
     </div>
-    {% endfor %}
-  </section>
 
-  {% endblock %}
-</div>
+    <div class="card-footer">
+      <p class="card-text text-right text-info mt-auto">
+        <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
