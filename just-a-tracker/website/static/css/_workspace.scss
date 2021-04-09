@@ -1,15 +1,18 @@
 #workspace-header {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 
   h1 {
     text-align: center;
-    width: 95%;
+    width: 85%;
   }
 
   a {
     font-size: 2.2rem;
     color: grey;
+    margin: 0 0.5rem;
 
     &:hover {
       color: lightslategrey;

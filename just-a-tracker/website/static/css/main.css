@@ -5,16 +5,22 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 #workspace-header h1 {
   text-align: center;
-  width: 95%;
+  width: 85%;
 }
 
 #workspace-header a {
   font-size: 2.2rem;
   color: grey;
+  margin: 0 0.5rem;
 }
 
 #workspace-header a:hover {
