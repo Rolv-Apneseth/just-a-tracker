@@ -27,6 +27,18 @@
   color: lightslategrey;
 }
 
+#modal-collaborators form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+#modal-collaborators form button {
+  margin-left: 0.5rem;
+}
+
 #bugs-section {
   display: -webkit-box;
   display: -ms-flexbox;

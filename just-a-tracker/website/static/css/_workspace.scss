@@ -20,6 +20,17 @@
   }
 }
 
+#modal-collaborators {
+  form {
+    display: flex;
+    flex-wrap: nowrap;
+
+    button {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
 #bugs-section {
   display: flex;
   flex-wrap: wrap;
