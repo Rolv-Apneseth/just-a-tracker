@@ -3,8 +3,7 @@ from flask_login import login_required, current_user
 import json
 
 from . import db
-from .models import Workspace, Bug
-
+from .models import Workspace, Bug, User
 
 views = Blueprint("views", __name__)
 
@@ -25,6 +24,24 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
         new_bug = Bug(**info)
         db.session.add(new_bug)
         db.session.commit()
+
+
+def add_user_to_workspace(db, data, workspace):
+    """Adds given user to given workspace and commits the change."""
+
+    user = User.query.filter_by(username=data.get("user-email")).first()
+    if not user:
+        User.query.filter_by(email=data.get("user-email")).first()
+
+    if user:
+        if user not in workspace.users:
+            workspace.users.append(user)
+            db.session.commit()
+
+        else:
+            flash("That user is already associated with this workspace.")
+    else:
+        flash("There is no user with that username or email address.")
 
 
 # ROUTES
@@ -85,8 +102,8 @@ def workspace(workspace_id):
     if request.method == "POST":
         data = request.form
 
-        if data.get("collaborator"):
-            pass
+        if data.get("user-email"):
+            add_user_to_workspace(db, data, workspace_object)
         else:
             add_bug_to_workspace(db, current_user, data, workspace_id)
 
@@ -96,4 +113,4 @@ def workspace(workspace_id):
         )
 
     flash("The requested workspace was not found, or you do not have access to it.")
-    return redirect(url_for("auth.workspace-hub"))
+    return redirect(url_for("views.workspace-hub"))
