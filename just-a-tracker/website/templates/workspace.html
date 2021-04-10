@@ -14,7 +14,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Workspace options</h5>
+        <h5 class="modal-title h3">Workspace options</h5>
         <button
           type="button"
           class="close"
@@ -52,7 +52,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Collaborators</h5>
+        <h5 class="modal-title h3">Collaborators</h5>
         <button
           type="button"
           class="close"
@@ -75,7 +75,26 @@
           />
           <button type="submit" class="btn btn-primary">Add</button>
         </form>
+
         <br />
+
+        <ul id="existing-collaborators" class="list-group list-group-flush">
+          {% for collaborator in workspace.users %}
+          <li class="list-group-item existing-collaborator">
+            <p class="collaborator-name"><b>{{ collaborator.username }}</b></p>
+
+            {% if collaborator.user_id == workspace.author_id == user.user_id %}
+            <p class="collaborator-status">Owner (You)</p>
+            {% elif user.user_id == workspace.author_id %}
+            <button class="btn btn-danger" type="button">Remove</button>
+            {% elif collaborator.user_id == workspace.author_id %}
+            <p class="collaborator-status">Owner</p>
+            {% elif collaborator.user_id == user.user_id %}
+            <p class="collaborator-status">You</p>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="modal-footer"></div>
     </div>
