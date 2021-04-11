@@ -114,7 +114,7 @@ def workspace(workspace_id):
         )
 
     flash("The requested workspace was not found, or you do not have access to it.")
-    return redirect(url_for("views.workspace-hub"))
+    return redirect(url_for("views.workspace_hub"))
 
 
 @views.route("/remove-user", methods=["POST"])
@@ -128,9 +128,19 @@ def remove_user():
     user = User.query.get(user_id)
 
     if user and workspace:
-        if user_id != workspace.author_id:
-            workspace.users.remove(user)
-            db.session.commit()
-            return jsonify({})
+        has_permission = (
+            workspace.author_id == current_user.id or user_id == current_user.user_id
+        )
+
+        if has_permission:
+            if user_id != workspace.author_id:
+                workspace.users.remove(user)
+                db.session.commit()
+                return jsonify({})
+            else:
+                flash("Owner cannot be removed from the workspace.")
         else:
-            flash("Owner cannot be removed from the workspace.")
+            flash(
+                f"You do not have permission to remove {user.username}"
+                f" from {workspace.project_name}!"
+            )
