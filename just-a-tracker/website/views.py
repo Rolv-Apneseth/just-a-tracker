@@ -57,6 +57,7 @@ def account():
 
 
 @views.route("/create-workspace")
+@login_required
 def create_workspace():
     return render_template("create_workspace.html", user=current_user)
 
@@ -114,3 +115,22 @@ def workspace(workspace_id):
 
     flash("The requested workspace was not found, or you do not have access to it.")
     return redirect(url_for("views.workspace-hub"))
+
+
+@views.route("/remove-user", methods=["POST"])
+@login_required
+def remove_user():
+    data = json.loads(request.data)
+    workspace_id = data["workspaceID"]
+    user_id = data["userID"]
+
+    workspace = Workspace.query.get(workspace_id)
+    user = User.query.get(user_id)
+
+    if user and workspace:
+        if user_id != workspace.author_id:
+            workspace.users.remove(user)
+            db.session.commit()
+            return jsonify({})
+        else:
+            flash("Owner cannot be removed from the workspace.")
