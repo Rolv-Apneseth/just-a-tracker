@@ -34,6 +34,14 @@
         >
           Delete workspace
         </button>
+        {% else %}
+        <button
+          class="btn btn-warning"
+          type="button"
+          onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ user.user_id }}', '{{ user.username }}', 'true')"
+        >
+          Leave workspace
+        </button>
         {% endif %}
       </div>
     </div>
