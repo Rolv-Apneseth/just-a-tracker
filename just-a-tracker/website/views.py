@@ -31,7 +31,7 @@ def add_user_to_workspace(db, data, workspace):
 
     user = User.query.filter_by(username=data.get("user-email")).first()
     if not user:
-        User.query.filter_by(email=data.get("user-email")).first()
+        user = User.query.filter_by(email=data.get("user-email")).first()
 
     if user:
         if user not in workspace.users:
