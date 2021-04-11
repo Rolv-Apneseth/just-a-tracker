@@ -86,7 +86,13 @@
             {% if collaborator.user_id == workspace.author_id == user.user_id %}
             <p class="collaborator-status">Owner (You)</p>
             {% elif user.user_id == workspace.author_id %}
-            <button class="btn btn-danger" type="button">Remove</button>
+            <button
+              class="btn btn-danger"
+              type="button"
+              onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ collaborator.user_id }}', '{{ collaborator.username }}', 'false')"
+            >
+              Remove
+            </button>
             {% elif collaborator.user_id == workspace.author_id %}
             <p class="collaborator-status">Owner</p>
             {% elif collaborator.user_id == user.user_id %}
