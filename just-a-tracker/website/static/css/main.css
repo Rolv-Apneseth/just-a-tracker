@@ -71,18 +71,18 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  width: 90vw;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  width: 148rem;
   position: relative;
-  left: -22.5vw;
+  left: -39rem;
 }
 
 .bug-card {
   width: 35rem;
   min-height: 25rem;
-  margin-left: 2rem;
+  margin: 1rem;
 }
 
 .bug-card pre {
@@ -91,6 +91,10 @@ body {
 
 #report-bug-card {
   background-color: #02b845;
+}
+
+#report-bug-card div {
+  height: 100%;
 }
 
 #report-bug-card a {

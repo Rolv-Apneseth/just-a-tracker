@@ -45,16 +45,16 @@
 #bugs-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
-  width: 90vw;
+  justify-content: left;
+  width: $cardSectionWidth;
   position: relative;
-  left: -22.5vw;
+  left: $weirdCenterDiscrepancy - ($cardSectionWidth / 4);
 }
 
 .bug-card {
   width: $cardWidth;
   min-height: $cardMinHeight;
-  margin-left: 2rem;
+  margin: $cardSpacing;
 
   pre {
     white-space: pre-wrap;
@@ -63,6 +63,10 @@
 
 #report-bug-card {
   background-color: $reportBugBg;
+
+  div {
+    height: 100%;
+  }
 
   a {
     height: 100%;
