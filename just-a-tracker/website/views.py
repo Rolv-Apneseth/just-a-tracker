@@ -121,22 +121,22 @@ def workspace(workspace_id):
 @login_required
 def remove_user():
     data = json.loads(request.data)
-    workspace_id = data["workspaceID"]
-    user_id = data["userID"]
+    workspace_id = int(data["workspaceID"])
+    user_id = int(data["userID"])
 
     workspace = Workspace.query.get(workspace_id)
     user = User.query.get(user_id)
 
     if user and workspace:
         has_permission = (
-            workspace.author_id == current_user.id or user_id == current_user.user_id
+            workspace.author_id == current_user.user_id
+            or user_id == current_user.user_id
         )
 
         if has_permission:
             if user_id != workspace.author_id:
                 workspace.users.remove(user)
                 db.session.commit()
-                return jsonify({})
             else:
                 flash("Owner cannot be removed from the workspace.")
         else:
@@ -144,3 +144,5 @@ def remove_user():
                 f"You do not have permission to remove {user.username}"
                 f" from {workspace.project_name}!"
             )
+
+    return jsonify({})
