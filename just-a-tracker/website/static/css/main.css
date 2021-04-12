@@ -90,7 +90,7 @@ body {
 }
 
 #report-bug-card {
-  background-color: green;
+  background-color: #02b845;
 }
 
 #report-bug-card a {
@@ -121,10 +121,10 @@ body {
 }
 
 #report-bug-card a:hover {
-  color: #eae7ff;
+  color: #f4f2ff;
 }
 
 #report-bug-card:hover {
-  background-color: #048804;
+  background-color: #05bb48;
 }
 /*# sourceMappingURL=main.css.map */
