@@ -51,26 +51,44 @@
   left: -22.5vw;
 }
 
-#report-bug-card {
-  background-color: lightgreen;
-
-  p {
-    font-size: 15rem;
-    line-height: 7.5rem;
-    color: white;
-  }
-
-  a {
-    font-size: 3rem;
-    color: white;
-  }
-}
-
 .bug-card {
   width: $cardWidth;
+  min-height: $cardMinHeight;
   margin-left: 2rem;
 
   pre {
     white-space: pre-wrap;
+  }
+}
+
+#report-bug-card {
+  background-color: $reportBugBg;
+
+  a {
+    height: 100%;
+    font-size: 3rem;
+    color: $reportBugText;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+      margin: 0;
+      width: 100%;
+    }
+
+    #report-bug-symbol {
+      font-size: 15rem;
+      line-height: 7.5rem;
+      margin-bottom: 2rem;
+    }
+
+    &:hover {
+      color: $reportBugTextHover;
+    }
+  }
+
+  &:hover {
+    background-color: $reportBugBgHover;
   }
 }
