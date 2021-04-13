@@ -1,8 +1,10 @@
 #workspace-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 2vh;
 
   h1 {
     text-align: center;
@@ -47,16 +49,14 @@
   flex-wrap: wrap;
   justify-content: left;
   width: $cardSectionWidth;
-  position: relative;
-  left: $weirdCenterDiscrepancy - ($cardSectionWidth / 4);
 }
 
 .bug-card {
-  width: $cardWidth;
+  width: 24%;
   min-height: $cardMinHeight;
-  margin: $cardSpacing;
+  margin: 0.5%;
 
-  pre {
+  .bug-description {
     white-space: pre-wrap;
   }
 }
