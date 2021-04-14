@@ -155,4 +155,9 @@ body main {
 #report-bug-card:hover {
   background-color: #05bb48;
 }
+
+#workspaces,
+#new-workspace {
+  width: 100%;
+}
 /*# sourceMappingURL=main.css.map */
