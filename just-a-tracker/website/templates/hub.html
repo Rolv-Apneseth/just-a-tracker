@@ -2,15 +2,10 @@
 block content %}
 
 <section id="workspaces">
-  <h2 class="h1">My Workspaces</h2>
+  <h2 class="h1 border-bottom">My Workspaces</h2>
 
   <ul id="workspaces-list" class="list-group list-group-flush">
-    {% if not user.workspaces %}
-    <li class="list-group-item h5">
-      <p>You are currently not associated with any workspaces</p>
-    </li>
-    {% endif %} {% for workspace in user.workspaces %}
-    <br />
+    {% for workspace in user.workspaces %}
     <li class="list-group-item h5">
       <div class="pb-2">
         <a
@@ -27,6 +22,10 @@ block content %}
         }}, {% endfor %}
       </p>
     </li>
+    {% else %}
+    <li class="list-group-item h5">
+      <p>You are currently not associated with any workspaces</p>
+    </li>
     {% endfor %}
   </ul>
 </section>
@@ -34,7 +33,7 @@ block content %}
 <br />
 
 <form method="POST" id="new-workspace">
-  <h2 class="h1 border-bottom py-1">Add a Workspace</h2>
+  <h2 class="h1 border-bottom">Add a Workspace</h2>
 
   <div class="form-group">
     <label for="project-name">Name of your project</label>
@@ -49,8 +48,6 @@ block content %}
     />
   </div>
 
-  <br />
-
   <div class="form-group">
     <label for="project-link">Link to your project</label>
     <input
@@ -62,8 +59,6 @@ block content %}
       max-length="320"
     />
   </div>
-
-  <br />
 
   <button type="submit" class="btn btn-primary">Create new workspace</button>
 </form>
