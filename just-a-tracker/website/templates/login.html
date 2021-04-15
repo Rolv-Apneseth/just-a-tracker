@@ -1,35 +1,37 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block title %} Login {% endblock %} {% block
+content %}
+<section id="login-section">
+  <form method="POST">
+    <h1 class="border-bottom">Login to your account</h1>
 
-{% block title %}
-    Login
-{% endblock %}
+    <div id="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Enter your username or email address"
+        value="{{ request.form['username'] }}"
+        max-length="320"
+      />
+    </div>
 
-{% block content %} 
-    <h1>This is the login page</h1>
+    <div id="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Enter a password"
+        max-length="128"
+      />
+    </div>
 
-    <br>
+    <br />
 
-    <form method='POST'>
-        <h3>Login to your account</h3>
-
-        <div id='form-group'>
-            <label for="username">Username</label>
-            <input 
-                type='text' class='form-control' id='username' name='username' placeholder='Enter your username or email address' value="{{ request.form['username'] }}" max-length='320'
-            />
-        </div>
-
-        <div id='form-group'>
-            <label for="password">Password</label>
-            <input 
-                type='password' class='form-control' id='password' name='password' placeholder='Enter a password' max-length='128'
-            />
-        </div>
-
-        <br>
-
-        <button type='submit' class='btn btn-primary'>
-            Login
-        </button>
-    </form>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</section>
 {% endblock %}
