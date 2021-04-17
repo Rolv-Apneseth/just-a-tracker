@@ -1,9 +1,68 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block title %} Account {% endblock %} {% block
+content %}
 
-{% block title %}
-    Account
-{% endblock %}
+<section id="account-info">
+  <h1 class="border-bottom">Account Info</h1>
 
-{% block content %} 
-    <h1>This is the account page</h1>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <a href="#"><i class="fas fa-edit"></i></a>
+      <p><b>User ID:</b> {{ user.user_id }}</p>
+    </li>
+    <li class="list-group-item">
+      <a href="#"><i class="fas fa-edit"></i></a>
+      <p><b>Username:</b> {{ user.username }}</p>
+    </li>
+    <li class="list-group-item">
+      <a href="#"><i class="fas fa-edit"></i></a>
+      <p><b>Email address:</b> {{ user.email }}</p>
+    </li>
+  </ul>
+</section>
+
+<section id="security">
+  <h1 class="border-bottom">Security</h1>
+
+  <form method="POST" id="change-password">
+    <h3 class="border-bottom">Change password</h3>
+
+    <div class="form-group">
+      <label for="current-password">Current</label>
+      <input
+        type="text"
+        class="form-control"
+        id="current-password"
+        name="current-password"
+        placeholder="Enter your current password"
+        max-length="128"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="new-password">New</label>
+      <input
+        type="text"
+        class="form-control"
+        id="new-password"
+        name="new-password"
+        placeholder="Enter a new password"
+        max-length="128"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="confirm-new-password">Confirm</label>
+      <input
+        type="text"
+        class="form-control"
+        id="confirm-new-password"
+        name="confirm-new-password"
+        placeholder="Confirm your new password"
+        max-length="128"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Change your password</button>
+  </form>
+</section>
 {% endblock %}

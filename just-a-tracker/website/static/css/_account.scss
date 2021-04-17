@@ -1,0 +1,38 @@
+#account-info,
+#security {
+  width: 100%;
+}
+
+#account-info {
+  li {
+    display: flex;
+
+    a {
+      text-decoration: none;
+      margin: 0 $cardSpacing;
+    }
+  }
+}
+
+#change-password {
+  margin-left: $cardSpacing;
+
+  .form-group {
+    margin-top: $cardSpacing;
+    margin-left: $cardSpacing;
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      max-width: 90%;
+    }
+  }
+
+  button {
+    margin-left: $cardSpacing * 2;
+  }
+}
