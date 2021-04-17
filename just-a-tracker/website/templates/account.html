@@ -24,7 +24,11 @@ content %}
         </button>
       </div>
 
-      <form method="POST" id="change-email">
+      <form
+        action="{{ url_for('auth.change_email') }}"
+        method="POST"
+        id="change-email"
+      >
         <div class="modal-body">
           <div class="form-group">
             <p><b>Current:</b> {{ user.email }}</p>
@@ -33,7 +37,7 @@ content %}
           <div class="form-group">
             <label for="new-email">New:</label>
             <input
-              type="text"
+              type="email"
               class="form-control"
               id="new-email"
               name="new-email"
@@ -45,12 +49,24 @@ content %}
           <div class="form-group">
             <label for="confirm-new-email">Confirm:</label>
             <input
-              type="text"
+              type="email"
               class="form-control"
               id="confirm-new-email"
               name="confirm-new-email"
               placeholder="Confirm your new email address"
               max-length="320"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="change-email-password">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="change-email-password"
+              name="change-email-password"
+              placeholder="Enter your password"
+              max-length="128"
             />
           </div>
         </div>
