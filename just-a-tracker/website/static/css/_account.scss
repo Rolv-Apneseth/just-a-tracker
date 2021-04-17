@@ -1,3 +1,14 @@
+@mixin form-group-format {
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    font-weight: bold;
+    text-align: left;
+    width: 7rem;
+  }
+}
+
 #account-info,
 #security {
   width: 100%;
@@ -14,22 +25,19 @@
   }
 }
 
+#change-email {
+  .form-group {
+    @include form-group-format();
+  }
+}
+
 #change-password {
   margin-left: $cardSpacing;
 
   .form-group {
+    @include form-group-format();
     margin-top: $cardSpacing;
     margin-left: $cardSpacing;
-    display: flex;
-    justify-content: space-between;
-
-    label {
-      font-weight: bold;
-    }
-
-    input {
-      max-width: 90%;
-    }
   }
 
   button {

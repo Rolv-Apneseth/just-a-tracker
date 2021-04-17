@@ -1,25 +1,90 @@
 {% extends 'base.html' %} {% block title %} Account {% endblock %} {% block
 content %}
 
+<!-- Edit email modal -->
+<div
+  class="modal fade"
+  id="modal-edit-email"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="Options menu modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title h3">Change email address</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form method="POST" id="change-email">
+        <div class="modal-body">
+          <div class="form-group">
+            <p><b>Current:</b> {{ user.email }}</p>
+          </div>
+
+          <div class="form-group">
+            <label for="new-email">New:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="new-email"
+              name="new-email"
+              placeholder="Enter your new email address"
+              max-length="320"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-new-email">Confirm:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="confirm-new-email"
+              name="confirm-new-email"
+              placeholder="Confirm your new email address"
+              max-length="320"
+            />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Apply</button>
+          <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Account info -->
 <section id="account-info">
   <h1 class="border-bottom">Account Info</h1>
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      <a href="#"><i class="fas fa-edit"></i></a>
       <p><b>User ID:</b> {{ user.user_id }}</p>
     </li>
     <li class="list-group-item">
-      <a href="#"><i class="fas fa-edit"></i></a>
       <p><b>Username:</b> {{ user.username }}</p>
     </li>
     <li class="list-group-item">
-      <a href="#"><i class="fas fa-edit"></i></a>
       <p><b>Email address:</b> {{ user.email }}</p>
+      <a data-toggle="modal" href="#modal-edit-email"
+        ><i class="fas fa-edit"></i
+      ></a>
     </li>
   </ul>
 </section>
 
+<!-- Security -->
 <section id="security">
   <h1 class="border-bottom">Security</h1>
 
@@ -27,7 +92,7 @@ content %}
     <h3 class="border-bottom">Change password</h3>
 
     <div class="form-group">
-      <label for="current-password">Current</label>
+      <label for="current-password">Current:</label>
       <input
         type="text"
         class="form-control"
@@ -39,7 +104,7 @@ content %}
     </div>
 
     <div class="form-group">
-      <label for="new-password">New</label>
+      <label for="new-password">New:</label>
       <input
         type="text"
         class="form-control"
@@ -51,7 +116,7 @@ content %}
     </div>
 
     <div class="form-group">
-      <label for="confirm-new-password">Confirm</label>
+      <label for="confirm-new-password">Confirm:</label>
       <input
         type="text"
         class="form-control"

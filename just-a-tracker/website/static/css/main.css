@@ -181,13 +181,7 @@ body main {
   margin: 0 1rem;
 }
 
-#change-password {
-  margin-left: 1rem;
-}
-
-#change-password .form-group {
-  margin-top: 1rem;
-  margin-left: 1rem;
+#change-email .form-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -196,12 +190,31 @@ body main {
           justify-content: space-between;
 }
 
-#change-password .form-group label {
+#change-email .form-group label {
   font-weight: bold;
+  text-align: left;
+  width: 7rem;
 }
 
-#change-password .form-group input {
-  max-width: 90%;
+#change-password {
+  margin-left: 1rem;
+}
+
+#change-password .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+#change-password .form-group label {
+  font-weight: bold;
+  text-align: left;
+  width: 7rem;
 }
 
 #change-password button {
