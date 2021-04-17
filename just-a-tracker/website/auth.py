@@ -172,3 +172,29 @@ def change_password():
         flash("Your password has been changed.")
 
     return redirect(url_for("views.account"))
+
+
+@auth.route("/change-email", methods=["POST"])
+@login_required
+def change_email():
+    # Assign data from form
+    form = request.form
+    password = form.get("change-email-password")
+    new_email = form.get("new-email")
+    confirm_new_email = form.get("confirm-new-email")
+
+    # Perform checks
+    if not check_password_hash(current_user.password, password):
+        flash(WRONG_PASS_RESPONSE)
+    elif not new_email == confirm_new_email:
+        flash("Your emails did not match. Make sure you enter the same in both fields.")
+    elif new_email == current_user.email:
+        flash(f"Your email is already set to {new_email}")
+
+    # If all checks passed, change users email address
+    else:
+        current_user.email = new_email
+        db.session.commit()
+        flash(f"The email address for your account has been changed to {new_email}.")
+
+    return redirect(url_for("views.account"))
