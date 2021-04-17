@@ -88,13 +88,17 @@ content %}
 <section id="security">
   <h1 class="border-bottom">Security</h1>
 
-  <form method="POST" id="change-password">
+  <form
+    action="{{ url_for('auth.change_password') }}"
+    method="POST"
+    id="change-password"
+  >
     <h3 class="border-bottom">Change password</h3>
 
     <div class="form-group">
       <label for="current-password">Current:</label>
       <input
-        type="text"
+        type="password"
         class="form-control"
         id="current-password"
         name="current-password"
@@ -106,7 +110,7 @@ content %}
     <div class="form-group">
       <label for="new-password">New:</label>
       <input
-        type="text"
+        type="password"
         class="form-control"
         id="new-password"
         name="new-password"
@@ -118,7 +122,7 @@ content %}
     <div class="form-group">
       <label for="confirm-new-password">Confirm:</label>
       <input
-        type="text"
+        type="password"
         class="form-control"
         id="confirm-new-password"
         name="confirm-new-password"
