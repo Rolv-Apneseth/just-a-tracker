@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+import json
 
 from . import db
 from .models import User
@@ -14,6 +15,7 @@ auth = Blueprint("auth", __name__)
 RE_USERNAME = r"^[\w-]{6,}$"
 RE_PASSWORD = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w\W]{8,}$"
 
+WRONG_PASS_RESPONSE = "Password was incorrect. Please try again."
 SIGN_UP_RESPONSES = {
     "pass_match": (
         "Your passwords did not match. Please make "
@@ -96,7 +98,7 @@ def validate_login_info(form):
             result = user
 
         else:
-            flash("Password was incorrect. Please try again.")
+            flash(WRONG_PASS_RESPONSE)
 
     else:
         flash("No account matches that username or email.")
@@ -142,3 +144,31 @@ def sign_up():
             return redirect(url_for("views.account"))
 
     return render_template("sign_up.html", user=current_user)
+
+
+@auth.route("/change-password", methods=["POST"])
+@login_required
+def change_password():
+    # Assign data from form
+    form = request.form
+    current_password = form.get("current-password")
+    new_password = form.get("new-password")
+    confirm_new_password = form.get("confirm-new-password")
+
+    # Password checks
+    if not check_password_hash(current_user.password, current_password):
+        flash(WRONG_PASS_RESPONSE)
+    elif not re.match(RE_PASSWORD, new_password):
+        flash(SIGN_UP_RESPONSES["pass_format"])
+    elif new_password != confirm_new_password:
+        flash(SIGN_UP_RESPONSES["pass_match"])
+    elif new_password == current_password:
+        flash("Your new password cannot be the same as your old password.")
+
+    # Change user password if all checks passed
+    else:
+        current_user.password = generate_password_hash(new_password, method="sha256")
+        db.session.commit()
+        flash("Your password has been changed.")
+
+    return redirect(url_for("views.account"))
