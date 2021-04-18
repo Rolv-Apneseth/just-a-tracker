@@ -53,12 +53,12 @@ body main {
 
 #workspace-header a {
   font-size: 2.2rem;
-  color: grey;
+  color: gray;
   margin: 0 0.5rem;
 }
 
 #workspace-header a:hover {
-  color: lightslategrey;
+  color: #768798;
 }
 
 #modal-collaborators form {
@@ -119,11 +119,11 @@ body main {
 }
 
 .bug-card .header-with-options i {
-  color: grey;
+  color: gray;
 }
 
 .bug-card .header-with-options i:hover {
-  color: lightslategrey;
+  color: #768798;
 }
 
 .bug-card .bug-description {
@@ -135,7 +135,7 @@ body main {
 }
 
 #report-bug-card {
-  background-color: #02b845;
+  background-color: #02b644;
 }
 
 #report-bug-card div {
@@ -145,7 +145,7 @@ body main {
 #report-bug-card a {
   height: 100%;
   font-size: 3rem;
-  color: #ffffff;
+  color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,11 +170,11 @@ body main {
 }
 
 #report-bug-card a:hover {
-  color: #f4f2ff;
+  color: #f2f0ff;
 }
 
 #report-bug-card:hover {
-  background-color: #05bb48;
+  background-color: #05bd48;
 }
 
 #workspaces,
