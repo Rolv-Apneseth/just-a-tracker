@@ -20,7 +20,7 @@
 
     a {
       text-decoration: none;
-      margin: 0 $cardSpacing;
+      margin: 0 $generalSpacing;
     }
   }
 }
@@ -32,15 +32,15 @@
 }
 
 #change-password {
-  margin-left: $cardSpacing;
+  margin-left: $generalSpacing;
 
   .form-group {
     @include form-group-format();
-    margin-top: $cardSpacing;
-    margin-left: $cardSpacing;
+    margin-top: $generalSpacing;
+    margin-left: $generalSpacing;
   }
 
   button {
-    margin-left: $cardSpacing * 2;
+    margin-left: $generalSpacing * 2;
   }
 }
