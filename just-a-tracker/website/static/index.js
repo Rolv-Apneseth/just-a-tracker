@@ -31,3 +31,16 @@ function removeUser(workspaceID, projectName, userID, username, leaving) {
     });
   }
 }
+
+function markBug(bugID, makeOpen, makeImportant, workspaceURL) {
+  fetch("/mark-bug", {
+    method: "POST",
+    body: JSON.stringify({
+      bugID: bugID,
+      makeOpen: makeOpen,
+      makeImportant: makeImportant,
+    }),
+  }).then((_res) => {
+    window.location.href = workspaceURL;
+  });
+}
