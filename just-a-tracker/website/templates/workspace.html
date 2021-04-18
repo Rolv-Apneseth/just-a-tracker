@@ -224,7 +224,7 @@
     </div>
   </div>
 
-  {% for bug in workspace.bugs %} {% if bug.is_open %}
+  {% for bug in workspace_bugs_reversed %} {% if bug.is_open %}
   <div class="card bug-card {% if bug.is_important %}important-bug{% endif %}">
     <div class="card-header header-with-options">
       <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>

@@ -112,6 +112,7 @@ def workspace(workspace_id):
         return render_template(
             "workspace.html",
             workspace=workspace_object,
+            workspace_bugs_reversed=reversed(workspace_object.bugs),
             user=current_user,
             url=url_for("views.workspace", workspace_id=workspace_id),
         )
