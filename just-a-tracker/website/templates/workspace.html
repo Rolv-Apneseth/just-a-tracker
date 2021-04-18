@@ -224,11 +224,47 @@
     </div>
   </div>
 
-  {% for bug in workspace.bugs %}
-
+  {% for bug in workspace.bugs %} {% if bug.is_open %}
   <div class="card bug-card">
-    <div class="card-header">
+    <div class="card-header header-with-options">
       <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
+
+      <div class="dropdown">
+        <a
+          type="button"
+          id="bug-options-dropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fas fa-ellipsis-h"></i>
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="bug-options-dropdown">
+          <a
+            class="dropdown-item"
+            type="button"
+            onClick="markBug('{{ bug.bug_id }}', 'false', 'false', '{{ url }}')"
+            >Mark as closed</a
+          >
+
+          {% if bug.is_important %}
+          <a
+            class="dropdown-item"
+            type="button"
+            onClick="markBug('{{ bug.bug_id }}', 'true', 'false', '{{ url }}')"
+            >Remove important mark</a
+          >
+          {% else %}
+          <a
+            class="dropdown-item"
+            type="button"
+            onClick="markBug('{{ bug.bug_id }}', 'true', 'true', '{{ url }}')"
+            >Mark as important</a
+          >
+          {% endif %}
+        </div>
+      </div>
     </div>
 
     <div class="card-body">
@@ -241,7 +277,7 @@
       </p>
     </div>
   </div>
-  {% endfor %}
+  {% endif %} {% endfor %}
 </section>
 
 {% endblock %}
