@@ -74,6 +74,10 @@
   }
 }
 
+.important-bug {
+  border: solid $importantBorderWidth $importantBorderColour;
+}
+
 #report-bug-card {
   background-color: $reportBugBg;
 

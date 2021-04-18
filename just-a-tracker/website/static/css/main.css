@@ -130,6 +130,10 @@ body main {
   white-space: pre-wrap;
 }
 
+.important-bug {
+  border: solid 0.2rem #d8cb18;
+}
+
 #report-bug-card {
   background-color: #02b845;
 }
