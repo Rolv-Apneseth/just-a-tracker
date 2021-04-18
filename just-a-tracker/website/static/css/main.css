@@ -109,6 +109,23 @@ body main {
   margin: 0.5%;
 }
 
+.bug-card .header-with-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bug-card .header-with-options i {
+  color: grey;
+}
+
+.bug-card .header-with-options i:hover {
+  color: lightslategrey;
+}
+
 .bug-card .bug-description {
   white-space: pre-wrap;
 }

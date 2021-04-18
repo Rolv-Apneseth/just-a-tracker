@@ -13,11 +13,11 @@
 
   a {
     font-size: 2.2rem;
-    color: grey;
+    color: $iconColour;
     margin: 0 0.5rem;
 
     &:hover {
-      color: lightslategrey;
+      color: $iconColourHover;
     }
   }
 }
@@ -55,6 +55,19 @@
   width: 24%;
   min-height: $cardMinHeight;
   margin: 0.5%;
+
+  .header-with-options {
+    display: flex;
+    justify-content: space-between;
+
+    i {
+      color: $iconColour;
+
+      &:hover {
+        color: $iconColourHover;
+      }
+    }
+  }
 
   .bug-description {
     white-space: pre-wrap;
