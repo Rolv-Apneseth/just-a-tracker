@@ -110,7 +110,10 @@ def workspace(workspace_id):
 
     if workspace_object and current_user in workspace_object.users:
         return render_template(
-            "workspace.html", workspace=workspace_object, user=current_user
+            "workspace.html",
+            workspace=workspace_object,
+            user=current_user,
+            url=url_for("views.workspace", workspace_id=workspace_id),
         )
 
     flash("The requested workspace was not found, or you do not have access to it.")
@@ -144,5 +147,25 @@ def remove_user():
                 f"You do not have permission to remove {user.username}"
                 f" from {workspace.project_name}!"
             )
+
+    return jsonify({})
+
+
+@views.route("/mark-bug", methods=["POST"])
+@login_required
+def mark_bug():
+    data = json.loads(request.data)
+
+    bug_id = data.get("bugID")
+    bug = Bug.query.get(bug_id)
+    workspace = Workspace.query.get(bug.workspace_id)
+
+    make_open = False if data.get("makeOpen") == "false" else True
+    make_important = False if data.get("makeImportant") == "false" else True
+
+    if workspace and current_user in workspace.users:
+        bug.is_open = make_open
+        bug.is_important = make_important
+        db.session.commit()
 
     return jsonify({})
