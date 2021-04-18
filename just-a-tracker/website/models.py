@@ -44,6 +44,9 @@ class Bug(db.Model):
     bug_title = db.Column(db.String(64))
     bug_description = db.Column(db.String(1024))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
+    is_important = db.Column(db.Boolean, unique=False, default=False)
+    is_open = db.Column(db.Boolean, unique=False, default=True)
+    close_message = db.Column(db.String(248))
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
