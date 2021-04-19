@@ -87,6 +87,15 @@
 
 .closed-bug {
   opacity: 0.6;
+
+  .card-header {
+    h4 {
+      &:before {
+        // UTF-8 symbol U+2714 (✔)
+        content: "\2714";
+      }
+    }
+  }
 }
 
 #report-bug-card {

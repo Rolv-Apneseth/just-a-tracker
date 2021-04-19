@@ -138,6 +138,10 @@ body main {
   opacity: 0.6;
 }
 
+.closed-bug .card-header h4:before {
+  content: "\2714";
+}
+
 #report-bug-card {
   background-color: #02b644;
 }
