@@ -134,6 +134,10 @@ body main {
   border: solid 0.2rem #d8cb18;
 }
 
+.closed-bug {
+  opacity: 0.6;
+}
+
 #report-bug-card {
   background-color: #02b644;
 }

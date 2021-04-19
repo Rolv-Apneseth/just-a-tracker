@@ -75,7 +75,11 @@
 }
 
 .important-bug {
-  border: solid $importantBorderWidth $importantBorderColour;
+  border: solid $highlightBorderWidth $importantBorderColour;
+}
+
+.closed-bug {
+  opacity: 0.6;
 }
 
 #report-bug-card {
