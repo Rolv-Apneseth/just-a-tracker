@@ -44,3 +44,19 @@ function markBug(bugID, makeOpen, makeImportant, workspaceURL) {
     window.location.href = workspaceURL;
   });
 }
+
+function toggleShowClosedBugs(obj) {
+  if ($(obj).is(":checked")) {
+    $(".closed-bug").css("display", "");
+  } else {
+    $(".closed-bug").css("display", "none");
+  }
+}
+
+window.onload = function () {
+  // Workspace page
+  if (window.location.pathname.indexOf("/workspace/") != -1) {
+    // Adjust whether closed bugs are shown
+    toggleShowClosedBugs(document.querySelector("#toggleSwitchClosedBugs"));
+  }
+};
