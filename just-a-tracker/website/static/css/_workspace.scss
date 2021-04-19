@@ -75,7 +75,14 @@
 }
 
 .important-bug {
-  border: solid $highlightBorderWidth $importantBorderColour;
+  .card-header {
+    h4 {
+      &:before {
+        // UTF-8 symbol U+2757 (❗)
+        content: "\2757";
+      }
+    }
+  }
 }
 
 .closed-bug {
