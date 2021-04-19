@@ -24,7 +24,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <div>
+          <input
+            id="toggleSwitchClosedBugs"
+            type="checkbox"
+            onchange="toggleShowClosedBugs(this)"
+          />
+          <label for="toggleSwitchClosedBugs">Show closed bug reports</label>
+        </div>
+      </div>
       <div class="modal-footer">
         {% if user.user_id == workspace.author_id %}
         <button
@@ -224,8 +233,10 @@
     </div>
   </div>
 
-  {% for bug in workspace_bugs_reversed %} {% if bug.is_open %}
-  <div class="card bug-card {% if bug.is_important %}important-bug{% endif %}">
+  {% for bug in workspace_bugs_reversed %}
+  <div
+    class="card bug-card {% if bug.is_important %}important-bug{% endif %} {% if not bug.is_open %}closed-bug{% endif %}"
+  >
     <div class="card-header header-with-options">
       <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
 
@@ -277,7 +288,7 @@
       </p>
     </div>
   </div>
-  {% endif %} {% endfor %}
+  {% endfor %}
 </section>
 
 {% endblock %}
