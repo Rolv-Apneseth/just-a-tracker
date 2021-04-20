@@ -102,6 +102,7 @@
 
 #report-bug-card {
   background-color: $reportBugBg;
+  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $reportBugBoxShadowColour;
 
   div {
     height: 100%;
