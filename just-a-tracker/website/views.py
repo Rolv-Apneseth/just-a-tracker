@@ -170,3 +170,32 @@ def mark_bug():
         db.session.commit()
 
     return jsonify({})
+
+
+@views.route("/delete-bug", methods=["POST"])
+@login_required
+def delete_bug():
+    data = json.loads(request.data)
+    bug_id = int(data.get("bugID"))
+
+    bug = Bug.query.get(bug_id)
+    if bug:
+        workspace = Workspace.query.get(bug.workspace_id)
+
+        has_permission = (
+            current_user.user_id == workspace.author_id
+            or current_user.user_id == bug.author_id
+        )
+
+        if has_permission:
+            db.session.delete(bug)
+            db.session.commit()
+        else:
+            flash(
+                "You do not have permission to remove this bug report from "
+                f"the workspace for {workspace.project_name}."
+            )
+    else:
+        flash(f"Bug with id {bug.bug_id} not found.")
+
+    return jsonify({})

@@ -45,6 +45,21 @@ function markBug(bugID, makeOpen, makeImportant, workspaceURL) {
   });
 }
 
+function deleteBug(bugID, bugTitle, workspaceURL) {
+  const deleteBugMessage = `The bug ${bugTitle} will be permanently deleted.
+  
+  If you understand and still want to proceed, click ok.`;
+
+  if (confirm(deleteBugMessage)) {
+    fetch("/delete-bug", {
+      method: "POST",
+      body: JSON.stringify({ bugID: bugID }),
+    }).then((_res) => {
+      window.location.href = workspaceURL;
+    });
+  }
+}
+
 function toggleShowClosedBugs(obj) {
   let closedBugs = $(".closed-bug");
   let isHidden = closedBugs.hasClass("d-none");
