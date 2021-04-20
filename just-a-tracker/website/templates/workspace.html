@@ -235,10 +235,26 @@
 
   {% for bug in workspace_bugs_reversed %}
   <div
-    class="card bug-card {% if bug.is_important %}important-bug{% endif %} {% if not bug.is_open %}closed-bug{% endif %}"
+    class="card bug-card {% if bug.is_important %}important-bug {% elif not bug.is_open %}closed-bug d-none{% endif %}"
   >
-    <div class="card-header header-with-options">
+    <div class="card-header">
       <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
+
+      {% if not bug.is_open %}
+      <i class="fas fa-check-circle closed-bug-icon"></i>
+      {% elif bug.is_important %}
+      <i class="fas fa-exclamation-circle important-bug-icon"></i>
+      {% endif %}
+    </div>
+
+    <div class="card-body">
+      <p class="h5 bug-description">{{ bug.bug_description }}</p>
+    </div>
+
+    <div class="card-footer">
+      <p class="card-text text-right text-primary">
+        <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
+      </p>
 
       <div class="dropdown">
         <a
@@ -248,7 +264,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fas fa-ellipsis-h"></i>
+          <i class="fas fa-ellipsis-v"></i>
         </a>
 
         <div class="dropdown-menu" aria-labelledby="bug-options-dropdown">
@@ -284,16 +300,6 @@
           {% endif %}
         </div>
       </div>
-    </div>
-
-    <div class="card-body">
-      <p class="h5 bug-description">{{ bug.bug_description }}</p>
-    </div>
-
-    <div class="card-footer">
-      <p class="card-text text-right text-primary">
-        <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
-      </p>
     </div>
   </div>
   {% endfor %}

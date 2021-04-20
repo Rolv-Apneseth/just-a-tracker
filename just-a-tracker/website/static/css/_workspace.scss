@@ -55,44 +55,46 @@
   width: 24%;
   min-height: $cardMinHeight;
   margin: 0.5%;
+  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowColour;
 
-  .header-with-options {
+  .card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
-    i {
-      color: $iconColour;
+    h4 {
+      line-height: $cardHeaderLineHeight;
+      overflow: hidden;
+    }
 
-      &:hover {
-        color: $iconColourHover;
-      }
+    .closed-bug-icon {
+      font-size: $cardHeaderLineHeight;
+      color: $cardIconClosedColour;
+    }
+
+    .important-bug-icon {
+      font-size: $cardHeaderLineHeight;
+      color: $cardIconImportantColour;
     }
   }
 
   .bug-description {
     white-space: pre-wrap;
   }
-}
 
-.important-bug {
-  .card-header {
-    h4 {
-      &:before {
-        // UTF-8 symbol U+2757 (❗)
-        content: "\2757";
-      }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
     }
-  }
-}
 
-.closed-bug {
-  opacity: 0.6;
+    i {
+      color: $iconColour;
 
-  .card-header {
-    h4 {
-      &:before {
-        // UTF-8 symbol U+2714 (✔)
-        content: "\2714";
+      &:hover {
+        color: $iconColourHover;
       }
     }
   }
