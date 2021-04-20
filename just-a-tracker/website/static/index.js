@@ -46,10 +46,14 @@ function markBug(bugID, makeOpen, makeImportant, workspaceURL) {
 }
 
 function toggleShowClosedBugs(obj) {
-  if ($(obj).is(":checked")) {
-    $(".closed-bug").css("display", "");
-  } else {
-    $(".closed-bug").css("display", "none");
+  let closedBugs = $(".closed-bug");
+  let isHidden = closedBugs.hasClass("d-none");
+  let isChecked = $(obj).is(":checked");
+
+  if (isChecked & isHidden) {
+    closedBugs.removeClass("d-none");
+  } else if (!isChecked & !isHidden) {
+    closedBugs.addClass("d-none");
   }
 }
 
