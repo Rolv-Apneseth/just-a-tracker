@@ -55,7 +55,9 @@
   width: 24%;
   min-height: $cardMinHeight;
   margin: 0.5%;
-  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowColour;
+  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
+    $cardBoxShadowWidth/2 $cardBoxShadowColour;
+  transition-duration: 0.25s;
 
   .card-header {
     display: flex;
@@ -98,11 +100,19 @@
       }
     }
   }
+
+  &:hover {
+    transform: translateY(-$generalSpacing/2);
+    box-shadow: $cardBoxShadowWidth * 2 $cardBoxShadowWidth $cardBoxShadowWidth *
+      2 $cardBoxShadowWidth $cardBoxShadowColour;
+    z-index: 10;
+  }
 }
 
 #report-bug-card {
   background-color: $reportBugBg;
-  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $reportBugBoxShadowColour;
+  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
+    $cardBoxShadowWidth/2 $reportBugBoxShadowColour;
 
   div {
     height: 100%;

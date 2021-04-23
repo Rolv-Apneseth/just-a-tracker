@@ -107,8 +107,10 @@ body main {
   width: 24%;
   min-height: 25rem;
   margin: 0.5%;
-  -webkit-box-shadow: 0.1rem 0.1rem rgba(91, 77, 77, 0.288);
-          box-shadow: 0.1rem 0.1rem rgba(91, 77, 77, 0.288);
+  -webkit-box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
+          box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
 }
 
 .bug-card .card-header {
@@ -163,10 +165,18 @@ body main {
   color: #768798;
 }
 
+.bug-card:hover {
+  -webkit-transform: translateY(-0.5rem);
+          transform: translateY(-0.5rem);
+  -webkit-box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
+          box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
+  z-index: 10;
+}
+
 #report-bug-card {
   background-color: #02b644;
-  -webkit-box-shadow: 0.1rem 0.1rem #59a675;
-          box-shadow: 0.1rem 0.1rem #59a675;
+  -webkit-box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
+          box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
 }
 
 #report-bug-card div {
