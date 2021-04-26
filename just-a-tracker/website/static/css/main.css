@@ -140,7 +140,12 @@ body main {
   color: red;
 }
 
-.bug-card .bug-description {
+.bug-card .card-body {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+}
+
+.bug-card .card-body .bug-description {
   white-space: pre-wrap;
 }
 
