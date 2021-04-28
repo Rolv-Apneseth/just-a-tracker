@@ -1,42 +1,6 @@
-// General
-$generalSpacing: 1rem;
-$baseFontSize: 1.2rem;
-$iconColour: hsl(0, 0%, 50%);
-$iconColourHover: hsl(210, 14%, 53%);
-
-// Workspace
-$cardMinHeight: 25rem;
-$cardSpacing: 1rem;
-$cardSectionWidth: 95vw;
-$cardBoxShadowWidth: 0.1rem;
-$cardBoxShadowColour: hsla(0, 8%, 33%, 0.288);
-$cardHeaderLineHeight: 2.5rem;
-$cardIconImportantColour: hsl(0, 100%, 50%);
-$cardIconClosedColour: hsl(142, 98%, 36%);
-$reportBugBg: hsl(142, 98%, 36%);
-$reportBugBgHover: hsl(142, 95%, 38%);
-$reportBugBoxShadowColour: hsl(142, 30%, 50%);
-$reportBugText: hsl(0, 0%, 100%);
-$reportBugTextHover: hsl(249, 100%, 97%);
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: $baseFontSize;
-  display: flex;
-  flex-direction: column;
-
-  main {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-@import "workspace";
-@import "hub";
-@import "login";
-@import "account";
+// Variables and mixins
+@use 'abstracts';
+// Base styling for website
+@use 'core';
+// Specific styling for each page
+@use 'pages';

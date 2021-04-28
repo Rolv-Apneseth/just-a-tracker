@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+body {
+  font-size: $baseFontSize;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

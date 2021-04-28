@@ -1,226 +1,78 @@
 body {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   font-size: 1.2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 body main {
   width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#workspace-header {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-bottom: 2vh;
-}
-
-#workspace-header h1 {
-  text-align: center;
-  width: 85%;
-}
-
-#workspace-header a {
-  font-size: 2.2rem;
-  color: gray;
-  margin: 0 0.5rem;
-}
-
-#workspace-header a:hover {
-  color: #768798;
-}
-
-#modal-collaborators form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-
-#modal-collaborators form button {
-  margin-left: 0.5rem;
-}
-
-#modal-collaborators .existing-collaborator {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#modal-collaborators .existing-collaborator p {
+html {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+  font-weight: normal;
 }
 
-#bugs-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  width: 95vw;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
-.bug-card {
-  width: 24%;
-  min-height: 25rem;
-  margin: 0.5%;
-  -webkit-box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
-          box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
-  -webkit-transition-duration: 0.25s;
-          transition-duration: 0.25s;
+ol,
+ul {
+  list-style: none;
 }
 
-.bug-card .card-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.bug-card .card-header h4 {
-  line-height: 2.5rem;
-  overflow: hidden;
-}
-
-.bug-card .card-header .closed-bug-icon {
-  font-size: 2.5rem;
-  color: #02b644;
-}
-
-.bug-card .card-header .important-bug-icon {
-  font-size: 2.5rem;
-  color: red;
-}
-
-.bug-card .card-body {
-  -webkit-transform: rotate(0);
-          transform: rotate(0);
-}
-
-.bug-card .card-body .bug-description {
-  white-space: pre-wrap;
-}
-
-.bug-card .card-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.bug-card .card-footer p {
-  margin: 0;
-}
-
-.bug-card .card-footer i {
-  color: gray;
-}
-
-.bug-card .card-footer i:hover {
-  color: #768798;
-}
-
-.bug-card:hover {
-  -webkit-transform: translateY(-0.5rem);
-          transform: translateY(-0.5rem);
-  -webkit-box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
-          box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
-  z-index: 10;
-}
-
-#report-bug-card {
-  background-color: #02b644;
-  -webkit-box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
-          box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
-}
-
-#report-bug-card div {
-  height: 100%;
-}
-
-#report-bug-card a {
-  height: 100%;
-  font-size: 3rem;
-  color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#report-bug-card a p {
-  margin: 0;
+#account-info,
+#security {
   width: 100%;
 }
 
-#report-bug-card a #report-bug-symbol {
-  font-size: 15rem;
-  line-height: 7.5rem;
-  margin-bottom: 2rem;
+#account-info li {
+  display: flex;
+}
+#account-info li a {
+  text-decoration: none;
+  margin: 0 1rem;
 }
 
-#report-bug-card a:hover {
-  color: #f2f0ff;
+#change-email .form-group {
+  display: flex;
+  justify-content: space-between;
+}
+#change-email .form-group label {
+  font-weight: bold;
+  text-align: left;
+  width: 7rem;
 }
 
-#report-bug-card:hover {
-  background-color: #05bd48;
+#change-password {
+  margin-left: 1rem;
+}
+#change-password .form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+#change-password .form-group label {
+  font-weight: bold;
+  text-align: left;
+  width: 7rem;
+}
+#change-password button {
+  margin-left: 2rem;
 }
 
 #workspaces,
@@ -232,59 +84,127 @@ body main {
   width: 100%;
 }
 
-#account-info,
-#security {
+#workspace-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2vh;
+}
+#workspace-header h1 {
+  text-align: center;
+  width: 85%;
+}
+#workspace-header a {
+  font-size: 2.2rem;
+  color: gray;
+  margin: 0 0.5rem;
+}
+#workspace-header a:hover {
+  color: #768798;
+}
+
+#modal-collaborators form {
+  display: flex;
+  flex-wrap: nowrap;
+}
+#modal-collaborators form button {
+  margin-left: 0.5rem;
+}
+#modal-collaborators .existing-collaborator {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+#modal-collaborators .existing-collaborator p {
+  margin: 0;
+}
+
+#bugs-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 95vw;
+}
+
+.bug-card {
+  width: 24%;
+  min-height: 25rem;
+  margin: 0.5%;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
+  transition-duration: 0.25s;
+}
+.bug-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bug-card .card-header h4 {
+  line-height: 2.5rem;
+  overflow: hidden;
+}
+.bug-card .card-header .closed-bug-icon {
+  font-size: 2.5rem;
+  color: #02b644;
+}
+.bug-card .card-header .important-bug-icon {
+  font-size: 2.5rem;
+  color: red;
+}
+.bug-card .card-body {
+  transform: rotate(0);
+}
+.bug-card .card-body .bug-description {
+  white-space: pre-wrap;
+}
+.bug-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.bug-card .card-footer p {
+  margin: 0;
+}
+.bug-card .card-footer i {
+  color: gray;
+}
+.bug-card .card-footer i:hover {
+  color: #768798;
+}
+.bug-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
+  z-index: 10;
+}
+
+#report-bug-card {
+  background-color: #02b644;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
+}
+#report-bug-card div {
+  height: 100%;
+}
+#report-bug-card a {
+  height: 100%;
+  font-size: 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#report-bug-card a p {
+  margin: 0;
   width: 100%;
 }
-
-#account-info li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+#report-bug-card a #report-bug-symbol {
+  font-size: 15rem;
+  line-height: 7.5rem;
+  margin-bottom: 2rem;
 }
-
-#account-info li a {
-  text-decoration: none;
-  margin: 0 1rem;
+#report-bug-card a:hover {
+  color: #f2f0ff;
 }
-
-#change-email .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-#change-email .form-group label {
-  font-weight: bold;
-  text-align: left;
-  width: 7rem;
-}
-
-#change-password {
-  margin-left: 1rem;
-}
-
-#change-password .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-top: 1rem;
-  margin-left: 1rem;
-}
-
-#change-password .form-group label {
-  font-weight: bold;
-  text-align: left;
-  width: 7rem;
-}
-
-#change-password button {
-  margin-left: 2rem;
-}
-/*# sourceMappingURL=main.css.map */
+#report-bug-card:hover {
+  background-color: #05bd48;
+}/*# sourceMappingURL=main.css.map */

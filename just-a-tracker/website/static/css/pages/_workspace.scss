@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 #workspace-header {
   width: 100%;
   display: flex;
@@ -71,12 +73,12 @@
 
     .closed-bug-icon {
       font-size: $cardHeaderLineHeight;
-      color: $cardIconClosedColour;
+      color: $iconColourClosed;
     }
 
     .important-bug-icon {
       font-size: $cardHeaderLineHeight;
-      color: $cardIconImportantColour;
+      color: $iconColourImportant;
     }
   }
 

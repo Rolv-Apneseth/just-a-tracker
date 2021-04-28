@@ -1,0 +1,11 @@
+// Used in the account page for applying some base styling to form groups
+@mixin form-group-format {
+  display: flex;
+  justify-content: space-between;
+
+  label {
+    font-weight: bold;
+    text-align: left;
+    width: 7rem;
+  }
+}
