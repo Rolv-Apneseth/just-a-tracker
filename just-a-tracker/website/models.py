@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(USERNAME_MAX_LENGTH), unique=True)
 
     bugs = db.relationship("Bug")
+    comments = db.relationship("Comment")
     workspaces = db.relationship(
         "Workspace",
         secondary=users_workspaces,
@@ -43,7 +44,7 @@ class Bug(db.Model):
     bug_id = db.Column(db.Integer, primary_key=True)
     bug_title = db.Column(db.String(64))
     bug_description = db.Column(db.String(1024))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
     is_important = db.Column(db.Boolean, unique=False, default=False)
     is_open = db.Column(db.Boolean, unique=False, default=True)
     close_message = db.Column(db.String(248))
@@ -51,3 +52,15 @@ class Bug(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
     workspace_id = db.Column(db.Integer, db.ForeignKey("workspace.workspace_id"))
+
+    comments = db.relationship("Comment")
+
+
+class Comment(db.Model):
+    comment_id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(1024))
+    date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
+
+    bug_id = db.Column(db.Integer, db.ForeignKey("bug.bug_id"))
+    author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
+    author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
