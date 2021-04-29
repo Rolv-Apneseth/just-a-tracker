@@ -60,6 +60,7 @@ class Comment(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1024))
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
+    is_action = db.Column(db.Boolean, default=False)
 
     bug_id = db.Column(db.Integer, db.ForeignKey("bug.bug_id"))
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
