@@ -196,7 +196,7 @@
     {{ workspace.project_name }} #{{ workspace.workspace_id }}
   </h1>
 
-  <div id="icon-buttons">
+  <div>
     <a
       class="text-decoration-none"
       id="open-collaborators"
@@ -248,6 +248,11 @@
     </div>
 
     <div class="card-body">
+      <a
+        class="stretched-link"
+        href="/workspace/{{ workspace.workspace_id }}/bugs/{{ bug.bug_id }}"
+      ></a>
+
       <p class="h5 bug-description">{{ bug.bug_description }}</p>
     </div>
 
@@ -255,7 +260,6 @@
       <p class="card-text text-right text-primary">
         <b>Posted:</b> {{ bug.author_username }}, {{ bug.date }}
       </p>
-
       <div class="dropdown">
         <a
           type="button"
@@ -264,7 +268,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fas fa-ellipsis-v"></i>
+          <i class="fas fa-ellipsis-v basic-icon"></i>
         </a>
 
         <div class="dropdown-menu" aria-labelledby="bug-options-dropdown">

@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+
+.basic-icon {
+  color: $iconColour;
+
+  &:hover {
+    color: $iconColourHover;
+  }
+}
