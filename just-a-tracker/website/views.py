@@ -199,3 +199,35 @@ def delete_bug():
         flash(f"Bug with id {bug.bug_id} not found.")
 
     return jsonify({})
+
+
+@views.route("/workspace/<workspace_id>/bugs/<bug_id>")
+@login_required
+def bug(workspace_id, bug_id):
+    workspace_object = Workspace.query.get(workspace_id)
+    bug_object = Bug.query.get(bug_id)
+
+    passed_conditions = (
+        workspace_object
+        and bug_object
+        and bug_object in workspace_object.bugs
+        and current_user in workspace_object.users
+    )
+
+    if passed_conditions:
+        return render_template(
+            "bug.html",
+            workspace=workspace_object,
+            bug=bug_object,
+            user=current_user,
+            url=url_for("views.bug", workspace_id=workspace_id, bug_id=bug_id),
+        )
+    else:
+        flash(
+            "There was an error in retrieving the requested bug report page."
+            " Returning you to the workspace page now."
+        )
+        return redirect(url_for("views.workspace", workspace_id=workspace_id))
+
+    flash("The requested workspace was not found, or you do not have access to it.")
+    return redirect(url_for("views.workspace_hub"))
