@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 import json
 
 from . import db
-from .models import Workspace, Bug, User
+from .models import Workspace, Bug, User, Comment
 
 views = Blueprint("views", __name__)
 
@@ -12,7 +12,7 @@ views = Blueprint("views", __name__)
 def add_bug_to_workspace(db, current_user, data, workspace_id):
     """Adds a bug object connected to the given workspace to the database."""
 
-    info = {
+    bug_info = {
         "bug_title": data.get("bug-title"),
         "bug_description": data.get("bug-description"),
         "author_id": current_user.user_id,
@@ -20,8 +20,21 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
         "workspace_id": workspace_id,
     }
 
-    if info["bug_title"] and info["bug_description"]:
-        new_bug = Bug(**info)
+    if bug_info["bug_title"] and bug_info["bug_description"]:
+        new_bug = Bug(**bug_info)
+
+        opening_message_info = {
+            "content": f"Bug report opened by {current_user.username}",
+            "is_action": True,
+            "bug_id": new_bug.bug_id,
+            "author_id": current_user.user_id,
+            "author_username": current_user.username,
+        }
+
+        opening_message = Comment(**opening_message_info)
+        new_bug.comments.append(opening_message)
+
+        db.session.add(opening_message)
         db.session.add(new_bug)
         db.session.commit()
 
