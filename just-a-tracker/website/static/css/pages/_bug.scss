@@ -1,0 +1,58 @@
+@use '../abstracts' as *;
+
+#bug-report-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > * {
+      margin-right: $generalSpacing;
+    }
+
+    h1 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .bannerContainer {
+      display: flex;
+
+      & > * {
+        margin-right: $generalSpacing / 2;
+      }
+    }
+  }
+
+  // Base class which other banner classes extend off of
+  .banner {
+    font-size: $statusBannerFontSize;
+    border: solid $iconColourOpen 0.1rem;
+    border-radius: $statusBannerFontSize;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .bannerOpen {
+    @extend .banner;
+    color: $iconColourOpen;
+  }
+
+  .bannerImportant {
+    @extend .banner;
+    border-color: $iconColourImportant;
+    color: $iconColourImportant;
+  }
+
+  .bannerClosed {
+    @extend .banner;
+    border-color: $iconColourClosed;
+    color: $iconColourClosed;
+  }
+}

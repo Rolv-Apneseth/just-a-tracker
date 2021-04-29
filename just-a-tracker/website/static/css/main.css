@@ -1,3 +1,10 @@
+.basic-icon, #workspace-header a {
+  color: gray;
+}
+.basic-icon:hover, #workspace-header a:hover {
+  color: #768798;
+}
+
 body {
   font-size: 1.2rem;
   display: flex;
@@ -75,6 +82,50 @@ img {
   margin-left: 2rem;
 }
 
+#bug-report-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bug-report-header div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#bug-report-header div > * {
+  margin-right: 1rem;
+}
+#bug-report-header div h1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#bug-report-header div .bannerContainer {
+  display: flex;
+}
+#bug-report-header div .bannerContainer > * {
+  margin-right: 0.5rem;
+}
+#bug-report-header .banner, #bug-report-header .bannerClosed, #bug-report-header .bannerImportant, #bug-report-header .bannerOpen {
+  font-size: 1.4rem;
+  border: solid #ffa600 0.1rem;
+  border-radius: 1.4rem;
+  padding: 0.1rem 0.3rem;
+}
+#bug-report-header .bannerOpen {
+  color: #ffa600;
+}
+#bug-report-header .bannerImportant {
+  border-color: red;
+  color: red;
+}
+#bug-report-header .bannerClosed {
+  border-color: #02b644;
+  color: #02b644;
+}
+
 #workspaces,
 #new-workspace {
   width: 100%;
@@ -98,11 +149,7 @@ img {
 }
 #workspace-header a {
   font-size: 2.2rem;
-  color: gray;
   margin: 0 0.5rem;
-}
-#workspace-header a:hover {
-  color: #768798;
 }
 
 #modal-collaborators form {
@@ -165,12 +212,6 @@ img {
 }
 .bug-card .card-footer p {
   margin: 0;
-}
-.bug-card .card-footer i {
-  color: gray;
-}
-.bug-card .card-footer i:hover {
-  color: #768798;
 }
 .bug-card:hover {
   transform: translateY(-0.5rem);
