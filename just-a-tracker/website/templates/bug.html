@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %} Bug {{ bug.bug_id }} {% endblock %}
+{% block content %}
+<section class="border-bottom mt-4 pb-1" id="bug-report-header">
+  <div>
+    <h1 class="h1 text-primary">
+      {{ bug.bug_title }} <span class="text-secondary">#{{ bug.bug_id }}</span>
+    </h1>
+    <!-- <h2 class="h1"></h2> -->
+    <a class="text-decoration-none" data-toggle="modal" href="#">
+      <i class="fas fa-cog h1 basic-icon"></i>
+    </a>
+  </div>
+  <div>
+    <p>Opened by <b>{{ bug.author_username }}</b> at {{ bug.date }}</p>
+
+    {% if bug.is_open %}
+    <span class="bannerContainer">
+      <p class="bannerOpen"><i class="fas fa-exclamation-circle"></i>Open</p>
+
+      {% if bug.is_important %}
+      <p class="bannerImportant">
+        <i class="fas fa-exclamation-circle"></i>Important
+      </p>
+      {% endif %}
+    </span>
+    {% else %}
+    <p class="bannerClosed"><i class="fas fa-check-circle"></i>Closed</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
