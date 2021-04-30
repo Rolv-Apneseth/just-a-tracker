@@ -1,9 +1,15 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime
 
 
 USERNAME_MAX_LENGTH = 50
+
+
+def pretty_date():
+    return datetime.now().strftime("%d %b %Y")
+
 
 users_workspaces = db.Table(
     "users_wokspaces",
@@ -45,6 +51,7 @@ class Bug(db.Model):
     bug_title = db.Column(db.String(64))
     bug_description = db.Column(db.String(1024))
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
+    date_pretty = db.Column(db.String, default=pretty_date())
     is_important = db.Column(db.Boolean, unique=False, default=False)
     is_open = db.Column(db.Boolean, unique=False, default=True)
     close_message = db.Column(db.String(248))
@@ -60,6 +67,7 @@ class Comment(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1024))
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
+    date_pretty = db.Column(db.String, default=pretty_date())
     is_action = db.Column(db.Boolean, default=False)
 
     bug_id = db.Column(db.Integer, db.ForeignKey("bug.bug_id"))
