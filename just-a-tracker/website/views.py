@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 import json
 
 from . import db
-from .models import Workspace, Bug, User, Comment
+from .models import Workspace, Bug, User, Comment, COMMENT_MAX_LENGTH
 
 views = Blueprint("views", __name__)
 
@@ -234,6 +234,7 @@ def bug(workspace_id, bug_id):
             bug=bug_object,
             user=current_user,
             url=url_for("views.bug", workspace_id=workspace_id, bug_id=bug_id),
+            comment_max_length=COMMENT_MAX_LENGTH,
         )
     else:
         flash(

@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 USERNAME_MAX_LENGTH = 50
+COMMENT_MAX_LENGTH = 1024
 
 
 def pretty_date():
@@ -65,7 +66,7 @@ class Bug(db.Model):
 
 class Comment(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(1024))
+    content = db.Column(db.String(COMMENT_MAX_LENGTH))
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
     date_pretty = db.Column(db.String, default=pretty_date())
     is_action = db.Column(db.Boolean, default=False)
