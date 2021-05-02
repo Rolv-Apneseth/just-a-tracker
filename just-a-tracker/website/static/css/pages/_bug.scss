@@ -56,3 +56,54 @@
     color: $iconColourClosed;
   }
 }
+
+#bug-discussion {
+  min-height: 30vh;
+  width: 90%;
+  margin: $generalSpacing auto;
+
+  #comments {
+    min-height: 30vh;
+
+    div {
+      margin-top: $generalSpacing;
+      p {
+        text-align: left;
+      }
+    }
+
+    .commentAction {
+      & :nth-child(1) {
+        display: none;
+      }
+
+      p {
+        color: $textSecondary;
+        font-style: italic;
+        text-align: center;
+
+        &:before,
+        &:after {
+          display: inline-block;
+          content: "";
+          border-top: 0.15rem solid $textSecondary;
+          width: 25%;
+          margin: 0 $generalSpacing;
+          transform: translateY(-$baseFontSize/4);
+        }
+      }
+    }
+  }
+
+  form {
+    padding: $generalSpacing;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    button {
+      margin: $generalSpacing;
+    }
+  }
+}

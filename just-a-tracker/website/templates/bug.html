@@ -11,7 +11,7 @@
     </a>
   </div>
   <div>
-    <p>Opened by <b>{{ bug.author_username }}</b> at {{ bug.date }}</p>
+    <p>Opened by <b>{{ bug.author_username }}</b> on {{ bug.date_pretty }}</p>
 
     {% if bug.is_open %}
     <span class="bannerContainer">
@@ -27,6 +27,32 @@
     <p class="bannerClosed"><i class="fas fa-check-circle"></i>Closed</p>
     {% endif %}
   </div>
+</section>
+
+<section id="bug-discussion">
+  <section id="comments">
+    {% for comment in bug.comments %}
+    <div class="{% if comment.is_action %}commentAction{% endif %}">
+      <p class="commentUsername">{{ comment.author_username }}</p>
+      <p>{{ comment.content }}</p>
+    </div>
+    {% endfor %}
+  </section>
+
+  <form class="border-top" method="POST" id="add-comment">
+    <textarea
+      class="form-control form-control-lg"
+      id="comment-content"
+      name="comment-content"
+      placeholder="Leave a comment"
+      maxlength="{{ comment_max_length }}"
+      rows="4"
+      cols="50"
+      required
+    ></textarea>
+
+    <button type="submit" class="btn btn-primary">Comment</button>
+  </form>
 </section>
 
 {% endblock %}
