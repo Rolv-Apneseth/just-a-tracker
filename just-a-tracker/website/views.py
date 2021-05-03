@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 import json
 
 from . import db
-from .models import Workspace, Bug, User, Comment, COMMENT_MAX_LENGTH
+from .models import Workspace, Bug, User, Comment, COMMENT_MAX_LENGTH, pretty_date
 
 views = Blueprint("views", __name__)
 
@@ -55,6 +55,26 @@ def add_user_to_workspace(db, data, workspace):
             flash("That user is already associated with this workspace.")
     else:
         flash("There is no user with that username or email address.")
+
+
+def add_comment_to_bug(db, bug, workspace, text, is_action):
+    """Adds a comment object to the given bug object and commits to the database."""
+
+    if bug and text:
+        if current_user in workspace.users:
+            new_comment = Comment(
+                content=text,
+                is_action=is_action,
+                bug_id=bug.bug_id,
+                author_id=current_user.user_id,
+                author_username=current_user.username,
+            )
+
+            db.session.add(new_comment)
+            db.session.commit()
+
+        else:
+            flash("The current user does not have access to that workspace")
 
 
 # ROUTES
@@ -214,11 +234,18 @@ def delete_bug():
     return jsonify({})
 
 
-@views.route("/workspace/<workspace_id>/bugs/<bug_id>")
+@views.route("/workspace/<workspace_id>/bugs/<bug_id>", methods=["GET", "POST"])
 @login_required
 def bug(workspace_id, bug_id):
     workspace_object = Workspace.query.get(workspace_id)
     bug_object = Bug.query.get(bug_id)
+
+    if request.method == "POST":
+        data = request.form
+
+        add_comment_to_bug(
+            db, bug_object, workspace_object, data.get("comment-content"), False
+        )
 
     passed_conditions = (
         workspace_object
