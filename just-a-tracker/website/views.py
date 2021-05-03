@@ -12,6 +12,8 @@ views = Blueprint("views", __name__)
 def add_bug_to_workspace(db, current_user, data, workspace_id):
     """Adds a bug object connected to the given workspace to the database."""
 
+    workspace = Workspace.query.get(workspace_id)
+
     bug_info = {
         "bug_title": data.get("bug-title"),
         "bug_description": data.get("bug-description"),
@@ -21,22 +23,22 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
     }
 
     if bug_info["bug_title"] and bug_info["bug_description"]:
-        new_bug = Bug(**bug_info)
+        if current_user in workspace.users:
+            new_bug = Bug(**bug_info)
+            db.session.add(new_bug)
+            db.session.commit()
 
-        opening_message_info = {
-            "content": f"Bug report opened by {current_user.username}",
-            "is_action": True,
-            "bug_id": new_bug.bug_id,
-            "author_id": current_user.user_id,
-            "author_username": current_user.username,
-        }
+            # Add 'bug report opened' comment for the new bug report
+            add_comment_to_bug(
+                db,
+                new_bug,
+                workspace,
+                f"Bug report opened by {current_user.username}",
+                True,
+            )
 
-        opening_message = Comment(**opening_message_info)
-        new_bug.comments.append(opening_message)
-
-        db.session.add(opening_message)
-        db.session.add(new_bug)
-        db.session.commit()
+        else:
+            flash("The current user does not have access to that workspace")
 
 
 def add_user_to_workspace(db, data, workspace):
@@ -75,6 +77,53 @@ def add_comment_to_bug(db, bug, workspace, text, is_action):
 
         else:
             flash("The current user does not have access to that workspace")
+
+
+def add_action_comments(db, bug, workspace, make_open, make_important):
+    """
+    Adds an action comment to a given bug object if one or more
+    of its attributes have been changed.
+    """
+
+    # List containing lists of conditions and their corresponding response to
+    # give if true. Lists come in the format [condition, response if true]
+    conditions_responses = [
+        # Bug report closed
+        [
+            bug.is_open and not make_open,
+            f"Closed by {current_user.username} on {pretty_date()}",
+        ],
+        # Bug report opened
+        [
+            not bug.is_open and make_open,
+            f"Reopened by {current_user.username} on {pretty_date()}",
+        ],
+        # Bug report important mark removed
+        [
+            bug.is_important and not make_important,
+            (
+                f"Important mark removed by {current_user.username}"
+                f" on {pretty_date()}"
+            ),
+        ],
+        # Bug report marked as important
+        [
+            not bug.is_important and make_important,
+            f"Marked important by {current_user.username} on {pretty_date()}",
+        ],
+    ]
+
+    # Loop through conditions_responses and add an action comment with
+    # the corresponding response if the condition is met
+    for condition, response in conditions_responses:
+        if condition:
+            add_comment_to_bug(
+                db,
+                bug,
+                workspace,
+                response,
+                True,
+            )
 
 
 # ROUTES
@@ -197,7 +246,12 @@ def mark_bug():
     make_open = False if data.get("makeOpen") == "false" else True
     make_important = False if data.get("makeImportant") == "false" else True
 
+    # Make changes if conditions are met
     if workspace and current_user in workspace.users:
+        # Add action comments if one or more of the attributes have changed
+        add_action_comments(db, bug, workspace, make_open, make_important)
+
+        # Change bug report attributes and commit changes
         bug.is_open = make_open
         bug.is_important = make_important
         db.session.commit()
