@@ -2,56 +2,21 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
-import json
 
 from . import db
 from .models import User
+from .helpers import (
+    get_user_by_email,
+    get_user_by_username,
+    find_user,
+    SIGN_UP_RESPONSES,
+    WRONG_PASS_RESPONSE,
+    RE_PASSWORD,
+    RE_USERNAME,
+)
 
 
 auth = Blueprint("auth", __name__)
-
-
-# CONSTANTS
-RE_USERNAME = r"^[\w-]{6,}$"
-RE_PASSWORD = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w\W]{8,}$"
-
-WRONG_PASS_RESPONSE = "Password was incorrect. Please try again."
-SIGN_UP_RESPONSES = {
-    "pass_match": (
-        "Your passwords did not match. Please make "
-        "sure you type the same password in both fields."
-    ),
-    "pass_format": (
-        "Your password must be at least 8 characters long and"
-        " contain: 1 uppercase letter, 1 lowercase letter and"
-        " 1 number"
-    ),
-    "user_format": (
-        "Username must be 6 characters or longer, and can only "
-        "include letters, numbers and the symbols '_' and '-'"
-    ),
-    "user_exists": "Sorry, an account with that username already exists.",
-    "email_exists": "Sorry, an account with that email address already exists",
-}
-
-
-# HELPERS
-def get_user_by_username(username):
-    return User.query.filter_by(username=username).first()
-
-
-def get_user_by_email(email):
-    return User.query.filter_by(email=email).first()
-
-
-def find_user(username):
-    """Tries to get the user by username or email address and returns the result."""
-
-    user = get_user_by_username(username)
-    if not user:
-        user = get_user_by_email(username)
-
-    return user
 
 
 def validate_sign_up_info(form):

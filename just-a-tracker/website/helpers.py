@@ -4,6 +4,49 @@ from flask_login import current_user
 from .models import Workspace, User, Bug, Comment, pretty_date
 
 
+# CONSTANTS
+RE_USERNAME = r"^[\w-]{6,}$"
+RE_PASSWORD = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w\W]{8,}$"
+
+WRONG_PASS_RESPONSE = "Password was incorrect. Please try again."
+SIGN_UP_RESPONSES = {
+    "pass_match": (
+        "Your passwords did not match. Please make "
+        "sure you type the same password in both fields."
+    ),
+    "pass_format": (
+        "Your password must be at least 8 characters long and"
+        " contain: 1 uppercase letter, 1 lowercase letter and"
+        " 1 number"
+    ),
+    "user_format": (
+        "Username must be 6 characters or longer, and can only "
+        "include letters, numbers and the symbols '_' and '-'"
+    ),
+    "user_exists": "Sorry, an account with that username already exists.",
+    "email_exists": "Sorry, an account with that email address already exists",
+}
+
+
+# FUNCTIONS
+def get_user_by_username(username):
+    return User.query.filter_by(username=username).first()
+
+
+def get_user_by_email(email):
+    return User.query.filter_by(email=email).first()
+
+
+def find_user(username):
+    """Tries to get the user by username or email address and returns the result."""
+
+    user = get_user_by_username(username)
+    if not user:
+        user = get_user_by_email(username)
+
+    return user
+
+
 def add_bug_to_workspace(db, current_user, data, workspace_id):
     """Adds a bug object connected to the given workspace to the database."""
 
