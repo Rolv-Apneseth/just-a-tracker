@@ -65,10 +65,38 @@
   #comments {
     min-height: 30vh;
 
-    div {
+    li {
       margin-top: $generalSpacing;
       p {
         text-align: left;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    }
+
+    .commentNormal {
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        line-height: $baseFontSize;
+
+        & > * {
+          margin-bottom: $generalSpacing;
+        }
+
+        .commentUsername {
+          color: $textPrimary;
+          font-weight: bold;
+          font-size: $baseFontSize * 1.1;
+        }
+
+        .commentDate {
+          margin-left: $generalSpacing;
+          font-size: $baseFontSize * 0.8;
+          font-style: italic;
+          color: $textSecondary;
+        }
       }
     }
 
@@ -78,6 +106,8 @@
       }
 
       p {
+        white-space: inherit;
+        word-wrap: inherit;
         color: $textSecondary;
         font-style: italic;
         text-align: center;
@@ -87,7 +117,7 @@
           display: inline-block;
           content: "";
           border-top: 0.15rem solid $textSecondary;
-          width: 25%;
+          width: 15%;
           margin: 0 $generalSpacing;
           transform: translateY(-$baseFontSize/4);
         }

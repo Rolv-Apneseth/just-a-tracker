@@ -134,16 +134,40 @@ img {
 #bug-discussion #comments {
   min-height: 30vh;
 }
-#bug-discussion #comments div {
+#bug-discussion #comments li {
   margin-top: 1rem;
 }
-#bug-discussion #comments div p {
+#bug-discussion #comments li p {
   text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+#bug-discussion #comments .commentNormal div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  line-height: 1.2rem;
+}
+#bug-discussion #comments .commentNormal div > * {
+  margin-bottom: 1rem;
+}
+#bug-discussion #comments .commentNormal div .commentUsername {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.32rem;
+}
+#bug-discussion #comments .commentNormal div .commentDate {
+  margin-left: 1rem;
+  font-size: 0.96rem;
+  font-style: italic;
+  color: gray;
 }
 #bug-discussion #comments .commentAction :nth-child(1) {
   display: none;
 }
 #bug-discussion #comments .commentAction p {
+  white-space: inherit;
+  word-wrap: inherit;
   color: gray;
   font-style: italic;
   text-align: center;
@@ -152,7 +176,7 @@ img {
   display: inline-block;
   content: "";
   border-top: 0.15rem solid gray;
-  width: 25%;
+  width: 15%;
   margin: 0 1rem;
   transform: translateY(-0.3rem);
 }
