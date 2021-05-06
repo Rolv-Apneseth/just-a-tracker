@@ -31,12 +31,23 @@
 
 <section id="bug-discussion">
   <section id="comments">
-    {% for comment in bug.comments %}
-    <div class="{% if comment.is_action %}commentAction{% endif %}">
-      <p class="commentUsername">{{ comment.author_username }}</p>
-      <p>{{ comment.content }}</p>
-    </div>
-    {% endfor %}
+    <ul class="list-group list-group-flush">
+      {% for comment in bug.comments %}
+      <li
+        class="list-group-item {% if comment.is_action %}commentAction{% else %}commentNormal{% endif %}"
+      >
+        <div class="commentHeader">
+          <div>
+            <p class="commentUsername">{{ comment.author_username }}</p>
+            <p class="commentDate">{{ comment.date }}</p>
+          </div>
+
+          <a href=""><i class="fas fa-ellipsis-h basic-icon"></i></a>
+        </div>
+        <p>{{ comment.content }}</p>
+      </li>
+      {% endfor %}
+    </ul>
   </section>
 
   <form class="border-top" method="POST" id="add-comment">
