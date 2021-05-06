@@ -196,6 +196,16 @@ img {
   width: 100%;
 }
 
+#sign-up-section {
+  width: 100%;
+}
+#sign-up-section form {
+  margin-left: 1rem;
+}
+#sign-up-section form button {
+  margin-left: 1rem;
+}
+
 #login-section {
   width: 100%;
 }

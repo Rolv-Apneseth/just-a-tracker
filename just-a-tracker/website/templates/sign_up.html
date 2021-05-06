@@ -1,64 +1,62 @@
 {% extends 'base.html' %} {% block title %} Sign up {% endblock %} {% block
 content %}
-<h1>This is the sign up page</h1>
+<section id="sign-up-section">
+  <h1 class="border-bottom">Create account</h1>
 
-<br />
+  <form method="POST">
+    <div id="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Enter an email address"
+        value="{{ request.form['email'] }}"
+        max-length="320"
+      />
+    </div>
 
-<form method="POST">
-  <h3>Create account</h3>
+    <div id="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Enter a username e.g. JohnSmith42, John-Smith"
+        value="{{ request.form['username'] }}"
+        maxlength="50"
+      />
+    </div>
 
-  <div id="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter an email address"
-      value="{{ request.form['email'] }}"
-      max-length="320"
-    />
-  </div>
+    <div id="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Password must be at least 8 characters long and contain: 1 uppercase letter, 1 lowercase letter and 1 number"
+        max-length="128"
+      />
+    </div>
 
-  <div id="form-group">
-    <label for="username">Username</label>
-    <input
-      type="text"
-      class="form-control"
-      id="username"
-      name="username"
-      placeholder="Enter a username e.g. JohnSmith42, John-Smith"
-      value="{{ request.form['username'] }}"
-      maxlength="50"
-    />
-  </div>
+    <div id="form-group">
+      <label for="password-confirm">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password-confirm"
+        name="password-confirm"
+        placeholder="Confirm your password"
+        max-length="128"
+      />
+    </div>
 
-  <div id="form-group">
-    <label for="password">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      name="password"
-      placeholder="Password must be at least 8 characters long and contain: 1 uppercase letter, 1 lowercase letter and 1 number"
-      max-length="128"
-    />
-  </div>
+    <br />
 
-  <div id="form-group">
-    <label for="password-confirm">Confirm Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password-confirm"
-      name="password-confirm"
-      placeholder="Confirm your password"
-      max-length="128"
-    />
-  </div>
-
-  <br />
-
-  <button type="submit" class="btn btn-primary">Create account</button>
-</form>
+    <button type="submit" class="btn btn-primary">Create account</button>
+  </form>
+</section>
 {% endblock %}

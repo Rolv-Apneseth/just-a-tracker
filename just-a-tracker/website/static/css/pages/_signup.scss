@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+#sign-up-section {
+  width: 100%;
+
+  form {
+    margin-left: $generalSpacing;
+
+    button {
+      margin-left: $generalSpacing;
+    }
+  }
+}
