@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 import json
 
 from . import db
-from .models import Workspace, Bug, User, COMMENT_MAX_LENGTH
+from .models import Workspace, Bug, User, Comment, COMMENT_MAX_LENGTH
 from .helpers import (
     add_bug_to_workspace,
     add_user_to_workspace,
@@ -170,7 +170,7 @@ def delete_bug():
                 f"the workspace for {workspace.project_name}."
             )
     else:
-        flash(f"Bug with id {bug.bug_id} not found.")
+        flash(f"Bug with id {bug_id} not found.")
 
     return jsonify({})
 
@@ -213,3 +213,30 @@ def bug(workspace_id, bug_id):
 
     flash("The requested workspace was not found, or you do not have access to it.")
     return redirect(url_for("views.workspace_hub"))
+
+
+@views.route("/delete-comment", methods=["POST"])
+@login_required
+def delete_comment():
+    data = json.loads(request.data)
+    workspace_id = int(data.get("workspaceID"))
+    comment_id = int(data.get("commentID"))
+
+    workspace = Workspace.query.get(workspace_id)
+    comment = Comment.query.get(comment_id)
+
+    if comment:
+        has_permission = (
+            current_user.user_id == workspace.author_id
+            or current_user.user_id == comment.author_id
+        )
+
+        if has_permission:
+            db.session.delete(comment)
+            db.session.commit()
+        else:
+            flash("You do not have permission to remove this comment.")
+    else:
+        flash(f"Comment with id {comment_id} not found.")
+
+    return jsonify({})

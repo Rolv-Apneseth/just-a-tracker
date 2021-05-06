@@ -60,6 +60,21 @@ function deleteBug(bugID, bugTitle, workspaceURL) {
   }
 }
 
+function deleteComment(commentID, workspaceID, bugReportURL) {
+  const deleteCommentMessage = `This comment will be permanently deleted.
+  
+  If you understand and still want to proceed, click ok.`;
+
+  if (confirm(deleteCommentMessage)) {
+    fetch("/delete-comment", {
+      method: "POST",
+      body: JSON.stringify({ commentID: commentID, workspaceID: workspaceID }),
+    }).then((_res) => {
+      window.location.href = bugReportURL;
+    });
+  }
+}
+
 function toggleShowClosedBugs(obj) {
   let closedBugs = $(".closed-bug");
   let isHidden = closedBugs.hasClass("d-none");
