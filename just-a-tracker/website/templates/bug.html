@@ -59,7 +59,10 @@
               class="dropdown-menu"
               aria-labelledby="comments-section-dropdown"
             >
-              <a class="dropdown-item" type="button" onClick=""
+              <a
+                class="dropdown-item"
+                type="button"
+                onClick="deleteComment('{{ comment.comment_id }}', '{{ workspace.workspace_id }}', '{{ url }}')"
                 >Delete comment</a
               >
             </div>
