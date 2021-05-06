@@ -75,13 +75,13 @@
     }
 
     .commentNormal {
-      div {
+      div:not(.dropdown, .dropdown-menu) {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         line-height: $baseFontSize;
 
-        & > * {
+        & > *:not(.dropdown, .dropdown-menu) {
           margin-bottom: $generalSpacing;
         }
 

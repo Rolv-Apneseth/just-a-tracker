@@ -142,21 +142,21 @@ img {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-#bug-discussion #comments .commentNormal div {
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   line-height: 1.2rem;
 }
-#bug-discussion #comments .commentNormal div > * {
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) > *:not(.dropdown, .dropdown-menu) {
   margin-bottom: 1rem;
 }
-#bug-discussion #comments .commentNormal div .commentUsername {
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) .commentUsername {
   color: #007bff;
   font-weight: bold;
   font-size: 1.32rem;
 }
-#bug-discussion #comments .commentNormal div .commentDate {
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) .commentDate {
   margin-left: 1rem;
   font-size: 0.96rem;
   font-style: italic;
