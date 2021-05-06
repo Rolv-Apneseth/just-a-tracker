@@ -19,6 +19,13 @@
 #change-email {
   .form-group {
     @include form-group-format();
+    input {
+      margin-left: $generalSpacing;
+    }
+  }
+
+  .current-email {
+    flex-grow: 1;
   }
 }
 

@@ -61,7 +61,13 @@ img {
 #change-email .form-group label {
   font-weight: bold;
   text-align: left;
-  width: 7rem;
+  width: 8rem;
+}
+#change-email .form-group input {
+  margin-left: 1rem;
+}
+#change-email .current-email {
+  flex-grow: 1;
 }
 
 #change-password {
@@ -76,7 +82,7 @@ img {
 #change-password .form-group label {
   font-weight: bold;
   text-align: left;
-  width: 7rem;
+  width: 8rem;
 }
 #change-password button {
   margin-left: 2rem;
