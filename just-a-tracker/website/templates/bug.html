@@ -42,7 +42,29 @@
             <p class="commentDate">{{ comment.date }}</p>
           </div>
 
-          <a href=""><i class="fas fa-ellipsis-h basic-icon"></i></a>
+          {% if user.user_id == workspace.author_id or user.user_id ==
+          comment.author_id %}
+          <div class="dropdown">
+            <a
+              type="button"
+              id="comments-section-dropdown"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-h basic-icon"></i>
+            </a>
+
+            <div
+              class="dropdown-menu"
+              aria-labelledby="comments-section-dropdown"
+            >
+              <a class="dropdown-item" type="button" onClick=""
+                >Delete comment</a
+              >
+            </div>
+          </div>
+          {% endif %}
         </div>
         <p>{{ comment.content }}</p>
       </li>
