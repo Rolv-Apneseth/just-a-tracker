@@ -1,3 +1,17 @@
+@use '../abstracts' as *;
+
 #login-section {
   width: 100%;
+
+  form {
+    margin-left: $generalSpacing;
+
+    .form-group {
+      margin-top: $generalSpacing;
+    }
+
+    button {
+      margin-left: $generalSpacing;
+    }
+  }
 }

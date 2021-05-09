@@ -215,6 +215,15 @@ img {
 #login-section {
   width: 100%;
 }
+#login-section form {
+  margin-left: 1rem;
+}
+#login-section form .form-group {
+  margin-top: 1rem;
+}
+#login-section form button {
+  margin-left: 1rem;
+}
 
 #workspace-header {
   width: 100%;

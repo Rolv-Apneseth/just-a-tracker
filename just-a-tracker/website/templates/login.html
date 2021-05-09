@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block title %} Login {% endblock %} {% block
 content %}
 <section id="login-section">
-  <form method="POST">
-    <h1 class="border-bottom">Login to your account</h1>
+  <h1 class="border-bottom">Login to your account</h1>
 
-    <div id="form-group">
+  <form method="POST">
+    <div class="form-group">
       <label for="username">Username</label>
       <input
         type="text"
@@ -17,7 +17,7 @@ content %}
       />
     </div>
 
-    <div id="form-group">
+    <div class="form-group">
       <label for="password">Password</label>
       <input
         type="password"
@@ -28,8 +28,6 @@ content %}
         max-length="128"
       />
     </div>
-
-    <br />
 
     <button type="submit" class="btn btn-primary">Login</button>
   </form>
