@@ -6,6 +6,10 @@
   form {
     margin-left: $generalSpacing;
 
+    .form-group {
+      margin-top: $generalSpacing;
+    }
+
     button {
       margin-left: $generalSpacing;
     }
