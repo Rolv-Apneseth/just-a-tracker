@@ -82,9 +82,7 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
 def add_user_to_workspace(db, data, workspace):
     """Adds given user to given workspace and commits the change."""
 
-    user = User.query.filter_by(username=data.get("user-email")).first()
-    if not user:
-        user = User.query.filter_by(email=data.get("user-email")).first()
+    user = find_user(data.get("user-email"))
 
     if user:
         if user not in workspace.users:
