@@ -47,7 +47,7 @@
         <button
           class="btn btn-warning"
           type="button"
-          onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ user.user_id }}', '{{ user.username }}', 'true')"
+          onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ user.user_id }}', '{{ user.username }}', 'true', '{{ url }}')"
         >
           Leave workspace
         </button>
@@ -106,7 +106,7 @@
             <button
               class="btn btn-danger"
               type="button"
-              onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ collaborator.user_id }}', '{{ collaborator.username }}', 'false')"
+              onClick="removeUser('{{ workspace.workspace_id }}', '{{ workspace.project_name }}', '{{ collaborator.user_id }}', '{{ collaborator.username }}', 'false', '{{ url }}')"
             >
               Remove
             </button>

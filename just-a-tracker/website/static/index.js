@@ -1,7 +1,7 @@
 function deleteWorkspace(workspaceID, projectName) {
   const deleteWorkspaceMessage = `The workspace '${projectName.toString()}' and any data associated with it will be permanently deleted.
   
-  If you really sure you wish to delete this workspace, click 'OK'.`;
+  Click 'Ok' if you are really sure you wish to continue.`;
 
   if (confirm(deleteWorkspaceMessage)) {
     fetch("/delete-workspace", {
@@ -13,7 +13,14 @@ function deleteWorkspace(workspaceID, projectName) {
   }
 }
 
-function removeUser(workspaceID, projectName, userID, username, leaving) {
+function removeUser(
+  workspaceID,
+  projectName,
+  userID,
+  username,
+  leaving,
+  workspaceURL
+) {
   let message = "";
   if (leaving == "true") {
     message = `Click ok if you are sure you wish to leave '${projectName}'.`;
@@ -27,7 +34,7 @@ function removeUser(workspaceID, projectName, userID, username, leaving) {
       method: "POST",
       body: JSON.stringify({ workspaceID: workspaceID, userID: userID }),
     }).then((_res) => {
-      window.location.href = `/workspace/${workspaceID}`;
+      window.location.href = workspaceURL;
     });
   }
 }
