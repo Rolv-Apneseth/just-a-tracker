@@ -202,6 +202,7 @@ def bug(workspace_id, bug_id):
             bug=bug_object,
             user=current_user,
             url=url_for("views.bug", workspace_id=workspace_id, bug_id=bug_id),
+            workspace_url=url_for("views.workspace", workspace_id=workspace_id),
             comment_max_length=COMMENT_MAX_LENGTH,
         )
     else:
