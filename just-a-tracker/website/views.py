@@ -75,6 +75,7 @@ def workspace(workspace_id):
     if workspace_object and current_user in workspace_object.users:
         return render_template(
             "workspace.html",
+            home_url=url_for("views.home"),
             workspace=workspace_object,
             workspace_bugs_reversed=reversed(workspace_object.bugs),
             user=current_user,

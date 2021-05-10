@@ -1,4 +1,4 @@
-function deleteWorkspace(workspaceID, projectName) {
+function deleteWorkspace(workspaceID, projectName, home_url) {
   const deleteWorkspaceMessage = `The workspace '${projectName.toString()}' and any data associated with it will be permanently deleted.
   
   Click 'Ok' if you are really sure you wish to continue.`;
@@ -8,7 +8,7 @@ function deleteWorkspace(workspaceID, projectName) {
       method: "POST",
       body: JSON.stringify({ workspaceID: workspaceID }),
     }).then((_res) => {
-      window.location.href = "/";
+      window.location.href = home_url;
     });
   }
 }
