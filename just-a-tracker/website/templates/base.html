@@ -43,14 +43,10 @@
 
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
-          <a href="/" class="nav-item nav-link" id="home">Home</a>
-
           {% if user.is_authenticated %}
+          <a href="/" class="nav-item nav-link" id="home">Workspace Hub</a>
           <a href="/account" class="nav-item nav-link" id="account">Account</a>
           <a href="/logout" class="nav-item nav-link" id="logout">Logout</a>
-          <a href="/workspace-hub" class="nav-item nav-link" id="workspace-hub"
-            >Workspace Hub</a
-          >
           {% else %}
           <a href="/login" class="nav-item nav-link" id="login">Login</a>
           <a href="/sign-up" class="nav-item nav-link" id="signUp">Sign up</a>

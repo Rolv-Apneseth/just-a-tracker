@@ -14,26 +14,9 @@ from .helpers import (
 views = Blueprint("views", __name__)
 
 
-@views.route("/")
-def homepage():
-    return render_template("home.html", user=current_user)
-
-
-@views.route("/account")
+@views.route("/", methods=["GET", "POST"])
 @login_required
-def account():
-    return render_template("account.html", user=current_user)
-
-
-@views.route("/create-workspace")
-@login_required
-def create_workspace():
-    return render_template("create_workspace.html", user=current_user)
-
-
-@views.route("/workspace-hub", methods=["GET", "POST"])
-@login_required
-def workspace_hub():
+def home():
     if request.method == "POST":
 
         info = {
@@ -48,7 +31,19 @@ def workspace_hub():
             db.session.add(new_workspace)
             db.session.commit()
 
-    return render_template("hub.html", user=current_user)
+    return render_template("home.html", user=current_user)
+
+
+@views.route("/account")
+@login_required
+def account():
+    return render_template("account.html", user=current_user)
+
+
+@views.route("/create-workspace")
+@login_required
+def create_workspace():
+    return render_template("create_workspace.html", user=current_user)
 
 
 @views.route("/delete-workspace", methods=["POST"])
@@ -87,7 +82,7 @@ def workspace(workspace_id):
         )
 
     flash("The requested workspace was not found, or you do not have access to it.")
-    return redirect(url_for("views.workspace_hub"))
+    return redirect(url_for("views.home"))
 
 
 @views.route("/remove-user", methods=["POST"])
@@ -213,7 +208,7 @@ def bug(workspace_id, bug_id):
         return redirect(url_for("views.workspace", workspace_id=workspace_id))
 
     flash("The requested workspace was not found, or you do not have access to it.")
-    return redirect(url_for("views.workspace_hub"))
+    return redirect(url_for("views.home"))
 
 
 @views.route("/delete-comment", methods=["POST"])
