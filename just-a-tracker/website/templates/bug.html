@@ -1,12 +1,112 @@
 {% extends 'base.html' %} {% block title %} Bug {{ bug.bug_id }} {% endblock %}
 {% block content %}
+<!-- Options modal -->
+<div
+  class="modal fade"
+  id="bug-report-modal-options"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="Bug report options menu modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title h2">Bug report options</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <section id="bug-report-status">
+          <h4>Current status</h4>
+
+          <ul>
+            <li>
+              <p>Last active:</p>
+              <p>{{ bug.comments[-1].date_pretty }}</p>
+            </li>
+
+            <li>
+              <p>Is open:</p>
+              <p>{% if bug.is_open %}True{% else %}False{% endif %}</p>
+            </li>
+
+            <li>
+              <p>Is important:</p>
+              <p>{% if bug.is_important %}True{% else %}False{% endif %}</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Bug report options shown depending on different criteria -->
+        <section id="bug-report-actions">
+          <h4>Actions</h4>
+
+          <ul class="list-group list-group-flush">
+            {% if bug.is_open %}
+            <a
+              class="dropdown-item list-group-item"
+              type="button"
+              onClick="markBug('{{ bug.bug_id }}', 'false', 'false', '{{ url }}')"
+              >Mark as closed</a
+            >
+
+            {% if bug.is_important %}
+            <a
+              class="dropdown-item list-group-item"
+              type="button"
+              onClick="markBug('{{ bug.bug_id }}', 'true', 'false', '{{ url }}')"
+              >Remove important mark</a
+            >
+            {% else %}
+            <a
+              class="dropdown-item list-group-item"
+              type="button"
+              onClick="markBug('{{ bug.bug_id }}', 'true', 'true', '{{ url }}')"
+              >Mark as important</a
+            >
+            {% endif %} {% else %}
+            <a
+              class="dropdown-item list-group-item"
+              type="button"
+              onClick="markBug('{{ bug.bug_id }}', 'true', 'false', '{{ url }}')"
+              >Mark as open</a
+            >
+            {% endif %} {% if user.user_id == bug.author_id or user.user_id ==
+            workspace.author_id %}
+            <a
+              class="dropdown-item list-group-item dangerous-action"
+              type="button"
+              onClick="deleteBug('{{ bug.bug_id }}', '{{ bug.bug_title }}', '{{ workspace_url }}')"
+              >Delete bug report</a
+            >
+            {% endif %}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
 <section class="border-bottom mt-4 pb-1" id="bug-report-header">
   <div>
     <h1 class="h1 text-primary">
       {{ bug.bug_title }} <span class="text-secondary">#{{ bug.bug_id }}</span>
     </h1>
-    <!-- <h2 class="h1"></h2> -->
-    <a class="text-decoration-none" data-toggle="modal" href="#">
+
+    <a
+      class="text-decoration-none"
+      id="bug-page-open-options"
+      data-toggle="modal"
+      href="#bug-report-modal-options"
+    >
       <i class="fas fa-cog h1 basic-icon"></i>
     </a>
   </div>
@@ -29,6 +129,7 @@
   </div>
 </section>
 
+<!-- Discussion -->
 <section id="bug-discussion">
   <section id="comments">
     <ul class="list-group list-group-flush">
