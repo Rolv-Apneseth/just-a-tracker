@@ -1,5 +1,41 @@
 @use '../abstracts' as *;
 
+#bug-report-modal-options {
+  section {
+    h4 {
+      text-decoration: underline;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0 $generalSpacing;
+
+      li {
+        display: grid;
+        grid-row: 1;
+        grid-template-columns: 1fr 2.3fr;
+
+        & :nth-child(1) {
+          font-weight: bold;
+        }
+
+        & :nth-child(2) {
+          color: $textPrimary;
+        }
+      }
+    }
+
+    a {
+      color: $textPrimary;
+      font-weight: bold;
+    }
+
+    .dangerous-action {
+      color: $iconColourImportant;
+    }
+  }
+}
+
 #bug-report-header {
   width: 100%;
   display: flex;

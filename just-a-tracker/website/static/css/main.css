@@ -88,6 +88,32 @@ img {
   margin-left: 2rem;
 }
 
+#bug-report-modal-options section h4 {
+  text-decoration: underline;
+}
+#bug-report-modal-options section ul {
+  padding: 0;
+  margin: 0 1rem;
+}
+#bug-report-modal-options section ul li {
+  display: grid;
+  grid-row: 1;
+  grid-template-columns: 1fr 2.3fr;
+}
+#bug-report-modal-options section ul li :nth-child(1) {
+  font-weight: bold;
+}
+#bug-report-modal-options section ul li :nth-child(2) {
+  color: #007bff;
+}
+#bug-report-modal-options section a {
+  color: #007bff;
+  font-weight: bold;
+}
+#bug-report-modal-options section .dangerous-action {
+  color: red;
+}
+
 #bug-report-header {
   width: 100%;
   display: flex;
