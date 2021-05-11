@@ -1,4 +1,14 @@
+@use '../abstracts' as *;
+
 #workspaces,
 #new-workspace {
   width: 100%;
+
+  form {
+    margin-left: $generalSpacing;
+
+    button {
+      margin-left: $generalSpacing;
+    }
+  }
 }

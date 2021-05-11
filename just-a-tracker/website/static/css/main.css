@@ -236,6 +236,14 @@ img {
 #new-workspace {
   width: 100%;
 }
+#workspaces form,
+#new-workspace form {
+  margin-left: 1rem;
+}
+#workspaces form button,
+#new-workspace form button {
+  margin-left: 1rem;
+}
 
 #sign-up-section {
   width: 100%;
