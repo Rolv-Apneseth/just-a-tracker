@@ -1,0 +1,13 @@
+@use '../abstracts/' as *;
+
+.back-button {
+  position: absolute;
+  top: $generalSpacing * 5;
+  left: $generalSpacing;
+
+  a {
+    i {
+      font-size: $baseFontSize * 2.6;
+    }
+  }
+}

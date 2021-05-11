@@ -5,6 +5,15 @@
   color: #768798;
 }
 
+.back-button {
+  position: absolute;
+  top: 5rem;
+  left: 1rem;
+}
+.back-button a i {
+  font-size: 3.12rem;
+}
+
 body {
   font-size: 1.2rem;
   display: flex;
