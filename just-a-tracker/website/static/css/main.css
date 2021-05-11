@@ -50,11 +50,15 @@ img {
   height: auto;
 }
 
-#account-info,
 #security {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
+#account-info {
+  width: 100%;
+  margin-top: 1rem;
+}
 #account-info li {
   display: flex;
 }
@@ -234,6 +238,7 @@ img {
 
 #workspaces,
 #new-workspace {
+  margin: 1rem 0;
   width: 100%;
 }
 #workspaces form,
@@ -246,6 +251,7 @@ img {
 }
 
 #sign-up-section {
+  margin: 1rem 0;
   width: 100%;
 }
 #sign-up-section form {
@@ -259,6 +265,7 @@ img {
 }
 
 #login-section {
+  margin: 1rem 0;
   width: 100%;
 }
 #login-section form {
