@@ -270,6 +270,9 @@ img {
 #login-section form button {
   margin-left: 1rem;
 }
+#login-section form a {
+  margin-left: 0.5rem;
+}
 
 #workspace-header {
   width: 100%;

@@ -82,7 +82,9 @@ def login():
             login_user(validated_user, remember=True)
             return redirect(url_for("views.account"))
 
-    return render_template("login.html", user=current_user)
+    return render_template(
+        "login.html", user=current_user, sign_up_url=url_for("auth.sign_up")
+    )
 
 
 @auth.route("/logout")
