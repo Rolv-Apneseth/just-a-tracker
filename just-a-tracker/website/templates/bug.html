@@ -1,6 +1,14 @@
 {% extends 'base.html' %} {% block title %} Bug {{ bug.bug_id }} {% endblock %}
 {% block content %}
-<!-- Options modal -->
+
+<!-- BACK BUTTON -->
+<nav class="back-button">
+  <a href="{{ workspace_url }}"
+    ><i class="fas fa-arrow-alt-circle-left basic-icon"></i
+  ></a>
+</nav>
+
+<!-- OPTIONS MODAL -->
 <div
   class="modal fade"
   id="bug-report-modal-options"
@@ -94,7 +102,7 @@
   </div>
 </div>
 
-<!-- Header -->
+<!-- HEADER -->
 <section class="border-bottom mt-4 pb-1" id="bug-report-header">
   <div>
     <h1 class="h1 text-primary">
@@ -129,13 +137,23 @@
   </div>
 </section>
 
-<!-- Discussion -->
+<!-- DISCUSSION -->
 <section id="bug-discussion">
   <section id="comments">
     <ul class="list-group list-group-flush">
       {% for comment in bug.comments %}
       <li
-        class="list-group-item {% if comment.is_action %}commentAction{% else %}commentNormal{% endif %}"
+        class="
+          list-group-item
+          {%
+          if
+          comment.is_action
+          %}commentAction{%
+          else
+          %}commentNormal{%
+          endif
+          %}
+        "
       >
         <div class="commentHeader">
           <div>
