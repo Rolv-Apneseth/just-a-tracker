@@ -201,7 +201,14 @@
 
 <section class="mt-4 pb-1 border-bottom" id="workspace-header">
   <h1 class="font-weight-bold text-primary">
-    {{ workspace.project_name }} #{{ workspace.workspace_id }}
+    {{ workspace.project_name }} #{{ workspace.workspace_id }} {% if
+    workspace.project_link %}
+    <a
+      href="//{{ workspace.project_link }}"
+      target="_blank"
+      class="stretched-link"
+    ></a>
+    {% endif %}
   </h1>
 
   <div>
