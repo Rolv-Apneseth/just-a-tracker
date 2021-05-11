@@ -21,6 +21,11 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
+    # user_loader callback for login manager
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     # Load blueprints
     from .views import views
     from .auth import auth
@@ -37,11 +42,6 @@ def create_app():
     )
 
     create_database(app)
-
-    # Directions on how to load user for flask
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
 
     return app
 
