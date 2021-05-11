@@ -18,7 +18,7 @@ from .helpers import (
 
 auth = Blueprint("auth", __name__)
 
-
+# HELPERS
 def validate_sign_up_info(form):
     email = form.get("email")
     username = form.get("username")
@@ -80,7 +80,7 @@ def login():
         if validated_user:
             # Login user
             login_user(validated_user, remember=True)
-            return redirect(url_for("views.account"))
+            return redirect(url_for("views.home"))
 
     return render_template(
         "login.html", user=current_user, sign_up_url=url_for("auth.sign_up")
@@ -108,7 +108,7 @@ def sign_up():
             # Login new user
             login_user(new_user, remember=True)
 
-            return redirect(url_for("views.account"))
+            return redirect(url_for("views.home"))
 
     return render_template("sign_up.html", user=current_user)
 
