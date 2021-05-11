@@ -1,6 +1,14 @@
 {% extends 'base.html' %} {% block title %} Workspace {{ workspace.workspace_id
 }} {% endblock %} {% block content %}
 
+<!-- BACK BUTTON -->
+<nav class="back-button">
+  <a href="{{ home_url }}"
+    ><i class="fas fa-arrow-alt-circle-left basic-icon"></i
+  ></a>
+</nav>
+<!--  -->
+
 <!-- MODALS -->
 <!-- options menu -->
 <div
@@ -235,7 +243,22 @@
 
   {% for bug in workspace_bugs_reversed %}
   <div
-    class="card bug-card {% if bug.is_important %}important-bug {% elif not bug.is_open %}closed-bug d-none{% endif %}"
+    class="
+      card
+      bug-card
+      {%
+      if
+      bug.is_important
+      %}important-bug
+      {%
+      elif
+      not
+      bug.is_open
+      %}closed-bug
+      d-none{%
+      endif
+      %}
+    "
   >
     <div class="card-header">
       <h4 class="h2 text-primary card-title">{{ bug.bug_title }}</h4>
