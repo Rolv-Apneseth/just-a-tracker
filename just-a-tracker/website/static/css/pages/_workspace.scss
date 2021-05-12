@@ -46,16 +46,14 @@
 }
 
 #bugs-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
   width: $cardSectionWidth;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: $generalSpacing;
 }
 
 .bug-card {
-  width: 24%;
   min-height: $cardMinHeight;
-  margin: 0.5%;
   box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
     $cardBoxShadowWidth/2 $cardBoxShadowColour;
   transition-duration: 0.25s;

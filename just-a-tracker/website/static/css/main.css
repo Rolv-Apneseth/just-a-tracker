@@ -317,16 +317,14 @@ img {
 }
 
 #bugs-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
   width: 95vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
 }
 
 .bug-card {
-  width: 24%;
   min-height: 25rem;
-  margin: 0.5%;
   box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
   transition-duration: 0.25s;
 }
