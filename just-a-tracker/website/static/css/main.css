@@ -318,8 +318,9 @@ img {
 
 #bugs-section {
   width: 95vw;
+  margin: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-gap: 1rem;
 }
 

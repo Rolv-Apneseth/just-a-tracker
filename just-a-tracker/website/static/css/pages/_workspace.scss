@@ -47,8 +47,9 @@
 
 #bugs-section {
   width: $cardSectionWidth;
+  margin: $generalSpacing 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax($cardMinWidth, 1fr));
   grid-gap: $generalSpacing;
 }
 
@@ -141,3 +142,21 @@
     background-color: $reportBugBgHover;
   }
 }
+
+// @media (max-width: 1600px) {
+//   #bugs-section {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// }
+
+// @media (max-width: 1200px) {
+//   #bugs-section {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
+
+// @media (max-width: 750px) {
+//   #bugs-section {
+//     grid-template-columns: 1fr;
+//   }
+// }
