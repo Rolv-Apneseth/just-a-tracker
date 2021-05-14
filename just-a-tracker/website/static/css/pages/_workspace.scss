@@ -9,10 +9,21 @@
   flex-wrap: wrap;
   margin-bottom: 2vh;
 
+  & > * {
+    display: flex;
+    margin: 0 $generalSpacing;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav {
+    margin: 0 $generalSpacing;
+  }
+
   h1 {
+    margin-left: $generalSpacing;
     text-align: center;
-    width: 85%;
-    position: relative;
   }
 
   a {
@@ -142,21 +153,3 @@
     background-color: $reportBugBgHover;
   }
 }
-
-// @media (max-width: 1600px) {
-//   #bugs-section {
-//     grid-template-columns: repeat(3, 1fr);
-//   }
-// }
-
-// @media (max-width: 1200px) {
-//   #bugs-section {
-//     grid-template-columns: repeat(2, 1fr);
-//   }
-// }
-
-// @media (max-width: 750px) {
-//   #bugs-section {
-//     grid-template-columns: 1fr;
-//   }
-// }

@@ -1,14 +1,6 @@
 {% extends 'base.html' %} {% block title %} Workspace {{ workspace.workspace_id
 }} {% endblock %} {% block content %}
 
-<!-- BACK BUTTON -->
-<nav class="back-button">
-  <a href="{{ home_url }}"
-    ><i class="fas fa-arrow-alt-circle-left basic-icon"></i
-  ></a>
-</nav>
-<!--  -->
-
 <!-- MODALS -->
 <!-- options menu -->
 <div
@@ -198,41 +190,50 @@
 </div>
 
 <!-- ---------------------------------------------------------------------- -->
+<div>
+  <!-- BACK BUTTON -->
+  <!--  -->
+  <section class="mt-4 pb-1 border-bottom" id="workspace-header">
+    <div>
+      <nav class="back-button">
+        <a href="{{ home_url }}"
+          ><i class="fas fa-arrow-alt-circle-left basic-icon"></i
+        ></a>
+      </nav>
 
-<section class="mt-4 pb-1 border-bottom" id="workspace-header">
-  <h1 class="font-weight-bold text-primary">
-    {{ workspace.project_name }} #{{ workspace.workspace_id }} {% if
-    workspace.project_link %}
-    <a
-      href="//{{ workspace.project_link }}"
-      target="_blank"
-      class="stretched-link"
-    ></a>
-    {% endif %}
-  </h1>
+      <h1 class="font-weight-bold text-primary">
+        {{ workspace.project_name }} #{{ workspace.workspace_id }} {% if
+        workspace.project_link %}
+        <a
+          href="//{{ workspace.project_link }}"
+          target="_blank"
+          class="stretched-link"
+        ></a>
+        {% endif %}
+      </h1>
+    </div>
 
-  <div>
-    <a
-      class="text-decoration-none"
-      id="open-collaborators"
-      data-toggle="modal"
-      href="#modal-collaborators"
-    >
-      <i class="fas fa-user-friends"></i>
-    </a>
+    <div>
+      <a
+        class="text-decoration-none"
+        id="open-collaborators"
+        data-toggle="modal"
+        href="#modal-collaborators"
+      >
+        <i class="fas fa-user-friends"></i>
+      </a>
 
-    <a
-      class="text-decoration-none"
-      id="open-options"
-      data-toggle="modal"
-      href="#modal-options"
-    >
-      <i class="fas fa-cog h1"></i>
-    </a>
-  </div>
-</section>
-
-<br />
+      <a
+        class="text-decoration-none"
+        id="open-options"
+        data-toggle="modal"
+        href="#modal-options"
+      >
+        <i class="fas fa-cog h1"></i>
+      </a>
+    </div>
+  </section>
+</div>
 
 <section id="bugs-section">
   <div id="report-bug-card" class="card bug-card">

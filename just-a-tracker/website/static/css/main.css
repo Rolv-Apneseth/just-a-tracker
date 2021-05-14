@@ -5,11 +5,6 @@
   color: #768798;
 }
 
-.back-button {
-  position: absolute;
-  top: 5rem;
-  left: 1rem;
-}
 .back-button a i {
   font-size: 3.12rem;
 }
@@ -279,10 +274,19 @@ img {
   flex-wrap: wrap;
   margin-bottom: 2vh;
 }
+#workspace-header > * {
+  display: flex;
+  margin: 0 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#workspace-header nav {
+  margin: 0 1rem;
+}
 #workspace-header h1 {
+  margin-left: 1rem;
   text-align: center;
-  width: 85%;
-  position: relative;
 }
 #workspace-header a {
   font-size: 2.2rem;
