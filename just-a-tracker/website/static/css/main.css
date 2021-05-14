@@ -211,19 +211,9 @@ img {
   display: none;
 }
 #bug-discussion #comments .commentAction p {
-  white-space: inherit;
-  word-wrap: inherit;
   color: gray;
   font-style: italic;
   text-align: center;
-}
-#bug-discussion #comments .commentAction p:before, #bug-discussion #comments .commentAction p:after {
-  display: inline-block;
-  content: "";
-  border-top: 0.15rem solid gray;
-  width: 15%;
-  margin: 0 1rem;
-  transform: translateY(-0.3rem);
 }
 #bug-discussion form {
   padding: 1rem;

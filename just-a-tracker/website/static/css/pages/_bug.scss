@@ -137,26 +137,15 @@
     }
 
     .commentAction {
+      // Hide commenter as username is included in action comment
       & :nth-child(1) {
         display: none;
       }
 
       p {
-        white-space: inherit;
-        word-wrap: inherit;
         color: $textSecondary;
         font-style: italic;
         text-align: center;
-
-        &:before,
-        &:after {
-          display: inline-block;
-          content: "";
-          border-top: 0.15rem solid $textSecondary;
-          width: 15%;
-          margin: 0 $generalSpacing;
-          transform: translateY(-$baseFontSize/4);
-        }
       }
     }
   }
