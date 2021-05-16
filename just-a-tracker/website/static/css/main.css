@@ -9,12 +9,22 @@
   font-size: 3.12rem;
 }
 
-body {
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  html {
+    font-size: 70%;
+  }
+}
+html body {
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
 }
-body main {
+html body main {
   width: 100vw;
   display: flex;
   flex-direction: column;
