@@ -5,7 +5,7 @@ from website import create_app
 
 
 # CONSTANTS
-FOLDER_PATH = Path(__file__).parent
+FOLDER_PATH = Path(__file__).absolute().parent
 ENV_PATH = FOLDER_PATH / ".env"
 
 # Load environment variable(s)
