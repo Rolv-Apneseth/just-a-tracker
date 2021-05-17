@@ -1,1 +1,1 @@
-web: gunicorn just-a-tracker.main:app
+web: gunicorn just-a-tracker.main
