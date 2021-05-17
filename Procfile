@@ -1,1 +1,1 @@
-web: gunicorn just-a-tracker.main
+web: gunicorn --chdir just-a-tracker main:app
