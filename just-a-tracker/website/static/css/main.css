@@ -297,6 +297,7 @@ img {
 #workspace-header h1 {
   margin-left: 1rem;
   text-align: center;
+  position: relative;
 }
 #workspace-header a {
   font-size: 2.2rem;
