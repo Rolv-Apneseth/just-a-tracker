@@ -66,13 +66,24 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
             db.session.add(new_bug)
             db.session.commit()
 
-            # Add 'bug report opened' comment for the new bug report
+            # The following 2 comments are added on opening the bug report
+            # so that they can be easily displayed in the discussion section
+
+            # Opening comment
             add_comment_to_bug(
                 db,
                 new_bug,
                 workspace,
                 f"Bug report opened by {current_user.username}",
                 True,
+            )
+            # Bug description
+            add_comment_to_bug(
+                db,
+                new_bug,
+                workspace,
+                new_bug.bug_description,
+                False,
             )
 
         else:
