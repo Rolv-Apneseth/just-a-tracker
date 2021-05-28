@@ -13,7 +13,6 @@ def create_app():
     app.config["SECRET_KEY"] = os.environ["JUST_A_TRACKER_KEY"]
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-    # app.config["SEND_FILE_MAX_AGE_DEFAULT"] = -1
     db.init_app(app)
 
     # Login Manager
