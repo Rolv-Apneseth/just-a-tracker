@@ -9,14 +9,20 @@ A bug tracker web app created in python using Flask. A live demo can be found [h
 - Setting up models for databases and working with databases in general using SQLAlchemy
 - Hosting a webapp on Heroku
 
-## Host locallly
+## Run locally
+
+You can use the following steps if you want to run the server locally:
 
 1. Requires python 3.6+ to run. Python can be installed from [here](https://www.python.org/downloads/)
+
 2. To download, click on 'Code' to the top right, then download as a zip file. You can unzip using your preferred program.
    - You can also clone the repository using: `git clone https://github.com/Rolv-Apneseth/just-a-tracker.git`
+
 3. Install the requirements for the program.
-   - In your terminal, navigate to the cloned directory and run: `python3 -m pip install -r requirements.txt`
+   - In your terminal, navigate to the project's root folder and run: `python3 -m pip install -r requirements.txt`
+
 4. To run the server, navigate further into the `just-a-tracker/website/` folder and run: `python3 main.py`
+
 5. The webapp should then be accessible via your local host (`http://127.0.0.1:5000/` for example)
 
 ## Usage
