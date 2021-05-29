@@ -44,15 +44,16 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
+    # Import database models
+    from .models import (
+        users_workspaces,
+        Workspace,
+        User,
+        Bug,
+    )
+
     # Create local database if it does not yet exist
     if ENV == "dev":
-        from .models import (
-            users_workspaces,
-            Workspace,
-            User,
-            Bug,
-        )
-
         create_database(app)
 
     return app
