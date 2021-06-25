@@ -1,10 +1,12 @@
 # just-a-tracker
 
-A bug tracker web app created in python using Flask. A live demo can be found [here](https://just-a-tracker.herokuapp.com/login) hosted on Heroku.
+A bug tracker web app created in Python using Flask. A live demo can be found [here](https://just-a-tracker.herokuapp.com/login) hosted on Heroku.
+- Note: Use `Username: Tester1` and `Password: Password123` for login credentials if you don't wish to make your own account.
 
 ## What I learned
 
 - Building a web app from scratch using Flask
+- Frameworks such as Bootstrap and JQuery
 - Use of Jinja2 templating engine
 - Setting up models for databases and working with databases in general using SQLAlchemy
 - Hosting a webapp on Heroku
