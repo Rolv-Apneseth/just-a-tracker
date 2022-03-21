@@ -1,31 +1,26 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 html {
-    // Font size media queries
-    @media only screen and (max-width: 600px) {
-        font-size: 80%;
-    }
-    @media only screen and (max-width: 350px) {
-        font-size: 70%;
-    }
+  // Font size media queries
+  @media only screen and (max-width: 600px) {
+    font-size: 80%;
+  }
+  @media only screen and (max-width: 350px) {
+    font-size: 70%;
+  }
 
-    // Other base styling
-    body {
-        font-size: $baseFontSize;
-        display: flex;
-        flex-direction: column;
+  // Other base styling
+  body {
+    font-size: $baseFontSize;
+    display: flex;
+    flex-direction: column;
 
-        main {
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    main {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-
-    // Fix spacing for buttons from old bootstrap version
-    .btn {
-        margin-top: 1rem;
-    }
+  }
 }

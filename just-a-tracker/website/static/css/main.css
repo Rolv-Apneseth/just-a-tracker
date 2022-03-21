@@ -37,9 +37,6 @@ html body main {
   justify-content: center;
   align-items: center;
 }
-html .btn {
-  margin-top: 1rem;
-}
 
 html {
   box-sizing: border-box;
@@ -408,7 +405,11 @@ img {
 }
 #report-bug-card:hover {
   background-color: #05bd48;
+<<<<<<< HEAD
 }
 
 /*# sourceMappingURL=main.css.map */
 >>>>>>> cc48f95 (Adjusted spacing for buttons)
+=======
+}/*# sourceMappingURL=main.css.map */
+>>>>>>> parent of cc48f95 (Adjusted spacing for buttons)
