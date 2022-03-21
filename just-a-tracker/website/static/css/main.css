@@ -1,4 +1,414 @@
+<<<<<<< HEAD
 @use 'abstracts';
 @use 'components';
 @use 'core';
 @use 'pages';
+=======
+.basic-icon, #workspace-header a {
+  color: gray;
+}
+.basic-icon:hover, #workspace-header a:hover {
+  color: #768798;
+}
+
+.back-button a i {
+  font-size: 3.12rem;
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  html {
+    font-size: 70%;
+  }
+}
+html body {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+html body main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+html .btn {
+  margin-top: 1rem;
+}
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#security {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#account-info {
+  width: 100%;
+  margin-top: 1rem;
+}
+#account-info li {
+  display: flex;
+}
+#account-info li a {
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+#change-email .form-group {
+  display: flex;
+  justify-content: space-between;
+}
+#change-email .form-group label {
+  font-weight: bold;
+  text-align: left;
+  width: 8rem;
+}
+#change-email .form-group input {
+  margin-left: 1rem;
+}
+#change-email .current-email {
+  flex-grow: 1;
+}
+
+#change-password {
+  margin-left: 1rem;
+}
+#change-password .form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+#change-password .form-group label {
+  font-weight: bold;
+  text-align: left;
+  width: 8rem;
+}
+#change-password button {
+  margin-left: 2rem;
+}
+
+#bug-report-modal-options section h4 {
+  text-decoration: underline;
+}
+#bug-report-modal-options section ul {
+  padding: 0;
+  margin: 0 1rem;
+}
+#bug-report-modal-options section ul li {
+  display: grid;
+  grid-row: 1;
+  grid-template-columns: 1fr 2.3fr;
+}
+#bug-report-modal-options section ul li :nth-child(1) {
+  font-weight: bold;
+}
+#bug-report-modal-options section ul li :nth-child(2) {
+  color: #007bff;
+}
+#bug-report-modal-options section a {
+  color: #007bff;
+  font-weight: bold;
+}
+#bug-report-modal-options section .dangerous-action {
+  color: red;
+}
+
+#bug-report-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bug-report-header div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#bug-report-header div > * {
+  margin-right: 1rem;
+}
+#bug-report-header div h1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#bug-report-header div .bannerContainer {
+  display: flex;
+}
+#bug-report-header div .bannerContainer > * {
+  margin-right: 0.5rem;
+}
+#bug-report-header .banner, #bug-report-header .bannerClosed, #bug-report-header .bannerImportant, #bug-report-header .bannerOpen {
+  font-size: 1.4rem;
+  border: solid #ffa600 0.1rem;
+  border-radius: 1.4rem;
+  padding: 0.1rem 0.3rem;
+}
+#bug-report-header .bannerOpen {
+  color: #ffa600;
+}
+#bug-report-header .bannerImportant {
+  border-color: red;
+  color: red;
+}
+#bug-report-header .bannerClosed {
+  border-color: #02b644;
+  color: #02b644;
+}
+
+#bug-discussion {
+  min-height: 30vh;
+  width: 90%;
+  margin: 1rem auto;
+}
+#bug-discussion #comments {
+  min-height: 30vh;
+}
+#bug-discussion #comments li {
+  margin-top: 1rem;
+}
+#bug-discussion #comments li p {
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  line-height: 1.2rem;
+}
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) > *:not(.dropdown, .dropdown-menu) {
+  margin-bottom: 1rem;
+}
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) .commentUsername {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.32rem;
+}
+#bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) .commentDate {
+  margin-left: 1rem;
+  font-size: 0.96rem;
+  font-style: italic;
+  color: gray;
+}
+#bug-discussion #comments .commentAction :nth-child(1) {
+  display: none;
+}
+#bug-discussion #comments .commentAction p {
+  color: gray;
+  font-style: italic;
+  text-align: center;
+}
+#bug-discussion form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#bug-discussion form button {
+  margin: 1rem;
+}
+
+#workspaces,
+#new-workspace {
+  margin: 1rem 0;
+  width: 100%;
+}
+#workspaces form,
+#new-workspace form {
+  margin-left: 1rem;
+}
+#workspaces form button,
+#new-workspace form button {
+  margin-left: 1rem;
+}
+
+#sign-up-section {
+  margin: 1rem 0;
+  width: 100%;
+}
+#sign-up-section form {
+  margin-left: 1rem;
+}
+#sign-up-section form .form-group {
+  margin-top: 1rem;
+}
+#sign-up-section form button {
+  margin-left: 1rem;
+}
+
+#login-section {
+  margin: 1rem 0;
+  width: 100%;
+}
+#login-section form {
+  margin-left: 1rem;
+}
+#login-section form .form-group {
+  margin-top: 1rem;
+}
+#login-section form button {
+  margin-left: 1rem;
+}
+#login-section form a {
+  margin-left: 0.5rem;
+}
+
+#workspace-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2vh;
+}
+#workspace-header > * {
+  display: flex;
+  margin: 0 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#workspace-header nav {
+  margin: 0 1rem;
+}
+#workspace-header h1 {
+  margin-left: 1rem;
+  text-align: center;
+  position: relative;
+}
+#workspace-header a {
+  font-size: 2.2rem;
+  margin: 0 0.5rem;
+}
+
+#modal-collaborators form {
+  display: flex;
+  flex-wrap: nowrap;
+}
+#modal-collaborators form button {
+  margin-left: 0.5rem;
+}
+#modal-collaborators .existing-collaborator {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+#modal-collaborators .existing-collaborator p {
+  margin: 0;
+}
+
+#bugs-section {
+  width: 95vw;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-gap: 1rem;
+}
+
+.bug-card {
+  min-height: 25rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
+  transition-duration: 0.25s;
+}
+.bug-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bug-card .card-header h4 {
+  line-height: 2.5rem;
+  overflow: hidden;
+}
+.bug-card .card-header .closed-bug-icon {
+  font-size: 2.5rem;
+  color: #02b644;
+}
+.bug-card .card-header .important-bug-icon {
+  font-size: 2.5rem;
+  color: red;
+}
+.bug-card .card-body {
+  transform: rotate(0);
+}
+.bug-card .card-body .bug-description {
+  white-space: pre-wrap;
+}
+.bug-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.bug-card .card-footer p {
+  margin: 0;
+}
+.bug-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
+  z-index: 10;
+}
+
+#report-bug-card {
+  background-color: #02b644;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
+}
+#report-bug-card div {
+  height: 100%;
+}
+#report-bug-card a {
+  height: 100%;
+  font-size: 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#report-bug-card a p {
+  margin: 0;
+  width: 100%;
+}
+#report-bug-card a #report-bug-symbol {
+  font-size: 15rem;
+  line-height: 7.5rem;
+  margin-bottom: 2rem;
+}
+#report-bug-card a:hover {
+  color: #f2f0ff;
+}
+#report-bug-card:hover {
+  background-color: #05bd48;
+}
+
+/*# sourceMappingURL=main.css.map */
+>>>>>>> cc48f95 (Adjusted spacing for buttons)
