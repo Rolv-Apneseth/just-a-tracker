@@ -1,20 +1,13 @@
 # just-a-tracker
 
+![just-a-tracker](https://user-images.githubusercontent.com/69486699/161395157-20a5a3e0-fafc-43fe-aaad-f2778cd4c01b.png)
+
+
+## Description
+
 A bug tracker web app created in Python using Flask. A live demo can be found [here](https://just-a-tracker.herokuapp.com/login) hosted on Heroku.
 - Note: Use `Username: Tester1` and `Password: Password123` for login credentials if you don't wish to make your own account.
-
-## Demo
-
-[![Video demo of Speed Typer](http://img.youtube.com/vi/q-7LjkoNq9g/0.jpg)](http://www.youtube.com/watch?v=q-7LjkoNq9g "Portfolio Project - Just A Tracker")
-
-
-## What I learned
-
-- Building a web app from scratch using Flask
-- Frameworks such as Bootstrap and JQuery
-- Use of Jinja2 templating engine
-- Setting up models for databases and working with databases in general using SQLAlchemy
-- Hosting a webapp on Heroku
+- Also please note that since the demo is hosted on Heroku, it may take a minute or two to initially load the site (Heroku puts apps to sleep after 30 minutes of inactivity)
 
 ## Run locally
 
