@@ -1,15 +1,12 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
-from flask_login import login_required, current_user
 import json
 
+from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
+
 from . import db
-from .models import Workspace, Bug, User, Comment, COMMENT_MAX_LENGTH
-from .helpers import (
-    add_bug_to_workspace,
-    add_user_to_workspace,
-    add_comment_to_bug,
-    add_action_comments,
-)
+from .helpers import (add_action_comments, add_bug_to_workspace, add_comment_to_bug,
+                      add_user_to_workspace)
+from .models import COMMENT_MAX_LENGTH, Bug, Comment, User, Workspace
 
 views = Blueprint("views", __name__)
 

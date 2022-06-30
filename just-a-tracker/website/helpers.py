@@ -1,8 +1,7 @@
 from flask import flash
 from flask_login import current_user
 
-from .models import Workspace, User, Bug, Comment, pretty_date
-
+from .models import Bug, Comment, User, Workspace, pretty_date
 
 # CONSTANTS
 RE_USERNAME = r"^[\w-]{6,}$"

@@ -1,8 +1,9 @@
-from . import db
-from flask_login import UserMixin
-from sqlalchemy.sql import func
 from datetime import datetime
 
+from flask_login import UserMixin
+from sqlalchemy.sql import func
+
+from . import db
 
 USERNAME_MAX_LENGTH = 50
 COMMENT_MAX_LENGTH = 1024

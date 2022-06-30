@@ -1,22 +1,16 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
-from flask_login import login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
-from . import db
-from .models import User
-from .helpers import (
-    get_user_by_email,
-    get_user_by_username,
-    find_user,
-    SIGN_UP_RESPONSES,
-    WRONG_PASS_RESPONSE,
-    RE_PASSWORD,
-    RE_USERNAME,
-)
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
+from werkzeug.security import check_password_hash, generate_password_hash
 
+from . import db
+from .helpers import (RE_PASSWORD, RE_USERNAME, SIGN_UP_RESPONSES, WRONG_PASS_RESPONSE,
+                      find_user, get_user_by_email, get_user_by_username)
+from .models import User
 
 auth = Blueprint("auth", __name__)
+
 
 # HELPERS
 def validate_sign_up_info(form):
