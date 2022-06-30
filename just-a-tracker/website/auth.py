@@ -5,8 +5,9 @@ from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import db
-from .helpers import (RE_PASSWORD, RE_USERNAME, SIGN_UP_RESPONSES, WRONG_PASS_RESPONSE,
-                      find_user, get_user_by_email, get_user_by_username)
+from .helpers import (DEMO_USER_PASSWORD, DEMO_USER_USERNAME, RE_PASSWORD, RE_USERNAME,
+                      SIGN_UP_RESPONSES, WRONG_PASS_RESPONSE, find_user,
+                      get_user_by_email, get_user_by_username)
 from .models import User
 
 auth = Blueprint("auth", __name__)
@@ -77,8 +78,23 @@ def login():
             return redirect(url_for("views.home"))
 
     return render_template(
-        "login.html", user=current_user, sign_up_url=url_for("auth.sign_up")
+        "login.html",
+        user=current_user,
+        sign_up_url=url_for("auth.sign_up"),
+        login_demo_user_url=url_for("auth.login_demo_user"),
     )
+
+
+@auth.route("/login-demo-user", methods=["GET"])
+def login_demo_user():
+    validated_demo_user = validate_login_info(
+        dict(username=DEMO_USER_USERNAME, password=DEMO_USER_PASSWORD)
+    )
+
+    if validated_demo_user:
+        login_user(validated_demo_user, remember=True)
+
+    return redirect(url_for("views.home"))
 
 
 @auth.route("/logout")

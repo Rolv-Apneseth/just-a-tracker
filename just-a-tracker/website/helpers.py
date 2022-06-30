@@ -25,6 +25,8 @@ SIGN_UP_RESPONSES = {
     "user_exists": "Sorry, an account with that username already exists.",
     "email_exists": "Sorry, an account with that email address already exists",
 }
+DEMO_USER_USERNAME = "Tester1"
+DEMO_USER_PASSWORD = "Password123"
 
 
 # FUNCTIONS
