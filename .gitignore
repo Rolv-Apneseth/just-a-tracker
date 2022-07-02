@@ -5,6 +5,7 @@ pyvenv.cfg
 *.db
 bin/
 lib64
+*css.map
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
