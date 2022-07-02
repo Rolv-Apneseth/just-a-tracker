@@ -2,12 +2,12 @@
 
 ![just-a-tracker](https://user-images.githubusercontent.com/69486699/161395157-20a5a3e0-fafc-43fe-aaad-f2778cd4c01b.png)
 
-
 ## Description
 
 A bug tracker web app created in Python using Flask. A live demo can be found [here](https://just-a-tracker.herokuapp.com/login) hosted on Heroku.
-- Note: Use `Username: Tester1` and `Password: Password123` for login credentials if you don't wish to make your own account.
-- Also please note that since the demo is hosted on Heroku, it may take a minute or two to initially load the site (Heroku puts apps to sleep after 30 minutes of inactivity)
+
+-   Note: If you don't want to make an account and instead just want to see what the program is like, in the login screen, click the `Demo` button
+-   Also please note that since the demo is hosted on Heroku, it may take a minute or two to initially load the site (Heroku puts apps to sleep after 30 minutes of inactivity)
 
 ## Run locally
 
@@ -16,10 +16,12 @@ You can use the following steps if you want to run the server locally:
 1. Requires python 3.6+ to run. Python can be installed from [here](https://www.python.org/downloads/)
 
 2. To download, click on 'Code' to the top right, then download as a zip file. You can unzip using your preferred program.
-   - You can also clone the repository using: `git clone https://github.com/Rolv-Apneseth/just-a-tracker.git`
+
+    - You can also clone the repository using: `git clone https://github.com/Rolv-Apneseth/just-a-tracker.git`
 
 3. Install the requirements for the program.
-   - In your terminal, navigate to the project's root folder and run: `python3 -m pip install -r requirements.txt`
+
+    - In your terminal, navigate to the project's root folder and run: `python3 -m pip install -r requirements.txt`
 
 4. To run the server, navigate further into the `just-a-tracker/website/` folder and run: `python3 main.py`
 
@@ -38,10 +40,10 @@ Password: Password123
 
 3. On this page, you can see currently open bug reports. You can also open a new bug report by clicking on the first card, which will open up a form to be filled out. On this page you can also:
 
-   - View who is currently associated with the workspace and add/remove other users if you have permission to do so
-   - Reveal all the closed bug reports
-   - If you are the owner of the workspace, you also have the option to delete it
-   - Mark any bug as important, or close the bug report if the issue has been solved
-   - Clicking on the title of the workspace will also open a new tab to the link provided for the project (if one was in fact provided)
+    - View who is currently associated with the workspace and add/remove other users if you have permission to do so
+    - Reveal all the closed bug reports
+    - If you are the owner of the workspace, you also have the option to delete it
+    - Mark any bug as important, or close the bug report if the issue has been solved
+    - Clicking on the title of the workspace will also open a new tab to the link provided for the project (if one was in fact provided)
 
 4. By clicking on the body of one of the bug reports you can reach the page for that bug report. On this page, you can view the discussion on the bug and comment on it yourself. You also have the same options for that bug report that were available on the workspace page.
