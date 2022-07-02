@@ -15,7 +15,7 @@ $iconColourOpen: hsl(39, 100%, 50%);
 $cardMinHeight: 25rem;
 $cardMinWidth: 25rem;
 $cardSpacing: 1rem;
-$cardSectionWidth: 95vw;
+$cardSectionWidth: max(100%, 75vw);
 $cardHeaderLineHeight: 2.5rem;
 $cardBoxShadowWidth: 0.1rem;
 $cardBoxShadowColour: hsla(0, 8%, 33%, 0.288);

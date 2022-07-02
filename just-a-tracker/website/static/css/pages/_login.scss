@@ -1,22 +1,22 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 #login-section {
-  margin: $generalSpacing 0;
-  width: 100%;
+    margin: $generalSpacing 0;
+    width: 100%;
 
-  form {
-    margin-left: $generalSpacing;
+    form {
+        margin-left: $generalSpacing;
 
-    .form-group {
-      margin-top: $generalSpacing;
+        .form-group {
+            margin-top: $generalSpacing;
+        }
+
+        button {
+            margin-left: $generalSpacing;
+        }
+
+        a {
+            margin-left: calc($generalSpacing / 2);
+        }
     }
-
-    button {
-      margin-left: $generalSpacing;
-    }
-
-    a {
-      margin-left: $generalSpacing / 2;
-    }
-  }
 }

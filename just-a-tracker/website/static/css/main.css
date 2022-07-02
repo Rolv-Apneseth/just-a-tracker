@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-@use 'abstracts';
-@use 'components';
-@use 'core';
-@use 'pages';
-=======
 .basic-icon, #workspace-header a {
-  color: gray;
+  color: hsl(0deg, 0%, 50%);
 }
 .basic-icon:hover, #workspace-header a:hover {
-  color: #768798;
+  color: hsl(210deg, 14%, 53%);
 }
 
 .back-button a i {
@@ -128,14 +122,14 @@ img {
   font-weight: bold;
 }
 #bug-report-modal-options section ul li :nth-child(2) {
-  color: #007bff;
+  color: hsl(211deg, 100%, 50%);
 }
 #bug-report-modal-options section a {
-  color: #007bff;
+  color: hsl(211deg, 100%, 50%);
   font-weight: bold;
 }
 #bug-report-modal-options section .dangerous-action {
-  color: red;
+  color: hsl(0deg, 100%, 50%);
 }
 
 #bug-report-header {
@@ -166,20 +160,20 @@ img {
 }
 #bug-report-header .banner, #bug-report-header .bannerClosed, #bug-report-header .bannerImportant, #bug-report-header .bannerOpen {
   font-size: 1.4rem;
-  border: solid #ffa600 0.1rem;
+  border: solid hsl(39deg, 100%, 50%) 0.1rem;
   border-radius: 1.4rem;
   padding: 0.1rem 0.3rem;
 }
 #bug-report-header .bannerOpen {
-  color: #ffa600;
+  color: hsl(39deg, 100%, 50%);
 }
 #bug-report-header .bannerImportant {
-  border-color: red;
-  color: red;
+  border-color: hsl(0deg, 100%, 50%);
+  color: hsl(0deg, 100%, 50%);
 }
 #bug-report-header .bannerClosed {
-  border-color: #02b644;
-  color: #02b644;
+  border-color: hsl(142deg, 98%, 36%);
+  color: hsl(142deg, 98%, 36%);
 }
 
 #bug-discussion {
@@ -208,7 +202,7 @@ img {
   margin-bottom: 1rem;
 }
 #bug-discussion #comments .commentNormal div:not(.dropdown, .dropdown-menu) .commentUsername {
-  color: #007bff;
+  color: hsl(211deg, 100%, 50%);
   font-weight: bold;
   font-size: 1.32rem;
 }
@@ -216,13 +210,13 @@ img {
   margin-left: 1rem;
   font-size: 0.96rem;
   font-style: italic;
-  color: gray;
+  color: hsl(0deg, 0%, 50%);
 }
 #bug-discussion #comments .commentAction :nth-child(1) {
   display: none;
 }
 #bug-discussion #comments .commentAction p {
-  color: gray;
+  color: hsl(0deg, 0%, 50%);
   font-style: italic;
   text-align: center;
 }
@@ -328,7 +322,7 @@ img {
 }
 
 #bugs-section {
-  width: 95vw;
+  width: max(100%, 75vw);
   margin: 1rem 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
@@ -337,7 +331,7 @@ img {
 
 .bug-card {
   min-height: 25rem;
-  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem rgba(91, 77, 77, 0.288);
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem hsla(0deg, 8%, 33%, 0.288);
   transition-duration: 0.25s;
 }
 .bug-card .card-header {
@@ -351,11 +345,11 @@ img {
 }
 .bug-card .card-header .closed-bug-icon {
   font-size: 2.5rem;
-  color: #02b644;
+  color: hsl(142deg, 98%, 36%);
 }
 .bug-card .card-header .important-bug-icon {
   font-size: 2.5rem;
-  color: red;
+  color: hsl(0deg, 100%, 50%);
 }
 .bug-card .card-body {
   transform: rotate(0);
@@ -372,13 +366,13 @@ img {
 }
 .bug-card:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem rgba(91, 77, 77, 0.288);
+  box-shadow: 0.2rem 0.1rem 0.2rem 0.1rem hsla(0deg, 8%, 33%, 0.288);
   z-index: 10;
 }
 
 #report-bug-card {
-  background-color: #02b644;
-  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem #59a675;
+  background-color: hsl(142deg, 98%, 36%);
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.05rem hsl(142deg, 30%, 50%);
 }
 #report-bug-card div {
   height: 100%;
@@ -386,7 +380,7 @@ img {
 #report-bug-card a {
   height: 100%;
   font-size: 3rem;
-  color: white;
+  color: hsl(0deg, 0%, 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -401,19 +395,10 @@ img {
   margin-bottom: 2rem;
 }
 #report-bug-card a:hover {
-  color: #f2f0ff;
+  color: hsl(249deg, 100%, 97%);
 }
 #report-bug-card:hover {
-  background-color: #05bd48;
-<<<<<<< HEAD
-<<<<<<< HEAD
+  background-color: hsl(142deg, 95%, 38%);
 }
 
 /*# sourceMappingURL=main.css.map */
->>>>>>> cc48f95 (Adjusted spacing for buttons)
-=======
-}/*# sourceMappingURL=main.css.map */
->>>>>>> parent of cc48f95 (Adjusted spacing for buttons)
-=======
-}/*# sourceMappingURL=main.css.map */
->>>>>>> parent of cc48f95 (Adjusted spacing for buttons)

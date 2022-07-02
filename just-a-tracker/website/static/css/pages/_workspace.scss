@@ -1,156 +1,156 @@
-@use '../abstracts' as *;
-@use '../components/' as *;
+@use "../abstracts" as *;
+@use "../components/" as *;
 
 #workspace-header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2vh;
-
-  & > * {
+    width: 100%;
     display: flex;
-    margin: 0 $generalSpacing;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-  }
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
 
-  nav {
-    margin: 0 $generalSpacing;
-  }
+    & > * {
+        display: flex;
+        margin: 0 $generalSpacing;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
 
-  h1 {
-    margin-left: $generalSpacing;
-    text-align: center;
-    position: relative;
-  }
+    nav {
+        margin: 0 $generalSpacing;
+    }
 
-  a {
-    @extend .basic-icon;
+    h1 {
+        margin-left: $generalSpacing;
+        text-align: center;
+        position: relative;
+    }
 
-    font-size: 2.2rem;
-    margin: 0 0.5rem;
-  }
+    a {
+        @extend .basic-icon;
+
+        font-size: 2.2rem;
+        margin: 0 0.5rem;
+    }
 }
 
 #modal-collaborators {
-  form {
-    display: flex;
-    flex-wrap: nowrap;
+    form {
+        display: flex;
+        flex-wrap: nowrap;
 
-    button {
-      margin-left: 0.5rem;
+        button {
+            margin-left: 0.5rem;
+        }
     }
-  }
 
-  .existing-collaborator {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+    .existing-collaborator {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
 
-    p {
-      margin: 0;
+        p {
+            margin: 0;
+        }
     }
-  }
 }
 
 #bugs-section {
-  width: $cardSectionWidth;
-  margin: $generalSpacing 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax($cardMinWidth, 1fr));
-  grid-gap: $generalSpacing;
+    width: $cardSectionWidth;
+    margin: $generalSpacing 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($cardMinWidth, 1fr));
+    grid-gap: $generalSpacing;
 }
 
 .bug-card {
-  min-height: $cardMinHeight;
-  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
-    $cardBoxShadowWidth/2 $cardBoxShadowColour;
-  transition-duration: 0.25s;
+    min-height: $cardMinHeight;
+    box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
+        calc($cardBoxShadowWidth/2) $cardBoxShadowColour;
+    transition-duration: 0.25s;
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    h4 {
-      line-height: $cardHeaderLineHeight;
-      overflow: hidden;
+        h4 {
+            line-height: $cardHeaderLineHeight;
+            overflow: hidden;
+        }
+
+        .closed-bug-icon {
+            font-size: $cardHeaderLineHeight;
+            color: $iconColourClosed;
+        }
+
+        .important-bug-icon {
+            font-size: $cardHeaderLineHeight;
+            color: $iconColourImportant;
+        }
     }
 
-    .closed-bug-icon {
-      font-size: $cardHeaderLineHeight;
-      color: $iconColourClosed;
+    .card-body {
+        transform: rotate(0);
+
+        .bug-description {
+            white-space: pre-wrap;
+        }
     }
 
-    .important-bug-icon {
-      font-size: $cardHeaderLineHeight;
-      color: $iconColourImportant;
-    }
-  }
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
 
-  .card-body {
-    transform: rotate(0);
-
-    .bug-description {
-      white-space: pre-wrap;
-    }
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  &:hover {
-    transform: translateY(-$generalSpacing/2);
-    box-shadow: $cardBoxShadowWidth * 2 $cardBoxShadowWidth $cardBoxShadowWidth *
-      2 $cardBoxShadowWidth $cardBoxShadowColour;
-    z-index: 10;
-  }
-}
-
-#report-bug-card {
-  background-color: $reportBugBg;
-  box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
-    $cardBoxShadowWidth/2 $reportBugBoxShadowColour;
-
-  div {
-    height: 100%;
-  }
-
-  a {
-    height: 100%;
-    font-size: 3rem;
-    color: $reportBugText;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    p {
-      margin: 0;
-      width: 100%;
-    }
-
-    #report-bug-symbol {
-      font-size: 15rem;
-      line-height: 7.5rem;
-      margin-bottom: 2rem;
+        p {
+            margin: 0;
+        }
     }
 
     &:hover {
-      color: $reportBugTextHover;
+        transform: translateY(calc($generalSpacing/-2));
+        box-shadow: $cardBoxShadowWidth * 2 $cardBoxShadowWidth
+            $cardBoxShadowWidth * 2 $cardBoxShadowWidth $cardBoxShadowColour;
+        z-index: 10;
     }
-  }
+}
 
-  &:hover {
-    background-color: $reportBugBgHover;
-  }
+#report-bug-card {
+    background-color: $reportBugBg;
+    box-shadow: $cardBoxShadowWidth $cardBoxShadowWidth $cardBoxShadowWidth
+        calc($cardBoxShadowWidth/2) $reportBugBoxShadowColour;
+
+    div {
+        height: 100%;
+    }
+
+    a {
+        height: 100%;
+        font-size: 3rem;
+        color: $reportBugText;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        p {
+            margin: 0;
+            width: 100%;
+        }
+
+        #report-bug-symbol {
+            font-size: 15rem;
+            line-height: 7.5rem;
+            margin-bottom: 2rem;
+        }
+
+        &:hover {
+            color: $reportBugTextHover;
+        }
+    }
+
+    &:hover {
+        background-color: $reportBugBgHover;
+    }
 }

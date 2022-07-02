@@ -1,164 +1,164 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 #bug-report-modal-options {
-  section {
-    h4 {
-      text-decoration: underline;
-    }
-
-    ul {
-      padding: 0;
-      margin: 0 $generalSpacing;
-
-      li {
-        display: grid;
-        grid-row: 1;
-        grid-template-columns: 1fr 2.3fr;
-
-        & :nth-child(1) {
-          font-weight: bold;
+    section {
+        h4 {
+            text-decoration: underline;
         }
 
-        & :nth-child(2) {
-          color: $textPrimary;
+        ul {
+            padding: 0;
+            margin: 0 $generalSpacing;
+
+            li {
+                display: grid;
+                grid-row: 1;
+                grid-template-columns: 1fr 2.3fr;
+
+                & :nth-child(1) {
+                    font-weight: bold;
+                }
+
+                & :nth-child(2) {
+                    color: $textPrimary;
+                }
+            }
         }
-      }
-    }
 
-    a {
-      color: $textPrimary;
-      font-weight: bold;
-    }
+        a {
+            color: $textPrimary;
+            font-weight: bold;
+        }
 
-    .dangerous-action {
-      color: $iconColourImportant;
+        .dangerous-action {
+            color: $iconColourImportant;
+        }
     }
-  }
 }
 
 #bug-report-header {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 
-    & > * {
-      margin-right: $generalSpacing;
+    div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > * {
+            margin-right: $generalSpacing;
+        }
+
+        h1 {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .bannerContainer {
+            display: flex;
+
+            & > * {
+                margin-right: calc($generalSpacing / 2);
+            }
+        }
     }
 
-    h1 {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+    // Base class which other banner classes extend off of
+    .banner {
+        font-size: $statusBannerFontSize;
+        border: solid $iconColourOpen 0.1rem;
+        border-radius: $statusBannerFontSize;
+        padding: 0.1rem 0.3rem;
     }
 
-    .bannerContainer {
-      display: flex;
-
-      & > * {
-        margin-right: $generalSpacing / 2;
-      }
+    .bannerOpen {
+        @extend .banner;
+        color: $iconColourOpen;
     }
-  }
 
-  // Base class which other banner classes extend off of
-  .banner {
-    font-size: $statusBannerFontSize;
-    border: solid $iconColourOpen 0.1rem;
-    border-radius: $statusBannerFontSize;
-    padding: 0.1rem 0.3rem;
-  }
+    .bannerImportant {
+        @extend .banner;
+        border-color: $iconColourImportant;
+        color: $iconColourImportant;
+    }
 
-  .bannerOpen {
-    @extend .banner;
-    color: $iconColourOpen;
-  }
-
-  .bannerImportant {
-    @extend .banner;
-    border-color: $iconColourImportant;
-    color: $iconColourImportant;
-  }
-
-  .bannerClosed {
-    @extend .banner;
-    border-color: $iconColourClosed;
-    color: $iconColourClosed;
-  }
+    .bannerClosed {
+        @extend .banner;
+        border-color: $iconColourClosed;
+        color: $iconColourClosed;
+    }
 }
 
 #bug-discussion {
-  min-height: 30vh;
-  width: 90%;
-  margin: $generalSpacing auto;
-
-  #comments {
     min-height: 30vh;
+    width: 90%;
+    margin: $generalSpacing auto;
 
-    li {
-      margin-top: $generalSpacing;
-      p {
-        text-align: left;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
+    #comments {
+        min-height: 30vh;
+
+        li {
+            margin-top: $generalSpacing;
+            p {
+                text-align: left;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+
+        .commentNormal {
+            div:not(.dropdown, .dropdown-menu) {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                line-height: $baseFontSize;
+
+                & > *:not(.dropdown, .dropdown-menu) {
+                    margin-bottom: $generalSpacing;
+                }
+
+                .commentUsername {
+                    color: $textPrimary;
+                    font-weight: bold;
+                    font-size: $baseFontSize * 1.1;
+                }
+
+                .commentDate {
+                    margin-left: $generalSpacing;
+                    font-size: $baseFontSize * 0.8;
+                    font-style: italic;
+                    color: $textSecondary;
+                }
+            }
+        }
+
+        .commentAction {
+            // Hide commenter as username is included in action comment
+            & :nth-child(1) {
+                display: none;
+            }
+
+            p {
+                color: $textSecondary;
+                font-style: italic;
+                text-align: center;
+            }
+        }
     }
 
-    .commentNormal {
-      div:not(.dropdown, .dropdown-menu) {
+    form {
+        padding: $generalSpacing;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        line-height: $baseFontSize;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
 
-        & > *:not(.dropdown, .dropdown-menu) {
-          margin-bottom: $generalSpacing;
+        button {
+            margin: $generalSpacing;
         }
-
-        .commentUsername {
-          color: $textPrimary;
-          font-weight: bold;
-          font-size: $baseFontSize * 1.1;
-        }
-
-        .commentDate {
-          margin-left: $generalSpacing;
-          font-size: $baseFontSize * 0.8;
-          font-style: italic;
-          color: $textSecondary;
-        }
-      }
     }
-
-    .commentAction {
-      // Hide commenter as username is included in action comment
-      & :nth-child(1) {
-        display: none;
-      }
-
-      p {
-        color: $textSecondary;
-        font-style: italic;
-        text-align: center;
-      }
-    }
-  }
-
-  form {
-    padding: $generalSpacing;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-
-    button {
-      margin: $generalSpacing;
-    }
-  }
 }
