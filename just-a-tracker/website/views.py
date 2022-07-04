@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 from . import db
 from .helpers import (add_action_comments, add_bug_to_workspace, add_comment_to_bug,
-                      add_user_to_workspace)
+                      add_user_to_workspace, create_workspace)
 from .models import COMMENT_MAX_LENGTH, Bug, Comment, User, Workspace
 
 views = Blueprint("views", __name__)
@@ -22,11 +22,7 @@ def home():
         }
 
         if info["project_name"]:
-            new_workspace = Workspace(**info)
-            new_workspace.users.append(current_user)
-            new_workspace.author_id = current_user.user_id
-            db.session.add(new_workspace)
-            db.session.commit()
+            create_workspace(db, current_user, info)
 
     return render_template("home.html", user=current_user)
 
@@ -35,12 +31,6 @@ def home():
 @login_required
 def account():
     return render_template("account.html", user=current_user)
-
-
-@views.route("/create-workspace")
-@login_required
-def create_workspace():
-    return render_template("create_workspace.html", user=current_user)
 
 
 @views.route("/delete-workspace", methods=["POST"])
@@ -178,7 +168,12 @@ def bug(workspace_id, bug_id):
         data = request.form
 
         add_comment_to_bug(
-            db, bug_object, workspace_object, data.get("comment-content"), False
+            db,
+            current_user,
+            bug_object,
+            workspace_object,
+            data.get("comment-content"),
+            False,
         )
 
     passed_conditions = (

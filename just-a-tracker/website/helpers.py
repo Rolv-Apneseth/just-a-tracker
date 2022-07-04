@@ -25,8 +25,6 @@ SIGN_UP_RESPONSES = {
     "user_exists": "Sorry, an account with that username already exists.",
     "email_exists": "Sorry, an account with that email address already exists",
 }
-DEMO_USER_USERNAME = "Tester1"
-DEMO_USER_PASSWORD = "Password123"
 
 
 # FUNCTIONS
@@ -48,7 +46,25 @@ def find_user(username):
     return user
 
 
-def add_bug_to_workspace(db, current_user, data, workspace_id):
+def create_user(db, user_info):
+    new_user = User(**user_info)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return new_user
+
+
+def create_workspace(db, user, workspace_info):
+    new_workspace = Workspace(**workspace_info)
+    new_workspace.users.append(user)
+    new_workspace.author_id = user.user_id
+    db.session.add(new_workspace)
+    db.session.commit()
+
+    return new_workspace
+
+
+def add_bug_to_workspace(db, user, data, workspace_id):
     """Adds a bug object connected to the given workspace to the database."""
 
     workspace = Workspace.query.get(workspace_id)
@@ -56,13 +72,13 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
     bug_info = {
         "bug_title": data.get("bug-title"),
         "bug_description": data.get("bug-description"),
-        "author_id": current_user.user_id,
-        "author_username": current_user.username,
+        "author_id": user.user_id,
+        "author_username": user.username,
         "workspace_id": workspace_id,
     }
 
     if bug_info["bug_title"] and bug_info["bug_description"]:
-        if current_user in workspace.users:
+        if user in workspace.users:
             new_bug = Bug(**bug_info)
             db.session.add(new_bug)
             db.session.commit()
@@ -73,14 +89,16 @@ def add_bug_to_workspace(db, current_user, data, workspace_id):
             # Opening comment
             add_comment_to_bug(
                 db,
+                user,
                 new_bug,
                 workspace,
-                f"Bug report opened by {current_user.username}",
+                f"Bug report opened by {user.username}",
                 True,
             )
             # Bug description
             add_comment_to_bug(
                 db,
+                user,
                 new_bug,
                 workspace,
                 new_bug.bug_description,
@@ -107,17 +125,17 @@ def add_user_to_workspace(db, data, workspace):
         flash("There is no user with that username or email address.")
 
 
-def add_comment_to_bug(db, bug, workspace, text, is_action):
+def add_comment_to_bug(db, user, bug, workspace, text, is_action):
     """Adds a comment object to the given bug object and commits to the database."""
 
     if bug and text:
-        if current_user in workspace.users:
+        if user in workspace.users:
             new_comment = Comment(
                 content=text,
                 is_action=is_action,
                 bug_id=bug.bug_id,
-                author_id=current_user.user_id,
-                author_username=current_user.username,
+                author_id=user.user_id,
+                author_username=user.username,
             )
 
             db.session.add(new_comment)
@@ -167,6 +185,7 @@ def add_action_comments(db, bug, workspace, make_open, make_important):
         if condition:
             add_comment_to_bug(
                 db,
+                current_user,
                 bug,
                 workspace,
                 response,
