@@ -27,6 +27,7 @@ class Workspace(db.Model):
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     bugs = db.relationship("Bug", cascade="all, delete, delete-orphan")
+    cascade = "all, delete, delete-orphan"
 
 
 class User(db.Model, UserMixin):
@@ -57,6 +58,7 @@ class Bug(db.Model):
     is_important = db.Column(db.Boolean, unique=False, default=False)
     is_open = db.Column(db.Boolean, unique=False, default=True)
     close_message = db.Column(db.String(248))
+    cascade = "all, delete, delete-orphan"
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
@@ -71,6 +73,7 @@ class Comment(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
     date_pretty = db.Column(db.String, default=pretty_date())
     is_action = db.Column(db.Boolean, default=False)
+    cascade = "all, delete, delete-orphan"
 
     bug_id = db.Column(db.Integer, db.ForeignKey("bug.bug_id"))
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
