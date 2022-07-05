@@ -3,8 +3,8 @@ from enum import Enum
 
 from werkzeug.security import generate_password_hash
 
-from .helpers import (add_bug_to_workspace, add_user_to_workspace, create_user,
-                      create_workspace, find_user)
+from .helpers import (add_action_comments, add_bug_to_workspace, add_user_to_workspace,
+                      create_user, create_workspace, find_user)
 
 
 @dataclass
@@ -49,7 +49,7 @@ def create_demo_user_data(db, demo_users):
         for bug in workspace.bugs:
             bug_author = demo_users[1] if bug.by_collaborator else demo_users[0]
 
-            add_bug_to_workspace(
+            new_bug = add_bug_to_workspace(
                 db,
                 bug_author,
                 {
@@ -58,6 +58,8 @@ def create_demo_user_data(db, demo_users):
                 },
                 new_workspace.workspace_id,
             )
+
+            add_action_comments(db, new_bug, new_workspace, bug.open, bug.important)
 
 
 def get_demo_users(db):
