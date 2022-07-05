@@ -27,7 +27,6 @@ class Workspace(db.Model):
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     bugs = db.relationship("Bug", cascade="all, delete, delete-orphan")
-    cascade = "all, delete, delete-orphan"
 
 
 class User(db.Model, UserMixin):
@@ -36,12 +35,14 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(128))
     username = db.Column(db.String(USERNAME_MAX_LENGTH), unique=True)
 
-    bugs = db.relationship("Bug")
-    comments = db.relationship("Comment")
+    bugs = db.relationship("Bug", cascade="all, delete, delete-orphan")
+    comments = db.relationship("Comment", cascade="all, delete, delete-orphan")
     workspaces = db.relationship(
         "Workspace",
         secondary=users_workspaces,
-        backref=db.backref("users", lazy="dynamic"),
+        backref=db.backref(
+            "users", cascade="all, delete, delete-orphan", lazy="dynamic"
+        ),
     )
 
     # Override UserMixin method to return correct id value
@@ -58,13 +59,12 @@ class Bug(db.Model):
     is_important = db.Column(db.Boolean, unique=False, default=False)
     is_open = db.Column(db.Boolean, unique=False, default=True)
     close_message = db.Column(db.String(248))
-    cascade = "all, delete, delete-orphan"
 
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     author_username = db.Column(db.String(USERNAME_MAX_LENGTH))
     workspace_id = db.Column(db.Integer, db.ForeignKey("workspace.workspace_id"))
 
-    comments = db.relationship("Comment")
+    comments = db.relationship("Comment", cascade="all, delete, delete-orphan")
 
 
 class Comment(db.Model):
@@ -73,7 +73,6 @@ class Comment(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now(), index=True)
     date_pretty = db.Column(db.String, default=pretty_date())
     is_action = db.Column(db.Boolean, default=False)
-    cascade = "all, delete, delete-orphan"
 
     bug_id = db.Column(db.Integer, db.ForeignKey("bug.bug_id"))
     author_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
