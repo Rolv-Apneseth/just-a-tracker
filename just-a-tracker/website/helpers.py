@@ -105,6 +105,8 @@ def add_bug_to_workspace(db, user, data, workspace_id):
                 False,
             )
 
+            return new_bug
+
         else:
             flash("The current user does not have access to that workspace")
 
