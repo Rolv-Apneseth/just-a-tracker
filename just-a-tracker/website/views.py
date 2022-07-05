@@ -119,7 +119,7 @@ def mark_bug():
     # Make changes if conditions are met
     if workspace and current_user in workspace.users:
         # Add action comments if one or more of the attributes have changed
-        add_action_comments(db, bug, workspace, make_open, make_important)
+        add_action_comments(db, current_user, bug, workspace, make_open, make_important)
 
         # Change bug report attributes and commit changes
         bug.is_open = make_open

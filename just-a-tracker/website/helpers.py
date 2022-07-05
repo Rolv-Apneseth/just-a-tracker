@@ -1,5 +1,4 @@
 from flask import flash
-from flask_login import current_user
 
 from .models import Bug, Comment, User, Workspace, pretty_date
 
@@ -147,7 +146,7 @@ def add_comment_to_bug(db, user, bug, workspace, text, is_action):
             flash("The current user does not have access to that workspace")
 
 
-def add_action_comments(db, bug, workspace, make_open, make_important):
+def add_action_comments(db, user, bug, workspace, make_open, make_important):
     """
     Adds an action comment to a given bug object if one or more
     of its attributes have been changed.
@@ -159,25 +158,22 @@ def add_action_comments(db, bug, workspace, make_open, make_important):
         # Bug report closed
         [
             bug.is_open and not make_open,
-            f"Closed by {current_user.username} on {pretty_date()}",
+            f"Closed by {user.username} on {pretty_date()}",
         ],
         # Bug report opened
         [
             not bug.is_open and make_open,
-            f"Reopened by {current_user.username} on {pretty_date()}",
+            f"Reopened by {user.username} on {pretty_date()}",
         ],
         # Bug report important mark removed
         [
             bug.is_important and not make_important,
-            (
-                f"Important mark removed by {current_user.username}"
-                f" on {pretty_date()}"
-            ),
+            (f"Important mark removed by {user.username}" f" on {pretty_date()}"),
         ],
         # Bug report marked as important
         [
             not bug.is_important and make_important,
-            f"Marked important by {current_user.username} on {pretty_date()}",
+            f"Marked important by {user.username} on {pretty_date()}",
         ],
     ]
 
@@ -187,7 +183,7 @@ def add_action_comments(db, bug, workspace, make_open, make_important):
         if condition:
             add_comment_to_bug(
                 db,
-                current_user,
+                user,
                 bug,
                 workspace,
                 response,
