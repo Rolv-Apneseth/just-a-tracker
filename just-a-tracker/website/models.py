@@ -37,6 +37,9 @@ class User(db.Model, UserMixin):
 
     bugs = db.relationship("Bug", cascade="all, delete, delete-orphan")
     comments = db.relationship("Comment", cascade="all, delete, delete-orphan")
+    authored_workspaces = db.relationship(
+        "Workspace", cascade="all, delete, delete-orphan"
+    )
     workspaces = db.relationship(
         "Workspace",
         secondary=users_workspaces,
