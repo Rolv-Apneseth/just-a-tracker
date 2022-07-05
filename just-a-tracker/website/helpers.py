@@ -146,6 +146,14 @@ def add_comment_to_bug(db, user, bug, workspace, text, is_action):
             flash("The current user does not have access to that workspace")
 
 
+def change_bug_attributes(db, bug, make_open, make_important):
+    """Change attributes of a bug i.e. make open/closed or important/unimportant"""
+
+    bug.is_open = make_open
+    bug.is_important = make_important
+    db.session.commit()
+
+
 def add_action_comments(db, user, bug, workspace, make_open, make_important):
     """
     Adds an action comment to a given bug object if one or more
@@ -189,3 +197,6 @@ def add_action_comments(db, user, bug, workspace, make_open, make_important):
                 response,
                 True,
             )
+
+    # Make changets to the actual attributes of the bug itself
+    change_bug_attributes(db, bug, make_open, make_important)
