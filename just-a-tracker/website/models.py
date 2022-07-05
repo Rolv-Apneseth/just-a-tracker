@@ -40,9 +40,7 @@ class User(db.Model, UserMixin):
     workspaces = db.relationship(
         "Workspace",
         secondary=users_workspaces,
-        backref=db.backref(
-            "users", cascade="all, delete, delete-orphan", lazy="dynamic"
-        ),
+        backref=db.backref("users", lazy="dynamic"),
     )
 
     # Override UserMixin method to return correct id value
