@@ -59,7 +59,9 @@ def create_demo_user_data(db, demo_users):
                 new_workspace.workspace_id,
             )
 
-            add_action_comments(db, new_bug, new_workspace, bug.open, bug.important)
+            add_action_comments(
+                db, bug_author, new_bug, new_workspace, bug.open, bug.important
+            )
 
 
 def get_demo_users(db):
